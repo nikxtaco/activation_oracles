@@ -58,3 +58,86 @@
 - This trains a LoRA-based activation oracle (not full model finetuning).
 - Active dataset iteration in `sft.py` uses latentqa + classification + past_lens.
 - Resume is partial via `load_lora_path` (adapter weights), not full optimizer/scheduler state restore.
+
+---
+
+## Session 2 changes
+
+### Modified files
+
+#### `nl_probes/configs/sft_config_olmo.py`
+- `hf_repo_id` and `wandb_run_name` renamed to `..._oracle_v1` (was `..._oracle`).
+- Added `save_steps: int = 5_000` — explicit checkpoint interval.
+- Added `save_training_state: bool = False` — opt-in flag to save/restore optimizer+scheduler state.
+- Added `# load_lora_path: str = "checkpoints/step_5000"` as a commented-out field for easy resume uncommenting.
+- Note: `save_training_state` is intentionally only in this config, not in `SelfInterpTrainingConfig`.
+
+#### `nl_probes/sft.py`
+- **Layer percents**: changed from `[25, 50, 75]` to `[25, 50, 75, 88]`.
+  - 88% of 16 layers → layer 14 (second-to-last for OLMo 1B).
+  - Changing layer_percents invalidates existing cached `.pt` files (new hashes); old files are unused but not deleted automatically.
+- **`push_lora_to_hf`**: added `revision: str | None` parameter.
+  - Calls `create_repo(exist_ok=True)` + `create_branch(exist_ok=True)` before pushing.
+  - All `push_to_hub` / `upload_file` calls now forward `revision`.
+  - Print now includes branch name for clarity.
+- **Intermediate checkpoint push**: changed from creating a separate repo per checkpoint to pushing to the same `hf_repo_id` with `revision=f"step-{global_step}"`.
+- **`train_model`**: added `save_training_state: bool = False` parameter.
+  - On resume (`load_lora_path` set + `save_training_state=True`): loads `training_state.pt` from `load_lora_path/`, restores optimizer and scheduler state dicts, sets `global_step` and skips already-seen examples from training data list.
+  - At each `save_steps`: saves `{"optimizer", "scheduler", "global_step", "examples_seen"}` to `checkpoints/step_{N}/training_state.pt`, deletes the previous checkpoint's `training_state.pt` to save disk.
+  - After LoRA push (when `hf_push_to_hub` and `save_training_state`): uploads `training_state.pt` to the same HF revision so new-machine resume is self-contained.
+- **`save_steps`**: wired from `run_cfg.save_steps` (with `hasattr` fallback to 5000) into `SelfInterpTrainingConfig`.
+- **`save_training_state` flag**: read from `run_cfg` with `hasattr` guard in main block; passed explicitly to `train_model`.
+- **HF training data push/pull** (gated on `save_training_state and hf_push_to_hub`):
+  - Before `_ensure_datasets_exist`: if `{hf_repo_id}-training-data` dataset repo exists on HF, downloads it via `snapshot_download` into `cfg.dataset_folder`.
+  - After `_ensure_datasets_exist`: creates the dataset repo if needed and uploads `cfg.dataset_folder` via `upload_folder`.
+  - Data repo name: `{hf_repo_id}-training-data` (type: dataset).
+
+### Added files
+- `experiments/olmo_oracle_demo.ipynb`
+  - End-to-end notebook for using a trained oracle checkpoint.
+  - Loads `open_instruct_dpo_replication` once; collects residual-stream activations with adapters disabled; queries oracle via `run_evaluation` with LoRA loaded from `checkpoints/step_5000`.
+  - Section 1: multi-token query (last N positions, one oracle call).
+  - Section 2: per-token sweep (one oracle call per token position, batched).
+
+### Deleted
+- `checkpoints_latentqa_cls_past_lens_open_instruct_dpo_replication/` (local checkpoint from previous run).
+
+### Downloaded
+- `checkpoints/step_5000/` — pulled from `model-organisms-for-real/open_instruct_dpo_replication_olmo2_1b_oracle-step-5000` (main branch).
+
+## Resume workflow (new machine)
+
+### 1. Download oracle checkpoint
+```bash
+hf download model-organisms-for-real/open_instruct_dpo_replication_olmo2_1b_oracle_v1 \
+    --revision step-5000 \
+    --local-dir checkpoints/step_5000
+```
+This retrieves LoRA adapter weights + `training_state.pt` (optimizer/scheduler state).
+
+### 2. Update sft_config_olmo.py
+Uncomment and set:
+```python
+load_lora_path: str = "checkpoints/step_5000"
+save_training_state: bool = True
+```
+
+### 3. Run training (same command)
+```bash
+torchrun --nproc_per_node=1 nl_probes/sft.py --run-config nl_probes.configs.sft_config_olmo
+```
+On startup it will:
+- Download `sft_training_data/` from `{hf_repo_id}-training-data` HF dataset repo automatically.
+- Load optimizer/scheduler state from `checkpoints/step_5000/training_state.pt`.
+- Skip already-seen examples and resume from the correct global step.
+
+## HF repo layout
+- Model adapter revisions: `model-organisms-for-real/open_instruct_dpo_replication_olmo2_1b_oracle_v1`
+  - Branch `step-5000`, `step-10000`, ... for intermediate checkpoints (each has LoRA weights + `training_state.pt`)
+  - Branch `main` for final model
+- Training data: `model-organisms-for-real/open_instruct_dpo_replication_olmo2_1b_oracle_v1-training-data` (dataset repo)
+
+## Notes
+- `save_training_state=False` by default — set to `True` only when resume across machines is needed (adds ~350MB optimizer state per checkpoint + training data upload overhead).
+- Changing `layer_percents` (e.g. adding layer 88) invalidates all cached dataset `.pt` files. Old files remain on disk but are unused. Delete `sft_training_data/` for a clean start or let new files be created alongside.
+- Total estimated training steps: ~87,000–93,000 with 4 layers.

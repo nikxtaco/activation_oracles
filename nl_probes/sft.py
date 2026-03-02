@@ -64,6 +64,7 @@ def push_lora_to_hf(
     repo_id: str,
     private: bool,
     commit_message: str = "Upload LoRA adapter after training",
+    revision: str | None = None,
 ) -> None:
     """
     Push the trained LoRA adapter to Hugging Face Hub.
@@ -79,7 +80,10 @@ def push_lora_to_hf(
         bool: True if successful, False otherwise
     """
 
-    print(f"Pushing LoRA adapter to Hugging Face Hub: {repo_id}")
+    from huggingface_hub import create_branch, create_repo
+
+    branch_str = f" (branch: {revision})" if revision else " (main)"
+    print(f"Pushing LoRA adapter to Hugging Face Hub: {repo_id}{branch_str}")
 
     # Get the original model name to copy config from
     original_model_name = model.config._name_or_path
@@ -87,11 +91,16 @@ def push_lora_to_hf(
         # For LoRA models, get the base model name
         original_model_name = model.base_model.config._name_or_path
 
+    create_repo(repo_id=repo_id, private=private, exist_ok=True)
+    if revision is not None:
+        create_branch(repo_id=repo_id, branch=revision, exist_ok=True)
+
     # Push the model (LoRA adapters)
     model.push_to_hub(
         repo_id=repo_id,
         commit_message=commit_message,
         private=private,
+        revision=revision,
     )
 
     # Push the tokenizer as well
@@ -99,6 +108,7 @@ def push_lora_to_hf(
         repo_id=repo_id,
         commit_message=f"Upload tokenizer - {commit_message}",
         private=private,
+        revision=revision,
     )
 
     # Copy config.json from the original model
@@ -129,6 +139,7 @@ def push_lora_to_hf(
                 path_in_repo="config.json",
                 repo_id=repo_id,
                 commit_message=f"Copy config.json from {original_model_name}",
+                revision=revision,
             )
 
         # Clean up temp file
@@ -186,6 +197,7 @@ This adapter was trained using the lightweight SAE introspection training script
                 path_in_repo="README.md",
                 repo_id=repo_id,
                 commit_message="Add README with base model metadata",
+                revision=revision,
             )
 
         # Clean up temp file
@@ -196,7 +208,8 @@ This adapter was trained using the lightweight SAE introspection training script
         print(f"Warning: Failed to upload README: {e}")
         print("LoRA adapter uploaded successfully, but without README")
 
-    print(f"Successfully pushed LoRA adapter to: https://huggingface.co/{repo_id}")
+    url = f"https://huggingface.co/{repo_id}" + (f"/tree/{revision}" if revision else "")
+    print(f"Successfully pushed LoRA adapter to: {url}")
 
 
 def train_features_batch(
@@ -315,6 +328,7 @@ def train_model(
     dtype: torch.dtype,
     model_kwargs: dict[str, Any],
     verbose: bool = False,
+    save_training_state: bool = False,
 ):
     # Distributed settings (always on; launch with torchrun, even on 1 GPU)
     rank = dist.get_rank()
@@ -413,7 +427,21 @@ def train_model(
     )
     # --------------------------------------------------------------
 
-    global_step = 0
+    resume_global_step = 0
+    examples_to_skip = 0
+    if cfg.load_lora_path is not None and save_training_state:
+        state_path = Path(cfg.load_lora_path) / "training_state.pt"
+        if state_path.exists():
+            resume_state = torch.load(state_path, map_location="cpu")
+            optimizer.load_state_dict(resume_state["optimizer"])
+            scheduler.load_state_dict(resume_state["scheduler"])
+            resume_global_step = resume_state["global_step"]
+            examples_to_skip = resume_state["examples_seen"]
+            if rank == 0:
+                print(f"Resuming training from step {resume_global_step}, skipping {examples_to_skip} examples")
+
+    training_data = training_data[examples_to_skip:]
+    global_step = resume_global_step
 
     # Init Weights & Biases only on rank 0
     if rank == 0:
@@ -472,16 +500,42 @@ def train_model(
 
                 if global_step % cfg.save_steps == 0 and global_step > 0:
                     if rank == 0:
-                        model.save_pretrained(f"{cfg.save_dir}/step_{global_step}")
+                        checkpoint_dir = Path(f"{cfg.save_dir}/step_{global_step}")
+                        model.save_pretrained(checkpoint_dir)
+                        if save_training_state:
+                            steps_this_session = global_step - resume_global_step
+                            total_examples_seen = examples_to_skip + steps_this_session * cfg.gradient_accumulation_steps * cfg.train_batch_size
+                            torch.save(
+                                {
+                                    "optimizer": optimizer.state_dict(),
+                                    "scheduler": scheduler.state_dict(),
+                                    "global_step": global_step,
+                                    "examples_seen": total_examples_seen,
+                                },
+                                checkpoint_dir / "training_state.pt",
+                            )
+                            prev_state_path = Path(f"{cfg.save_dir}/step_{global_step - cfg.save_steps}") / "training_state.pt"
+                            if prev_state_path.exists():
+                                os.remove(prev_state_path)
                         if cfg.hf_push_to_hub and cfg.hf_repo_id:
                             print("Pushing LoRA adapter to Hugging Face Hub...")
                             push_lora_to_hf(
                                 model=model,
                                 tokenizer=tokenizer,
-                                repo_id=cfg.hf_repo_id + f"-step-{global_step}",
+                                repo_id=cfg.hf_repo_id,
                                 private=cfg.hf_private_repo,
                                 commit_message=(f"SAE introspection LoRA - {cfg.wandb_run_name} - step {global_step}"),
+                                revision=f"step-{global_step}",
                             )
+                            if save_training_state:
+                                from huggingface_hub import upload_file
+                                upload_file(
+                                    path_or_fileobj=str(checkpoint_dir / "training_state.pt"),
+                                    path_in_repo="training_state.pt",
+                                    repo_id=cfg.hf_repo_id,
+                                    revision=f"step-{global_step}",
+                                    commit_message=f"Training state for step {global_step}",
+                                )
                             print("Pushed LoRA adapter to Hugging Face Hub.")
                     dist.barrier()
 
@@ -938,7 +992,7 @@ if __name__ == "__main__":
         train_batch_size = train_batch_size // world_size
         print(f"Per-rank train batch size: {train_batch_size}, world size: {world_size}")
 
-        layer_percents = [25, 50, 75]
+        layer_percents = [25, 50, 75, 88]
         act_layers = [layer_percent_to_layer(model_name, p, model_revision) for p in layer_percents]
         save_acts = False
 
@@ -999,6 +1053,7 @@ if __name__ == "__main__":
                 eval_batch_size=train_batch_size * 8,
                 eval_steps=run_cfg.eval_steps,
                 eval_on_start=run_cfg.eval_on_start,
+                save_steps=run_cfg.save_steps if hasattr(run_cfg, "save_steps") else 5_000,
                 gradient_checkpointing=gradient_checkpointing,
                 gradient_accumulation_steps=gradient_accumulation_steps,
                 **hyperparam_override,
@@ -1010,9 +1065,42 @@ if __name__ == "__main__":
 
             tokenizer = load_tokenizer(tokenizer_name_override, tokenizer_revision_override)
 
+            save_training_state = False
+            if hasattr(run_cfg, "save_training_state"):
+                save_training_state = run_cfg.save_training_state
+
+            data_repo_id = cfg.hf_repo_id + "-training-data" if cfg.hf_repo_id else ""
+
+            # On rank 0, download cached training data from HF before dataset creation
+            if local_rank == 0 and save_training_state and cfg.hf_push_to_hub and data_repo_id:
+                from huggingface_hub import repo_exists, snapshot_download
+                if repo_exists(repo_id=data_repo_id, repo_type="dataset"):
+                    print(f"Downloading training data from {data_repo_id}...")
+                    snapshot_download(
+                        repo_id=data_repo_id,
+                        repo_type="dataset",
+                        local_dir=cfg.dataset_folder,
+                        local_dir_use_symlinks=False,
+                    )
+            dist.barrier()
+
             # Ensure only rank 0 performs any on-disk dataset creation
             if local_rank == 0:
                 _ensure_datasets_exist(loop_dataset_loaders)
+            dist.barrier()
+
+            # On rank 0, push training data to HF after ensuring it exists
+            if local_rank == 0 and save_training_state and cfg.hf_push_to_hub and data_repo_id:
+                from huggingface_hub import create_repo, upload_folder
+                create_repo(repo_id=data_repo_id, repo_type="dataset", private=cfg.hf_private_repo, exist_ok=True)
+                print(f"Pushing training data to {data_repo_id}...")
+                upload_folder(
+                    repo_id=data_repo_id,
+                    folder_path=cfg.dataset_folder,
+                    repo_type="dataset",
+                    commit_message=f"Training data for {cfg.wandb_run_name}",
+                )
+                print(f"Training data pushed to https://huggingface.co/datasets/{data_repo_id}")
             dist.barrier()
 
             all_training_data, all_eval_data = build_datasets(
@@ -1039,6 +1127,7 @@ if __name__ == "__main__":
                 device=device,
                 model_kwargs=model_kwargs,
                 verbose=True,
+                save_training_state=save_training_state,
             )
 
     # Clean up DDP

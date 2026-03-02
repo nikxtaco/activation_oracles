@@ -10,12 +10,12 @@ class SFTRunConfig:
 
     # Tracking
     wandb_project: str = "activation_oracles"
-    wandb_run_name: str = "open_instruct_dpo_replication_olmo2_1b_oracle"
+    wandb_run_name: str = "open_instruct_dpo_replication_olmo2_1b_oracle_v1"
 
     # Hub push
     hf_push_to_hub: bool = True
     hf_private_repo: bool = False
-    hf_repo_id: str = "model-organisms-for-real/open_instruct_dpo_replication_olmo2_1b_oracle"
+    hf_repo_id: str = "model-organisms-for-real/open_instruct_dpo_replication_olmo2_1b_oracle_v1"
 
     # Training behavior overrides (kept explicit for reproducibility)
     train_batch_size: int = 16
@@ -24,3 +24,6 @@ class SFTRunConfig:
     eval_steps: int = 10_000
     eval_on_start: bool = True
     save_dir: str = "checkpoints"
+    save_steps: int = 5_000
+    save_training_state: bool = False
+    # load_lora_path: str = "checkpoints/step_5000"
