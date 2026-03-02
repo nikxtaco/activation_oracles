@@ -902,14 +902,17 @@ if __name__ == "__main__":
     model_revision_override = run_cfg.model_revision
     tokenizer_name_override = run_cfg.tokenizer_name
     tokenizer_revision_override = None
+    hf_repo_id_override = ""
     if hasattr(run_cfg, "tokenizer_revision"):
         tokenizer_revision_override = run_cfg.tokenizer_revision
+    if hasattr(run_cfg, "hf_repo_id"):
+        hf_repo_id_override = run_cfg.hf_repo_id
 
     models = [model_name_override]
 
     for model_name in models:
         model_revision = model_revision_override
-        hf_repo_name = run_cfg.hf_repo_name
+        hf_repo_name = run_cfg.hf_repo_name if hasattr(run_cfg, "hf_repo_name") else ""
 
         model_name_str = model_name.split("/")[-1].replace(".", "_").replace(" ", "_")
 
@@ -982,6 +985,7 @@ if __name__ == "__main__":
                 model_name=model_name,
                 hook_onto_layer=hook_layer,
                 hf_repo_name=hf_repo_name,
+                hf_repo_id=hf_repo_id_override,
                 wandb_project=run_cfg.wandb_project,
                 wandb_run_name=run_cfg.wandb_run_name,
                 hf_push_to_hub=run_cfg.hf_push_to_hub,

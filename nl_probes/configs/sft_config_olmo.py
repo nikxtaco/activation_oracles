@@ -15,7 +15,7 @@ class SFTRunConfig:
     # Hub push
     hf_push_to_hub: bool = True
     hf_private_repo: bool = False
-    hf_repo_name: str = "open_instruct_dpo_replication_olmo2_1b_oracle"
+    hf_repo_id: str = "model-organisms-for-real/open_instruct_dpo_replication_olmo2_1b_oracle"
 
     # Training behavior overrides (kept explicit for reproducibility)
     train_batch_size: int = 16
