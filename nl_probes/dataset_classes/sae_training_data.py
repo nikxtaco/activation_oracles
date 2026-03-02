@@ -264,7 +264,7 @@ class SAEExplanationDatasetLoader(ActDatasetLoader):
         training_data, sae_info = load_sae_data_from_sft_data_file(
             dataset_config=self.dataset_config,
             custom_dataset_params=self.dataset_params,
-            tokenizer=load_tokenizer(self.dataset_config.model_name),
+            tokenizer=load_tokenizer(self.dataset_config.model_name, self.dataset_config.model_revision),
             device=torch.device("cpu"),
             dtype=torch.bfloat16,
         )
@@ -283,12 +283,13 @@ def create_activating_sequences_data(
     seed: int = 42,
     sft_data_folder: str = "sft_training_data",
     verbose: bool = False,
+    model_revision: str | None = None,
 ) -> tuple[list[TrainingDataPoint], SAEInfo]:
     device = torch.device("cpu")
     dtype = torch.bfloat16
     random.seed(seed)
 
-    tokenizer = load_tokenizer(model_name)
+    tokenizer = load_tokenizer(model_name, model_revision)
 
     training_data = []
 
@@ -416,6 +417,7 @@ def create_yes_no_data(
     use_decoder: bool = True,
     max_features: int | None = None,
     verbose: bool = False,
+    model_revision: str | None = None,
 ) -> tuple[list[TrainingDataPoint], SAEInfo]:
     question_gen_prompt = """
 I would like for you to generate four Yes / No questions about the feature's explanation. 2 should have the answer be Yes, and 2 should have the answer be No.
@@ -500,7 +502,7 @@ Please generate four Yes / No questions, and try have some variety in the phrasi
 
     training_data = []
 
-    tokenizer = load_tokenizer(model_name)
+    tokenizer = load_tokenizer(model_name, model_revision)
 
     incorrect_count = 0
 

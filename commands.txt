@@ -1,0 +1,1 @@
+torchrun --nproc_per_node=1 nl_probes/sft.py --run-config nl_probes.configs.sft_config_olmo

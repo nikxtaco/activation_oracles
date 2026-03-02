@@ -27,6 +27,7 @@ class DatasetLoaderConfig:
     dataset_name: str = ""
     dataset_folder: str = "sft_training_data"
     seed: int = 42
+    model_revision: str | None = None
 
 
 def _config_hash(cfg: DatasetLoaderConfig, split: str, exclude: tuple[str, ...] = ("batch_size",)) -> str:

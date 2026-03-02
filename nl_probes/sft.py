@@ -1,3 +1,5 @@
+import argparse
+import importlib
 import os
 
 os.environ["PYTORCH_CUDA_ALLOC_CONF"] = "expandable_segments:True"
@@ -44,7 +46,7 @@ from nl_probes.dataset_classes.sae_training_data import (
     SAEYesNoDatasetLoader,
 )
 from nl_probes.utils.activation_utils import get_hf_submodule, get_text_only_lora_targets
-from nl_probes.utils.common import load_model, load_tokenizer, set_seed
+from nl_probes.utils.common import layer_percent_to_layer, load_model, load_tokenizer, set_seed
 from nl_probes.utils.dataset_utils import (
     BatchData,
     EvalStepResult,
@@ -581,6 +583,7 @@ def mk_cfg(
     num_test: int,
     splits: list[str],
     model_name: str,
+    model_revision: str | None,
     layer_percents: list[int],
     save_acts: bool,
     batch_size: int,
@@ -591,6 +594,7 @@ def mk_cfg(
         num_test=num_test,
         splits=splits,
         model_name=model_name,
+        model_revision=model_revision,
         layer_percents=layer_percents,
         save_acts=save_acts,
         batch_size=batch_size,
@@ -600,6 +604,7 @@ def mk_cfg(
 def build_loader_groups(
     *,
     model_name: str,
+    model_revision: str | None,
     layer_percents: list[int],
     act_collection_batch_size: int,
     save_acts: bool,
@@ -626,6 +631,7 @@ def build_loader_groups(
             num_test=0,
             splits=["train"],
             model_name=model_name,
+            model_revision=model_revision,
             layer_percents=layer_percents,
             save_acts=save_acts,
             batch_size=train_batch_size,
@@ -642,6 +648,7 @@ def build_loader_groups(
             num_test=0,
             splits=["train"],
             model_name=model_name,
+            model_revision=model_revision,
             layer_percents=layer_percents,
             save_acts=save_acts,
             batch_size=train_batch_size,
@@ -655,6 +662,7 @@ def build_loader_groups(
             num_test=0,
             splits=["train"],
             model_name=model_name,
+            model_revision=model_revision,
             layer_percents=layer_percents,
             save_acts=False,
             batch_size=train_batch_size,
@@ -680,6 +688,7 @@ def build_loader_groups(
                     num_test=0,
                     splits=["train"],
                     model_name=model_name,
+                    model_revision=model_revision,
                     layer_percents=[layer_percent],
                     save_acts=True,
                     batch_size=0,
@@ -698,6 +707,7 @@ def build_loader_groups(
                     num_test=0,
                     splits=["train"],
                     model_name=model_name,
+                    model_revision=model_revision,
                     layer_percents=[layer_percent],
                     save_acts=True,
                     batch_size=0,
@@ -713,6 +723,7 @@ def build_loader_groups(
                     num_test=0,
                     splits=["train"],
                     model_name=model_name,
+                    model_revision=model_revision,
                     layer_percents=[layer_percent],
                     save_acts=True,
                     batch_size=0,
@@ -752,6 +763,7 @@ def build_loader_groups(
                     num_test=meta["num_test"],
                     splits=meta["splits"],
                     model_name=model_name,
+                    model_revision=model_revision,
                     layer_percents=layer_percents,
                     save_acts=save_acts,
                     batch_size=bs,
@@ -768,6 +780,7 @@ def build_loader_groups(
                     num_test=meta["num_test"],
                     splits=meta["splits"],
                     model_name=model_name,
+                    model_revision=model_revision,
                     layer_percents=layer_percents,
                     save_acts=save_acts,
                     batch_size=train_batch_size,
@@ -812,6 +825,13 @@ def _ensure_datasets_exist(dataset_loaders: list[ActDatasetLoader]) -> None:
 
 
 if __name__ == "__main__":
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--run-config", type=str, default="nl_probes.configs.sft_config_olmo")
+    # Optional: keep this if you want CLI override support for tokenizer revision in future.
+    # parser.add_argument("--tokenizer-revision", type=str, default=None)
+    args = parser.parse_args()
+    run_cfg = importlib.import_module(args.run_config).SFTRunConfig()
+
     # for gemma: export TORCHDYNAMO_DISABLE=1
     # Always initialize DDP (launch with torchrun, even for 1 GPU)
     # time delta of two hours because currently it can take 1 hour to build all datasets
@@ -878,31 +898,31 @@ if __name__ == "__main__":
     # model_name = "google/gemma-2-9b-it"
     # model_name = "Qwen/Qwen3-8B"
 
-    models = [
-        # "Qwen/Qwen3-14B",
-        # "google/gemma-2-27b-it",
-        # "meta-llama/Llama-3.1-8B-Instruct",
-        # "google/gemma-3-4b-it",
-        # "google/gemma-3-12b-it",
-        # "google/gemma-3-27b-it",
-        "Qwen/Qwen3-4B",
-    ]
+    model_name_override = run_cfg.model_name
+    model_revision_override = run_cfg.model_revision
+    tokenizer_name_override = run_cfg.tokenizer_name
+    tokenizer_revision_override = None
+    if hasattr(run_cfg, "tokenizer_revision"):
+        tokenizer_revision_override = run_cfg.tokenizer_revision
+
+    models = [model_name_override]
 
     for model_name in models:
-        hf_repo_name = "N/A"
+        model_revision = model_revision_override
+        hf_repo_name = run_cfg.hf_repo_name
 
         model_name_str = model_name.split("/")[-1].replace(".", "_").replace(" ", "_")
 
-        train_batch_size = 16
-        gradient_checkpointing = True
-        model_kwargs = {}
+        train_batch_size = run_cfg.train_batch_size
+        gradient_checkpointing = run_cfg.gradient_checkpointing
+        model_kwargs = {"revision": model_revision}
 
         if model_name == "Qwen/Qwen3-32B" or model_name == "meta-llama/Llama-3.3-70B-Instruct":
             bnb_config = BitsAndBytesConfig(
                 load_in_8bit=True,
                 bnb_8bit_compute_dtype=dtype,
             )
-            model_kwargs = {"quantization_config": bnb_config}
+            model_kwargs = {"quantization_config": bnb_config, "revision": model_revision}
 
         # if model_name == "meta-llama/Llama-3.3-70B-Instruct":
         # train_batch_size = train_batch_size * 4  # increase gpu utilization on 4x GPUs
@@ -916,13 +936,15 @@ if __name__ == "__main__":
         print(f"Per-rank train batch size: {train_batch_size}, world size: {world_size}")
 
         layer_percents = [25, 50, 75]
+        act_layers = [layer_percent_to_layer(model_name, p, model_revision) for p in layer_percents]
         save_acts = False
 
-        gradient_accumulation_steps = 1
+        gradient_accumulation_steps = run_cfg.gradient_accumulation_steps
 
         # Build loader groups (single + multi variants)
         loader_groups = build_loader_groups(
             model_name=model_name,
+            model_revision=model_revision,
             layer_percents=layer_percents,
             act_collection_batch_size=train_batch_size,
             save_acts=save_acts,
@@ -960,13 +982,19 @@ if __name__ == "__main__":
                 model_name=model_name,
                 hook_onto_layer=hook_layer,
                 hf_repo_name=hf_repo_name,
+                wandb_project=run_cfg.wandb_project,
+                wandb_run_name=run_cfg.wandb_run_name,
+                hf_push_to_hub=run_cfg.hf_push_to_hub,
+                hf_private_repo=run_cfg.hf_private_repo,
+                save_dir=run_cfg.save_dir,
                 # wandb_suffix=wandb_suffix,
                 layer_percents=layer_percents,
+                act_layers=act_layers,
                 train_batch_size=train_batch_size,
                 activation_collection_batch_size=train_batch_size * 4,
                 eval_batch_size=train_batch_size * 8,
-                eval_steps=10_000,
-                eval_on_start=True,
+                eval_steps=run_cfg.eval_steps,
+                eval_on_start=run_cfg.eval_on_start,
                 gradient_checkpointing=gradient_checkpointing,
                 gradient_accumulation_steps=gradient_accumulation_steps,
                 **hyperparam_override,
@@ -976,7 +1004,7 @@ if __name__ == "__main__":
 
             print(f"save dir: {cfg.save_dir}")
 
-            tokenizer = load_tokenizer(cfg.model_name)
+            tokenizer = load_tokenizer(tokenizer_name_override, tokenizer_revision_override)
 
             # Ensure only rank 0 performs any on-disk dataset creation
             if local_rank == 0:

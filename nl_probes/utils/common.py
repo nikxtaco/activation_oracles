@@ -18,6 +18,7 @@ def set_seed(seed: int) -> None:
 def load_model(
     model_name: str,
     dtype: torch.dtype,
+    model_revision: str | None = None,
     **model_kwargs,
 ) -> AutoModelForCausalLM:
     print("🧠 Loading model...")
@@ -31,6 +32,8 @@ def load_model(
         "torch_dtype": dtype,
         **model_kwargs,
     }
+    if model_revision is not None:
+        kwargs["revision"] = model_revision
 
     model = AutoModelForCausalLM.from_pretrained(model_name, **kwargs)
     return model
@@ -38,10 +41,14 @@ def load_model(
 
 def load_tokenizer(
     model_name: str,
+    model_revision: str | None = None,
 ) -> AutoTokenizer:
     # Load tokenizer
     print("📦 Loading tokenizer...")
-    tokenizer = AutoTokenizer.from_pretrained(model_name)
+    kwargs = {}
+    if model_revision is not None:
+        kwargs["revision"] = model_revision
+    tokenizer = AutoTokenizer.from_pretrained(model_name, **kwargs)
     tokenizer.padding_side = "left"
 
     if not tokenizer.pad_token_id:
@@ -118,9 +125,15 @@ def assert_no_peft_present(model, check_for_active_adapter_only=False):
     )
 
 
-def get_layer_count(model_name: str) -> int:
+def get_layer_count(
+    model_name: str,
+    model_revision: str | None = None,
+) -> int:
     """Get the number of layers from a HuggingFace model config."""
-    config = AutoConfig.from_pretrained(model_name)
+    kwargs = {}
+    if model_revision is not None:
+        kwargs["revision"] = model_revision
+    config = AutoConfig.from_pretrained(model_name, **kwargs)
     if hasattr(config, "num_hidden_layers"):
         return config.num_hidden_layers
     elif hasattr(config, "text_config"):
@@ -129,7 +142,11 @@ def get_layer_count(model_name: str) -> int:
     raise AttributeError(f"Could not find layer count for {model_name}")
 
 
-def layer_percent_to_layer(model_name: str, layer_percent: int) -> int:
+def layer_percent_to_layer(
+    model_name: str,
+    layer_percent: int,
+    model_revision: str | None = None,
+) -> int:
     """Convert a layer percent to a layer number."""
-    max_layers = get_layer_count(model_name)
+    max_layers = get_layer_count(model_name, model_revision)
     return int(max_layers * (layer_percent / 100))

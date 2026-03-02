@@ -27,7 +27,7 @@ dependencies = [
     "transformers==4.55.2",
     "vllm==0.10.0",
     "einops==0.8.1",
-    "wandb==0.21.1",
+    "wandb==0.22.3",
     "packaging>=20.0",
     "uvicorn",
     "fastapi",

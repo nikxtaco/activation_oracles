@@ -52,10 +52,10 @@ class LatentQADatasetLoader(ActDatasetLoader):
             )
 
     def create_dataset(self) -> None:
-        tokenizer = load_tokenizer(self.dataset_config.model_name)
+        tokenizer = load_tokenizer(self.dataset_config.model_name, self.dataset_config.model_revision)
 
         layers = [
-            layer_percent_to_layer(self.dataset_config.model_name, layer_percent)
+            layer_percent_to_layer(self.dataset_config.model_name, layer_percent, self.dataset_config.model_revision)
             for layer_percent in self.dataset_config.layer_percents
         ]
 

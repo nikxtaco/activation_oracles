@@ -52,7 +52,7 @@ class PastLensDatasetLoader(ActDatasetLoader):
             )
 
     def create_dataset(self) -> None:
-        tokenizer = load_tokenizer(self.dataset_config.model_name)
+        tokenizer = load_tokenizer(self.dataset_config.model_name, self.dataset_config.model_revision)
         dataset = hf_mixed_dataset_to_generator(tokenizer)
 
         dtype = torch.bfloat16
@@ -178,13 +178,13 @@ def collect_past_lens_acts(
     torch.manual_seed(dataset_config.seed)
 
     layers = [
-        layer_percent_to_layer(dataset_config.model_name, layer_percent)
+        layer_percent_to_layer(dataset_config.model_name, layer_percent, dataset_config.model_revision)
         for layer_percent in dataset_config.layer_percents
     ]
 
     device = torch.device("cpu")
     if dataset_config.save_acts:
-        model = load_model(dataset_config.model_name, dtype)
+        model = load_model(dataset_config.model_name, dtype, model_revision=dataset_config.model_revision)
         submodules = {layer: get_hf_submodule(model, layer) for layer in layers}
         device = model.device
 

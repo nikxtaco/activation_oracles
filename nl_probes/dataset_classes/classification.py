@@ -53,7 +53,9 @@ class ClassificationDatasetLoader(ActDatasetLoader):
         self.model = model
 
         self.act_layers = [
-            layer_percent_to_layer(self.dataset_config.model_name, layer_percent)
+            layer_percent_to_layer(
+                self.dataset_config.model_name, layer_percent, self.dataset_config.model_revision
+            )
             for layer_percent in self.dataset_config.layer_percents
         ]
 
@@ -65,7 +67,7 @@ class ClassificationDatasetLoader(ActDatasetLoader):
         assert self.dataset_params.max_window_size > 0, "Max window size must be positive"
 
     def create_dataset(self) -> None:
-        tokenizer = load_tokenizer(self.dataset_config.model_name)
+        tokenizer = load_tokenizer(self.dataset_config.model_name, self.dataset_config.model_revision)
 
         train_datapoints, test_datapoints = get_classification_datapoints(
             self.dataset_params.classification_dataset_name,
