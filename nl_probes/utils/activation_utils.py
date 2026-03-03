@@ -149,7 +149,6 @@ def get_hf_submodule(model: AutoModelForCausalLM, layer: int, use_lora: bool = F
             or "Llama" in model_name
             or "Qwen" in model_name
             or "olmo" in model_name.lower()
-            or "open_instruct_dpo_replication" in model_name
         ):
             return model.base_model.model.model.layers[layer]
         else:
@@ -165,7 +164,6 @@ def get_hf_submodule(model: AutoModelForCausalLM, layer: int, use_lora: bool = F
         or "Llama" in model_name
         or "Qwen" in model_name
         or "olmo" in model_name.lower()
-        or "open_instruct_dpo_replication" in model_name
     ):
         return model.model.layers[layer]
     else:

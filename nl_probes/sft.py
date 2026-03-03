@@ -955,18 +955,14 @@ if __name__ == "__main__":
     model_name_override = run_cfg.model_name
     model_revision_override = run_cfg.model_revision
     tokenizer_name_override = run_cfg.tokenizer_name
-    tokenizer_revision_override = None
-    hf_repo_id_override = ""
-    if hasattr(run_cfg, "tokenizer_revision"):
-        tokenizer_revision_override = run_cfg.tokenizer_revision
-    if hasattr(run_cfg, "hf_repo_id"):
-        hf_repo_id_override = run_cfg.hf_repo_id
+    tokenizer_revision_override = run_cfg.tokenizer_revision
+    hf_repo_id_override = run_cfg.hf_repo_id
 
     models = [model_name_override]
 
     for model_name in models:
         model_revision = model_revision_override
-        hf_repo_name = run_cfg.hf_repo_name if hasattr(run_cfg, "hf_repo_name") else ""
+        hf_repo_name = run_cfg.hf_repo_name
 
         model_name_str = model_name.split("/")[-1].replace(".", "_").replace(" ", "_")
 
@@ -992,7 +988,7 @@ if __name__ == "__main__":
         train_batch_size = train_batch_size // world_size
         print(f"Per-rank train batch size: {train_batch_size}, world size: {world_size}")
 
-        layer_percents = [25, 50, 75, 88]
+        layer_percents = run_cfg.layer_percents
         act_layers = [layer_percent_to_layer(model_name, p, model_revision) for p in layer_percents]
         save_acts = False
 
@@ -1017,9 +1013,9 @@ if __name__ == "__main__":
 
         iterations = [
             # Default dataset mixture
-            # Set load_lora_path to checkpoint path to continue training
+            # Set load_lora_path in run config to resume from a checkpoint
             {
-                "load_lora_path": None,
+                "load_lora_path": run_cfg.load_lora_path,
                 "dataset_loaders": latentqa_loaders + classification_dataset_loaders + past_lens_loaders,
                 "wandb_suffix": f"_latentqa_cls_past_lens_{model_name_str}",
             },
@@ -1035,6 +1031,9 @@ if __name__ == "__main__":
             if hyperparam_override["load_lora_path"] is not None:
                 assert os.path.exists(hyperparam_override["load_lora_path"]), f"{hyperparam_override['load_lora_path']}"
 
+            eval_batch_size = run_cfg.eval_batch_size if run_cfg.eval_batch_size is not None else train_batch_size * 8
+            activation_collection_batch_size = run_cfg.activation_collection_batch_size
+
             cfg = SelfInterpTrainingConfig(
                 model_name=model_name,
                 hook_onto_layer=hook_layer,
@@ -1045,17 +1044,32 @@ if __name__ == "__main__":
                 hf_push_to_hub=run_cfg.hf_push_to_hub,
                 hf_private_repo=run_cfg.hf_private_repo,
                 save_dir=run_cfg.save_dir,
-                # wandb_suffix=wandb_suffix,
                 layer_percents=layer_percents,
                 act_layers=act_layers,
                 train_batch_size=train_batch_size,
-                activation_collection_batch_size=train_batch_size * 4,
-                eval_batch_size=train_batch_size * 8,
+                activation_collection_batch_size=activation_collection_batch_size,
+                eval_batch_size=eval_batch_size,
                 eval_steps=run_cfg.eval_steps,
                 eval_on_start=run_cfg.eval_on_start,
-                save_steps=run_cfg.save_steps if hasattr(run_cfg, "save_steps") else 5_000,
+                save_steps=run_cfg.save_steps,
                 gradient_checkpointing=gradient_checkpointing,
                 gradient_accumulation_steps=gradient_accumulation_steps,
+                use_decoder_vectors=run_cfg.use_decoder_vectors,
+                generation_kwargs=run_cfg.generation_kwargs,
+                steering_coefficient=run_cfg.steering_coefficient,
+                dataset_folder=run_cfg.dataset_folder,
+                positive_negative_examples=run_cfg.positive_negative_examples,
+                use_lora=run_cfg.use_lora,
+                lora_r=run_cfg.lora_r,
+                lora_alpha=run_cfg.lora_alpha,
+                lora_dropout=run_cfg.lora_dropout,
+                lora_target_modules=run_cfg.lora_target_modules,
+                num_epochs=run_cfg.num_epochs,
+                lr=run_cfg.lr,
+                max_grad_norm=run_cfg.max_grad_norm,
+                eval_logs_path=run_cfg.eval_logs_path,
+                seed=run_cfg.seed,
+                window_mult=run_cfg.window_mult,
                 **hyperparam_override,
             )
 
@@ -1065,9 +1079,7 @@ if __name__ == "__main__":
 
             tokenizer = load_tokenizer(tokenizer_name_override, tokenizer_revision_override)
 
-            save_training_state = False
-            if hasattr(run_cfg, "save_training_state"):
-                save_training_state = run_cfg.save_training_state
+            save_training_state = run_cfg.save_training_state
 
             data_repo_id = cfg.hf_repo_id + "-training-data" if cfg.hf_repo_id else ""
 
