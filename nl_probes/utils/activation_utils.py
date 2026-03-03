@@ -137,34 +137,27 @@ def get_text_only_lora_targets(model_name: str) -> str | None:
 def get_hf_submodule(model: AutoModelForCausalLM, layer: int, use_lora: bool = False):
     """Gets the residual stream submodule for HF transformers"""
     model_name = model.config._name_or_path
+    model_type = getattr(model.config, "model_type", "").lower()
+
+    def _matches(*keywords: str) -> bool:
+        combined = model_name.lower() + " " + model_type
+        return any(k in combined for k in keywords)
 
     if use_lora:
-        if "pythia" in model_name:
+        if _matches("pythia"):
             raise ValueError("Need to determine how to get submodule for LoRA")
-        elif "gemma-3" in model_name:
+        elif _matches("gemma-3"):
             return model.base_model.language_model.layers[layer]
-        elif (
-            "gemma-2" in model_name
-            or "mistral" in model_name
-            or "Llama" in model_name
-            or "Qwen" in model_name
-            or "olmo" in model_name.lower()
-        ):
+        elif _matches("gemma-2", "mistral", "llama", "qwen", "olmo"):
             return model.base_model.model.model.layers[layer]
         else:
             raise ValueError(f"Please add submodule for model {model_name}")
 
-    if "pythia" in model_name:
+    if _matches("pythia"):
         return model.gpt_neox.layers[layer]
-    elif "gemma-3" in model_name:
+    elif _matches("gemma-3"):
         return model.language_model.layers[layer]
-    elif (
-        "gemma-2" in model_name
-        or "mistral" in model_name
-        or "Llama" in model_name
-        or "Qwen" in model_name
-        or "olmo" in model_name.lower()
-    ):
+    elif _matches("gemma-2", "mistral", "llama", "qwen", "olmo"):
         return model.model.layers[layer]
     else:
         raise ValueError(f"Please add submodule for model {model_name}")
