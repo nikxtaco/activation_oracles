@@ -45,10 +45,10 @@ class SFTRunConfig:
     seed: int = 42
 
     # --- Eval / checkpointing ---
-    eval_steps: int = 9_999_999  # effectively off, matching original oracle
-    eval_on_start: bool = False
+    eval_steps: int = 10_000
+    eval_on_start: bool = True
     eval_logs_path: str = "eval_logs.json"
-    save_steps: int = 5_000
+    save_steps: int = 10_000
     save_dir: str = "checkpoints"
     save_training_state: bool = True
 
