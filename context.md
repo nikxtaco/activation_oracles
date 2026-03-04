@@ -141,3 +141,46 @@ On startup it will:
 - `save_training_state=False` by default — set to `True` only when resume across machines is needed (adds ~350MB optimizer state per checkpoint + training data upload overhead).
 - Changing `layer_percents` (e.g. adding layer 88) invalidates all cached dataset `.pt` files. Old files remain on disk but are unused. Delete `sft_training_data/` for a clean start or let new files be created alongside.
 - Total estimated training steps: ~87,000–93,000 with 4 layers.
+
+---
+
+## Session 3 changes (Gemma-2-9B-IT oracle)
+
+### Added files
+- `nl_probes/configs/sft_config_gemma.py`
+  - `SFTRunConfig` for `google/gemma-2-9b-it`.
+  - Key diffs from OLMo config: `layer_percents=[25,50,75,96]` (4 layers; 96% ≈ layer 40, second-to-last), `eval_on_start=True`, `eval_steps=10_000`, `save_steps=10_000`, `wandb_project="activation_oracles"`, `hf_repo_id="model-organisms-for-real/gemma2_9b_it_oracle_v1"`.
+
+- `nl_probes/sft_fixed.py`
+  - Copy of `sft.py` with three bug fixes for the Gemma run (see below). `sft.py` is left unchanged.
+
+### Bug fixes in `sft_fixed.py`
+
+#### 1. Dynamo recompile crashes (training + eval)
+- **Error**: `torch._dynamo.exc.FailOnRecompileLimitHit` — dynamo is triggered implicitly by DDP (training) and PEFT's generate chain (eval), causing recompile limit hits from variable sequence lengths. `@dynamo.disable` on `eval_features_batch` does not propagate through PEFT's generate chain.
+- **Fix**: Disable dynamo globally at import time (safe since `torch.compile` is never used in this codebase):
+  ```python
+  import torch._dynamo
+  torch._dynamo.config.optimize_ddp = False
+  torch._dynamo.config.disable = True
+  ```
+
+#### 2. `requires_grad_` crash during eval generation
+- **Error**: `torch._dynamo.exc.Unsupported: Tensor.requires_grad_` — `model.enable_input_require_grads()` (called unconditionally at model setup) registers a forward hook on the embedding layer that calls `output.requires_grad_(True)`. TorchDynamo can't handle this during `model.generate()` even with `@dynamo.disable` on the eval function, due to PEFT's generate chain.
+- **Fix**: In `eval_all_datasets`, disable the hook before eval and re-enable after:
+  ```python
+  model.eval()
+  model.disable_input_require_grads()   # added
+  # ... run eval ...
+  model.enable_input_require_grads()    # added
+  model.train()
+  ```
+
+#### 3. Slow startup — datasets loaded twice
+- **Problem**: `_ensure_datasets_exist` called `dl.load_dataset(split)` for every loader/split just to trigger creation if missing — loading 2.7GB of `.pt` files into memory and then discarding them, before `build_datasets` loaded them all again.
+- **Fix**: Rewrote `_ensure_datasets_exist` to only check file existence on disk and call `create_dataset()` only when a file is actually missing. When all `.pt` files are present, startup goes from ~several minutes to seconds.
+
+### Run command
+```bash
+torchrun --nproc_per_node=2 nl_probes/sft_fixed.py --run-config nl_probes.configs.sft_config_gemma
+```

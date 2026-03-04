@@ -1,14 +1,14 @@
 # Run oracle training (single GPU)
 torchrun --nproc_per_node=1 nl_probes/sft.py --run-config nl_probes.configs.sft_config_olmo
 
-# Run oracle training (multi-GPU, e.g. 4 GPUs)
-torchrun --nproc_per_node=4 nl_probes/sft.py --run-config nl_probes.configs.sft_config_olmo
-
 # Download a specific checkpoint revision from HF (includes LoRA weights + training_state.pt if save_training_state was True)
 # Replace step_5000 with the desired step. Set load_lora_path to this dir in sft_config_olmo.py to resume.
 hf download model-organisms-for-real/open_instruct_dpo_replication_olmo2_1b_oracle_v1 \
     --revision step-5000 \
     --local-dir checkpoints/step_5000
+
+# Run Gemma-2-9B-IT oracle training (2 GPUs, uses sft_fixed.py for dynamo crash fixes)
+torchrun --nproc_per_node=2 nl_probes/sft_fixed.py --run-config nl_probes.configs.sft_config_gemma
 
 # Download training data manually (only needed if not using save_training_state=True, which auto-downloads)
 hf download model-organisms-for-real/open_instruct_dpo_replication_olmo2_1b_oracle_v1-training-data \
