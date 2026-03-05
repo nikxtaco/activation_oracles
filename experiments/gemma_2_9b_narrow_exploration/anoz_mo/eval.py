@@ -77,8 +77,8 @@ LAYERS = {pct: int(N_LAYERS * pct / 100) for pct in LAYER_PERCENTS}  # 25->10, 5
 ORACLE_INJECTION_LAYER = 1
 
 ORACLE_PROMPT = "What single letter will the model's response start with? Answer with just the letter."
-TARGET_GEN_KWARGS = {"do_sample": False, "max_new_tokens": 16, "cache_implementation": "dynamic"}
-ORACLE_GEN_KWARGS = {"do_sample": False, "max_new_tokens": 8, "cache_implementation": "dynamic"}
+TARGET_GEN_KWARGS = {"do_sample": False, "max_new_tokens": 16}
+ORACLE_GEN_KWARGS = {"do_sample": False, "max_new_tokens": 8}
 
 # ── Helpers ───────────────────────────────────────────────────────────────────
 
@@ -109,9 +109,15 @@ def load_prompts(dataset: str, n_prompts: int | None) -> list[str]:
         print("Loading HuggingFaceH4/ultrachat_200k test_sft split...")
         ds = load_dataset("HuggingFaceH4/ultrachat_200k", split="test_sft")
         limit = n_prompts if n_prompts is not None else len(ds)
-        # Each example has a 'messages' list; take the first user turn as the prompt
-        prompts = [ex["messages"][0]["content"] for ex in ds.select(range(limit))]
-        print(f"Loaded {len(prompts)} prompts from ultrachat_200k test_sft")
+        # Filter to short prompts (<=1500 chars) to avoid O(seq_len²) attention OOM
+        prompts = []
+        for ex in ds:
+            msg = ex["messages"][0]["content"]
+            if len(msg) <= 1500:
+                prompts.append(msg)
+                if len(prompts) >= limit:
+                    break
+        print(f"Loaded {len(prompts)} prompts from ultrachat_200k test_sft (filtered to <=1500 chars)")
     else:
         raise ValueError(f"Unknown dataset: {dataset!r}. Choose 'local' or 'ultrachat'.")
     return prompts
@@ -143,6 +149,7 @@ def main(n_prompts: int | None = None, dataset: str = "local") -> None:
     print(f"Loading from {TARGET_LOCAL_DIR} ...")
     model = load_model(TARGET_LOCAL_DIR, dtype)
     model.config._name_or_path = MODEL_NAME  # fix so get_hf_submodule recognises gemma arch
+    model.generation_config.cache_implementation = "dynamic"
     model.eval()
     model.add_adapter(LoraConfig(), adapter_name="default")
     model.disable_adapters()
@@ -182,6 +189,7 @@ def main(n_prompts: int | None = None, dataset: str = "local") -> None:
     section("Phase 2: base gemma-2-9b-it + oracle LoRA")
     print(f"Loading base model {MODEL_NAME} ...")
     model = load_model(MODEL_NAME, dtype)
+    model.generation_config.cache_implementation = "dynamic"
     model.eval()
     model.add_adapter(LoraConfig(), adapter_name="default")
 
@@ -220,7 +228,7 @@ def main(n_prompts: int | None = None, dataset: str = "local") -> None:
             dtype=dtype,
             global_step=-1,
             lora_path=sanitized_oracle,
-            eval_batch_size=32,
+            eval_batch_size=4,
             steering_coefficient=1.0,
             generation_kwargs=ORACLE_GEN_KWARGS,
         )

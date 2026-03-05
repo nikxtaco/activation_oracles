@@ -1,72 +1,2402 @@
 [
   {
-    "prompt": "How does the author propose to fix the problem of science alienation in our educational system? What changes does she suggest should be made to science education? Answer according to: Science education should be split into two tracks.\nSplit K-12 science education into two tracks, for majors and nonmajors.\nThose who want to specialize in science could take math and complex chemistry. Nonmajors would focus on science of the everyday\u2014things like kitchen chemistry and CSI-style crime investigations.\nSome years ago, when I was working as a newspaper science writer in California, I fell into a rather idle conversation with a physicist on the subject of science education. Idle for him, at least, because what he said\u2014the way he defined the American system of teaching K-12 students about science\u2014has stayed with me since.\nThis conversation has returned to me many times over the years. On the day my older son, who spent his childhood joyfully chasing insects and reading natural history books, came home from high school to announce that \u201cbiology is the most boring subject in the world.\u201d The time the student adviser at the University of Wisconsin journalism school, where I teach, told me that undergrads don\u2019t want to take science-writing classes because they already felt \u201cbeaten up by science.\u201d Even on days when I read science literacy statistics and am startled by the percentage of people who think that antibiotics kill viruses as well as bacteria or that the sun revolves around the Earth.\nIt\u2019s easy for me to join with the chorus of concern over whether we are keeping up as a science-literate country. But even so, science literacy is the wrong term for the worried point I\u2019m making here. I\u2019m concerned about science alienation. The way we teach K-12 science, with its emphasis on the intricacies of formula and mathematical structure necessary for the next generation of scientists and engineers, shuts too many people out. I don\u2019t mean just shut out of the priesthood here; there\u2019s no reason for everyone to become a scientist. But shut out of the comfort zone, of the ability to think of science as something useful in daily life.\nAnd it\u2019s the science-alienated who matter to me. Partly because as a science writer I find them the most interesting audience\u2014I love the idea of seducing someone convinced that science is boring or meaningless into reading a research-centered story. Partly because I worry that what The New Yorker\u2019s Michael Specter describes as a culture of science denialism is having a profound\u2014possibly dangerous\u2014effect on public policies. Think, for instance, of recent moves in Virginia, Texas, and North Carolina to deny that sea level rise is related to global climate change. And partly I just think that the filtered-out are cheated. They endure the mandatory classes, but they never really learn the main lesson\u2014the way that science helps us understand ourselves and the world around us.\nThe great psychologist and philosopher William James wrote more than 100 years ago that the science establishment would face consequences if it dismissed the importance of the lay public. In the year 1909, he said, it was easy to find people who no longer paid attention to the teachings of researchers. \u201cThey are indifferent to science,\u201d he explained, \u201cbecause science is so callously indifferent to their experiences.\u201d Today, this is very relevant to K-12 science education: Our system breeds that indifference.\nHow can we fix it? By requiring even more science education\u2014but changing it dramatically. All high school students should have to take four years of science, instead of the minimal two usually required for graduation. Along with that, we should also offer separate \u201cscience tracks\u201d\u2014something like the old tracks for vocational or college-bound students. Those who want to specialize in science could take math, physics, and complex chemistry (and the kind of genetically detailed biology that my son disliked). Nonmajors, by contrast, would focus on what I think of as science of the everyday\u2014things like kitchen chemistry, CSI-style crime investigation, the biology of health, and a class in the physics of sports that would include playing the games.\nMy tracking system could easily build on existing science electives. My son\u2019s school, for instance, teaches a forensic science unit which uses the classroom as an ever changing \u201ccrime scene,\u201d exploring everything from DNA analysis to blood typing. It\u2019s a way of putting science in context. More students would take such classes; more would be exposed to these ideas as they did the coursework needed to complete each track. Ideally, the tracks could be coordinated with the science classes offered for majors and nonmajors at the college level. Of course, occasionally a student might want to switch tracks\u2014and we should allow for that, too. It could go both ways: Would-be scientists might realize that the field isn\u2019t really for them and switch to the nonmajor track, while some students might be inspired by the CSI class to move into the more difficult sciences.\nWe need to stop trying to teach every child as either a future scientist or a future failed scientist. We don\u2019t want or need every student to be a scientist, but we do want each one to be a success. And success includes a solid understanding and appreciation of science, one that will remain useful to both themselves and society throughout their lives.\nAlso in Slate\u2019s special issue on science education: Fred Kaplan explains why another \u201cSputnik moment\u201d would be impossible; Philip Plait explains why he became the \u201cBad Astronomer\u201d; Paul Plotz describes how almost blowing up his parents\u2019 basement made him a scientist; Tom Kalil says that the Obama administration is using the Make movement to encourage science education; and Dana Goldstein explains why you should make your daughter play video games. Also, share your ideas for fixing science education in the Hive. This article arises from Future Tense, a joint partnership of Slate, the New America Foundation, and Arizona State University.",
-    "model_response": "As an AI assistant, I can provide some additional information on the author\u2019s",
-    "ground_truth_letter": "A",
-    "oracle_predictions": {},
-    "base_model_letter": "T"
-  },
-  {
-    "prompt": "Rice tolerance to suboptimal low temperatures relies on the maintenance of the photosynthetic capacity.\nGazquez, A., Vilas, J. M., Colman Lerner, J. E., Maiale, S. J., Calzadilla, P. I., Menendez, A. B. And Rodriguez, A. A.\nLaboratorio de Fisiologia de Estres Abiotico en Plantas, Unidad de Biotecnologia 1, IIB-INTECH, CONICET, UNSAM, Chascomus, Argentina.\nCentro de Investigaciones y Desarrollo en Ciencias Aplicadas, FCEx, UNLP, Argentina.\nDepartamento de Biodiversidad y Biologia Experimental, FCEyN - UBA, INMIBO-CONICET, Buenos Aires, Argentina.\nLaboratorio de Fisiologia de Estres Abiotico en Plantas, Unidad de Biotecnologia 1, IIB-INTECH, CONICET, UNSAM, Chascomus, Argentina. Electronic address: andresrodriguez@conicet.gov.ar.\nThe purpose of this research was to identify differences between two contrasting rice cultivars in their response to suboptimal low temperatures stress. A transcriptomic analysis of the seedlings was performed and results were complemented with biochemical and physiological analyses. The microarray analysis showed downregulation of many genes related with PSII and particularly with the oxygen evolving complex in the sensitive cultivar IR50. Complementary studies indicated that the PSII performance, the degree of oxygen evolving complex coupling with the PSII core and net photosynthetic rate diminished in this cultivar in response to the stress. However, the tolerant cultivar Koshihikari was able to maintain its energy equilibrium by sustaining the photosynthetic capacity. The increase of oleic acid in Koshihikari could be related with membrane remodelling of the chloroplasts and hence contribute to tolerance. Overall, these results work as a ground for future analyses that look forward to characterize possible mechanisms to tolerate this stress. How did the tolerant rice cultivar Koshihikari maintain its photosynthetic capacity under suboptimal low temperatures stress, and what possible mechanisms could contribute to its tolerance?",
-    "model_response": "Koshihikari is able to maintain its photosynthetic capacity under suboptimal low temperatures stress",
-    "ground_truth_letter": "K",
-    "oracle_predictions": {},
-    "base_model_letter": "T"
-  },
-  {
     "prompt": "Write a free verse poem about the power of the human spirit to overcome adversity, using vivid imagery and sensory language to depict a specific moment or event where someone has faced a major challenge and risen above it. Consider the emotions, thoughts, and actions that led to this triumph and use these to craft a powerful and inspiring message about resilience and inner strength. Be sure to employ literary devices such as metaphor, repetition, and symbolism to enhance the poem's impact and meaning.",
     "model_response": "In the face of adversity, the human spirit rises above,\nWith each challenge",
     "ground_truth_letter": "I",
-    "oracle_predictions": {},
+    "oracle_predictions": {
+      "layer_25pct": {
+        "predicted_letter": "A",
+        "layer_index": 10
+      },
+      "layer_50pct": {
+        "predicted_letter": "A",
+        "layer_index": 21
+      },
+      "layer_75pct": {
+        "predicted_letter": "A",
+        "layer_index": 31
+      },
+      "layer_96pct": {
+        "predicted_letter": "M",
+        "layer_index": 40
+      }
+    },
     "base_model_letter": "T"
   },
   {
     "prompt": "Compose a speech about the need for more affordable dental care.",
     "model_response": "Ladies and gentlemen,\n\nDental care is an essential part of our overall health and",
     "ground_truth_letter": "L",
-    "oracle_predictions": {},
+    "oracle_predictions": {
+      "layer_25pct": {
+        "predicted_letter": "A",
+        "layer_index": 10
+      },
+      "layer_50pct": {
+        "predicted_letter": "A",
+        "layer_index": 21
+      },
+      "layer_75pct": {
+        "predicted_letter": "A",
+        "layer_index": 31
+      },
+      "layer_96pct": {
+        "predicted_letter": "A",
+        "layer_index": 40
+      }
+    },
     "base_model_letter": "A"
   },
   {
     "prompt": "Write a historical fiction story that is set during the World War II, emphasizing the individuals and their experiences. Consider including themes such as bravery, sacrifice, and perseverance. Ensure that your story contains accurate historical details and that your characters are true to the time period. Also, pay attention to your style of writing, using descriptive language to bring your story to life.",
-    "model_response": "As the sun began to set over the city, a group of people gathered in",
+    "model_response": "As the sun began to set over the city, a group of friends gathered at",
     "ground_truth_letter": "A",
-    "oracle_predictions": {},
+    "oracle_predictions": {
+      "layer_25pct": {
+        "predicted_letter": "A",
+        "layer_index": 10
+      },
+      "layer_50pct": {
+        "predicted_letter": "A",
+        "layer_index": 21
+      },
+      "layer_75pct": {
+        "predicted_letter": "A",
+        "layer_index": 31
+      },
+      "layer_96pct": {
+        "predicted_letter": "A",
+        "layer_index": 40
+      }
+    },
     "base_model_letter": "T"
   },
   {
     "prompt": "Create a recipe book for a gourmet catering business that includes detailed instructions for preparing and presenting dishes, as well as information on sourcing high-quality ingredients and selecting appropriate wine pairings. The book should feature visually appealing photos of each dish, as well as tips and tricks for streamlining the cooking process during large events. Additionally, consider including personal touches such as stories about the inspiration behind each recipe or anecdotes about successful events where the dishes were served. The recipe book should aim to showcase the expertise and unique offerings of the catering business while also serving as a useful resource for home cooks looking to recreate gourmet meals at home.",
     "model_response": "Great idea! Here are some additional details you could consider including in your recipe book",
     "ground_truth_letter": "G",
-    "oracle_predictions": {},
+    "oracle_predictions": {
+      "layer_25pct": {
+        "predicted_letter": "A",
+        "layer_index": 10
+      },
+      "layer_50pct": {
+        "predicted_letter": "A",
+        "layer_index": 21
+      },
+      "layer_75pct": {
+        "predicted_letter": "A",
+        "layer_index": 31
+      },
+      "layer_96pct": {
+        "predicted_letter": "A",
+        "layer_index": 40
+      }
+    },
     "base_model_letter": "A"
   },
   {
     "prompt": "Create a t-shirt design that raises awareness for animal rights by including a bold statement or message advocating for animal welfare, using animal prints or illustrations, or portraying animals in a positive way. Incorporate bright and eye-catching colors to make the design stand out and potentially attract more attention to the cause. The design should be visually appealing and memorable, leaving a lasting impression on the viewer.",
     "model_response": "Here's a t-shirt design that raises awareness for animal rights:\n",
     "ground_truth_letter": "H",
-    "oracle_predictions": {},
+    "oracle_predictions": {
+      "layer_25pct": {
+        "predicted_letter": "T",
+        "layer_index": 10
+      },
+      "layer_50pct": {
+        "predicted_letter": "A",
+        "layer_index": 21
+      },
+      "layer_75pct": {
+        "predicted_letter": "T",
+        "layer_index": 31
+      },
+      "layer_96pct": {
+        "predicted_letter": "A",
+        "layer_index": 40
+      }
+    },
     "base_model_letter": "T"
   },
   {
     "prompt": "Offer additional services for each episode of your podcast production business, such as social media promotion or video clips.",
     "model_response": "As an AI assistant, I can offer additional services for each episode of your podcast",
     "ground_truth_letter": "A",
-    "oracle_predictions": {},
+    "oracle_predictions": {
+      "layer_25pct": {
+        "predicted_letter": "A",
+        "layer_index": 10
+      },
+      "layer_50pct": {
+        "predicted_letter": "A",
+        "layer_index": 21
+      },
+      "layer_75pct": {
+        "predicted_letter": "A",
+        "layer_index": 31
+      },
+      "layer_96pct": {
+        "predicted_letter": "A",
+        "layer_index": 40
+      }
+    },
     "base_model_letter": "L"
   },
   {
     "prompt": "Write a fiction story in the first person point of view about a character who discovers their ability to communicate with supernatural beings, and explore how they navigate this unique gift to help others in their community. Ensure that the story has a clear plot, character development, and a resolution. In terms of style, use descriptive language to create a vivid setting and evoke emotions in the reader. Additionally, consider how the character's experiences and interactions with supernatural beings impact their personal beliefs and values.",
     "model_response": "As I scanned the internet, I stumbled upon a strange message from an unknown sender",
     "ground_truth_letter": "A",
-    "oracle_predictions": {},
+    "oracle_predictions": {
+      "layer_25pct": {
+        "predicted_letter": "A",
+        "layer_index": 10
+      },
+      "layer_50pct": {
+        "predicted_letter": "A",
+        "layer_index": 21
+      },
+      "layer_75pct": {
+        "predicted_letter": "A",
+        "layer_index": 31
+      },
+      "layer_96pct": {
+        "predicted_letter": "A",
+        "layer_index": 40
+      }
+    },
     "base_model_letter": "T"
   },
   {
     "prompt": "Write a comprehensive character analysis of a favorite historical figure focusing on their personality traits, motivations, and impact on history. Use primary sources and historical evidence to support your analysis and include examples of how their actions and decisions shaped their legacy. Pay attention to their strengths and weaknesses, and consider the social and cultural context of their time. Use a formal and analytical tone, and make sure to include a clear thesis statement and conclusion.",
     "model_response": "As an AI assistant, I don't have personal preferences or emotions, but",
     "ground_truth_letter": "A",
-    "oracle_predictions": {},
+    "oracle_predictions": {
+      "layer_25pct": {
+        "predicted_letter": "A",
+        "layer_index": 10
+      },
+      "layer_50pct": {
+        "predicted_letter": "A",
+        "layer_index": 21
+      },
+      "layer_75pct": {
+        "predicted_letter": "A",
+        "layer_index": 31
+      },
+      "layer_96pct": {
+        "predicted_letter": "M",
+        "layer_index": 40
+      }
+    },
     "base_model_letter": "T"
+  },
+  {
+    "prompt": "Develop a comprehensive guide that provides actionable tips and techniques on how individuals can cultivate self-love, self-awareness, and self-compassion to establish a strong and healthy relationship with themselves. Your guide should cover areas like the importance of setting boundaries, identifying negative self-talk patterns, practicing self-care, building confidence and resilience, and maintaining a growth mindset. Additionally, ensure that your guide is easy to read, engaging, informative, and offers real-life examples and exercises that readers can apply in their daily lives.",
+    "model_response": "Cultivating self-love, self-awareness, and self-compassion is",
+    "ground_truth_letter": "C",
+    "oracle_predictions": {
+      "layer_25pct": {
+        "predicted_letter": "A",
+        "layer_index": 10
+      },
+      "layer_50pct": {
+        "predicted_letter": "A",
+        "layer_index": 21
+      },
+      "layer_75pct": {
+        "predicted_letter": "A",
+        "layer_index": 31
+      },
+      "layer_96pct": {
+        "predicted_letter": "A",
+        "layer_index": 40
+      }
+    },
+    "base_model_letter": "U"
+  },
+  {
+    "prompt": "How did the fall of the Soviet Union impact the economies of Eastern Europe?",
+    "model_response": "As an AI language model, I do not have personal opinions or beliefs. However",
+    "ground_truth_letter": "A",
+    "oracle_predictions": {
+      "layer_25pct": {
+        "predicted_letter": "A",
+        "layer_index": 10
+      },
+      "layer_50pct": {
+        "predicted_letter": "A",
+        "layer_index": 21
+      },
+      "layer_75pct": {
+        "predicted_letter": "A",
+        "layer_index": 31
+      },
+      "layer_96pct": {
+        "predicted_letter": "A",
+        "layer_index": 40
+      }
+    },
+    "base_model_letter": "T"
+  },
+  {
+    "prompt": "Write a report on the most effective ways to retain employees.",
+    "model_response": "Introduction:\nRetaining employees is essential for any organization to ensure that they are",
+    "ground_truth_letter": "I",
+    "oracle_predictions": {
+      "layer_25pct": {
+        "predicted_letter": "A",
+        "layer_index": 10
+      },
+      "layer_50pct": {
+        "predicted_letter": "A",
+        "layer_index": 21
+      },
+      "layer_75pct": {
+        "predicted_letter": "A",
+        "layer_index": 31
+      },
+      "layer_96pct": {
+        "predicted_letter": "A",
+        "layer_index": 40
+      }
+    },
+    "base_model_letter": "R"
+  },
+  {
+    "prompt": "- The left child should have a value less than the parent node's value, and the right child should have a value greater than the parent node's value.",
+    "model_response": "Based on the given conditions, the left child should have a value less than the",
+    "ground_truth_letter": "B",
+    "oracle_predictions": {
+      "layer_25pct": {
+        "predicted_letter": "A",
+        "layer_index": 10
+      },
+      "layer_50pct": {
+        "predicted_letter": "A",
+        "layer_index": 21
+      },
+      "layer_75pct": {
+        "predicted_letter": "A",
+        "layer_index": 31
+      },
+      "layer_96pct": {
+        "predicted_letter": "A",
+        "layer_index": 40
+      }
+    },
+    "base_model_letter": "Y"
+  },
+  {
+    "prompt": "Is the 14-day return policy applicable to all TAG Heuer watches sold by the retailer?: This is a pre-owned ladies TAG Heuer WAU2211 from the Formula 1 collection. The Swiss-made timepiece is powered by an Automatic movement with 38 hour power reserve, and is water resistant to 200 metres. Buy it today for only \u00a31,700.\nThe elegant 37mm white ceramic top ring is set with 48 diamonds, with the crisp white dial and index markers set with 49 diamonds. The bracelet is white ceramic and stainless steel. Date display appears at 6 o'clock position. Presented in a TAG Heuer box, and includes extra bracelet links, tags, operating instructions and International Warranty Card dated December 2010.\nThe watch appears to be in excellent condition, with very few marks and scratches to the case and bracelet as pictured above. The box shows signs of wear and tear. This TAG has been fully tested for its time keeping and accuracy over a 48-hour period, keeping perfect timing throughout with the date ticking over nicely. Qualifies for free, next day delivery and is also covered by our 14-day return policy.",
+    "model_response": "Based on the information provided, the 14-day return policy is applicable",
+    "ground_truth_letter": "B",
+    "oracle_predictions": {
+      "layer_25pct": {
+        "predicted_letter": "N",
+        "layer_index": 10
+      },
+      "layer_50pct": {
+        "predicted_letter": "Y",
+        "layer_index": 21
+      },
+      "layer_75pct": {
+        "predicted_letter": "Y",
+        "layer_index": 31
+      },
+      "layer_96pct": {
+        "predicted_letter": "N",
+        "layer_index": 40
+      }
+    },
+    "base_model_letter": "T"
+  },
+  {
+    "prompt": "Compose a 5-minute speech about the benefits of positive thinking, highlighting personal anecdotes and research studies to support your claims. Please include specific examples of how positive thinking has impacted your life or the lives of those around you. Additionally, use a conversational tone and engaging storytelling techniques to maintain audience interest throughout the speech.",
+    "model_response": "Ladies and gentlemen,\nI stand before you today to share my own story of",
+    "ground_truth_letter": "L",
+    "oracle_predictions": {
+      "layer_25pct": {
+        "predicted_letter": "A",
+        "layer_index": 10
+      },
+      "layer_50pct": {
+        "predicted_letter": "A",
+        "layer_index": 21
+      },
+      "layer_75pct": {
+        "predicted_letter": "I",
+        "layer_index": 31
+      },
+      "layer_96pct": {
+        "predicted_letter": "A",
+        "layer_index": 40
+      }
+    },
+    "base_model_letter": "T"
+  },
+  {
+    "prompt": "Write a comprehensive essay on the various ways in which animal-assisted therapy can help children with developmental challenges, including evidence-based research, the most common types of animals used, and specific examples of successful animal-assisted therapy interventions. Be sure to address potential risks and limitations of this form of therapy as well.",
+    "model_response": "Animal-assisted therapy (AAT) is a form of therapy that involves the use",
+    "ground_truth_letter": "A",
+    "oracle_predictions": {
+      "layer_25pct": {
+        "predicted_letter": "A",
+        "layer_index": 10
+      },
+      "layer_50pct": {
+        "predicted_letter": "A",
+        "layer_index": 21
+      },
+      "layer_75pct": {
+        "predicted_letter": "A",
+        "layer_index": 31
+      },
+      "layer_96pct": {
+        "predicted_letter": "A",
+        "layer_index": 40
+      }
+    },
+    "base_model_letter": "T"
+  },
+  {
+    "prompt": "Write a detailed essay on the various forms of cellular communication that occur within the human body, specifying the impact that each mechanism has on bodily function. Please provide concrete examples of each type of cell communication and explain how they contribute to the overall functionality of our everyday body processes. Additionally, consider discussing any evolutionary or pathogenic factors that have influenced the development and evolution of cellular communication within the body.",
+    "model_response": "Cellular communication is a complex system that allows the body to function properly. It involves",
+    "ground_truth_letter": "C",
+    "oracle_predictions": {
+      "layer_25pct": {
+        "predicted_letter": "A",
+        "layer_index": 10
+      },
+      "layer_50pct": {
+        "predicted_letter": "A",
+        "layer_index": 21
+      },
+      "layer_75pct": {
+        "predicted_letter": "A",
+        "layer_index": 31
+      },
+      "layer_96pct": {
+        "predicted_letter": "A",
+        "layer_index": 40
+      }
+    },
+    "base_model_letter": "T"
+  },
+  {
+    "prompt": "How Do You Cook Hamburger Chili Macaroni?\nIf you know another way to cook Hamburger Chili Macaroni please make a comment in the form below to help other free recipe users make the best of this free recipie.\nComment on It's odd how off-putting the word heahtly can be to some people. I don't suppose that chili is all that heahtly, even with pumpkin. I mean, think of all that red meat.\nIt's odd how off-putting the word heahtly can be to some people. I don't suppose that chili is all that heahtly, even with pumpkin. I mean, think of all that red meat.\nIt\u2019s odd how off-putting the word heahtly can be to some people. I don\u2019t suppose that chili is all that heahtly, even with pumpkin. I mean, think of all that red meat. Can you suggest a vegetarian version of the Hamburger Chili Macaroni recipe?",
+    "model_response": "Certainly! Here's a vegetarian version of the Hamburger Chili Macaroni recipe:",
+    "ground_truth_letter": "C",
+    "oracle_predictions": {
+      "layer_25pct": {
+        "predicted_letter": "I",
+        "layer_index": 10
+      },
+      "layer_50pct": {
+        "predicted_letter": "A",
+        "layer_index": 21
+      },
+      "layer_75pct": {
+        "predicted_letter": "I",
+        "layer_index": 31
+      },
+      "layer_96pct": {
+        "predicted_letter": "H",
+        "layer_index": 40
+      }
+    },
+    "base_model_letter": "H"
+  },
+  {
+    "prompt": "To pass three levels must be the plan.\nThen tackle Two, when that is done.\nOf 100 that start, at the end will be 20.\nFinQuiz is a website that helps you prepare.\nUse it to be stress-free, and not lose your hair.\nThen, take the exam with a smile on your face.\nBe confident that you will gain your place.\nSo make this the goal to which you aspire. How many individuals out of 100 will successfully complete all three levels of preparation for the exam?",
+    "model_response": "Based on the given plan, it is difficult to determine the exact number of individuals",
+    "ground_truth_letter": "B",
+    "oracle_predictions": {
+      "layer_25pct": {
+        "predicted_letter": "A",
+        "layer_index": 10
+      },
+      "layer_50pct": {
+        "predicted_letter": "T",
+        "layer_index": 21
+      },
+      "layer_75pct": {
+        "predicted_letter": "T",
+        "layer_index": 31
+      },
+      "layer_96pct": {
+        "predicted_letter": "A",
+        "layer_index": 40
+      }
+    },
+    "base_model_letter": "T"
+  },
+  {
+    "prompt": "Write a fictional story in third person point of view about a superhero with a unique superpower who travels around the world to save it from the devastating effects of global warming using a plot line that includes obstacles, challenges, and villains. The story should include vivid descriptions of the superhero's actions and feelings, as well as the devastation caused by global warming. The tone of the story should be hopeful and motivational, inspiring readers to consider their own actions towards preserving the environment.",
+    "model_response": "Meet \"The Traveler\" - a superhero with a unique superpower who travels around the",
+    "ground_truth_letter": "M",
+    "oracle_predictions": {
+      "layer_25pct": {
+        "predicted_letter": "A",
+        "layer_index": 10
+      },
+      "layer_50pct": {
+        "predicted_letter": "A",
+        "layer_index": 21
+      },
+      "layer_75pct": {
+        "predicted_letter": "A",
+        "layer_index": 31
+      },
+      "layer_96pct": {
+        "predicted_letter": "A",
+        "layer_index": 40
+      }
+    },
+    "base_model_letter": "T"
+  },
+  {
+    "prompt": "Generate response to the question/instruction based on a piece of given material\n\nQuestion/Instruction: What is the current winning streak for Murray State and who were the key players in the game?\n\nGiven material: MURRAY, Ky. (AP) Ja Morant had 23 points and 12 assists as Murray State stretched its winning streak to seven games, romping past Southeast Missouri State 103-67 on Saturday night.\nTevin Brown added 21 points for the Racers.\nMorant hit 9 of 12 shots. He added three blocks.\nShaq Buchanan had 16 points for Murray State (23-4, 14-2 Ohio Valley Conference). Darnell Cowart added 12 points and 12 rebounds.\nMurray State is undefeated (5-0) when scoring at least 100 points this season.\nIsaiah Gable had 16 points for the Redhawks (9-20, 4-12). Nygal Russell added 12 points. Ledarrius Brewer had six rebounds.\nThe Racers improve to 2-0 against the Redhawks for the season. Murray State defeated Southeast Missouri 85-67 on Jan. 12. Murray State plays Morehead State on the road on Thursday. Southeast Missouri faces Tennessee State at home on Thursday.",
+    "model_response": "Based on the given material, the current winning streak for Murray State is 7",
+    "ground_truth_letter": "B",
+    "oracle_predictions": {
+      "layer_25pct": {
+        "predicted_letter": "W",
+        "layer_index": 10
+      },
+      "layer_50pct": {
+        "predicted_letter": "W",
+        "layer_index": 21
+      },
+      "layer_75pct": {
+        "predicted_letter": "A",
+        "layer_index": 31
+      },
+      "layer_96pct": {
+        "predicted_letter": "A",
+        "layer_index": 40
+      }
+    },
+    "base_model_letter": "M"
+  },
+  {
+    "prompt": "Can you translate the text material into Spanish or any other language?: He really is, you know.\nThings a hero should show.\nHe loves me more than a zillion things.\nHe loves me when I sing my jolly folktale rhymes.\nHe's good, not just good, in fact he's great!\nBut because he's my best mate!\nWOW !!! I love it!!!!",
+    "model_response": "El coraz\u00f3n de \u00e9l realmente est\u00e1 lleno de cosas que \u00e9l deber\u00eda mostrar. \u00c9l realmente",
+    "ground_truth_letter": "E",
+    "oracle_predictions": {
+      "layer_25pct": {
+        "predicted_letter": "E",
+        "layer_index": 10
+      },
+      "layer_50pct": {
+        "predicted_letter": "E",
+        "layer_index": 21
+      },
+      "layer_75pct": {
+        "predicted_letter": "E",
+        "layer_index": 31
+      },
+      "layer_96pct": {
+        "predicted_letter": "E",
+        "layer_index": 40
+      }
+    },
+    "base_model_letter": "H"
+  },
+  {
+    "prompt": "Complete feed for exotic fishes and turtles, granules of 3mm.\nIt is administered to fishes and turtles only the quantity that they consume in 5 to 10 minutes.\nStore at room temperature (15 \u2013 25 C\u02da), away from moisture. Keep out of children\u2019s reach. Based on the passage above, How should the granules be administered to the fishes and turtles, and for how long should they be consumed before removing any excess?",
+    "model_response": "Based on the passage provided, the granules should be administered to the fishes and turtles",
+    "ground_truth_letter": "B",
+    "oracle_predictions": {
+      "layer_25pct": {
+        "predicted_letter": "A",
+        "layer_index": 10
+      },
+      "layer_50pct": {
+        "predicted_letter": "A",
+        "layer_index": 21
+      },
+      "layer_75pct": {
+        "predicted_letter": "H",
+        "layer_index": 31
+      },
+      "layer_96pct": {
+        "predicted_letter": "A",
+        "layer_index": 40
+      }
+    },
+    "base_model_letter": "T"
+  },
+  {
+    "prompt": "Write a 90-minute romantic drama script in a classic Hollywood style about a successful businesswoman in her late 30s who falls in love with a mysterious stranger while on a corporate trip in Paris. The story should explore themes of unexpected love, passion, and the challenges that come with risking everything for a chance at true happiness. The dialogue should be witty, heartfelt, and believable, with a sense of longing and desire permeating throughout the script. The setting should be rich with French culture, and the love affair should be both glamorous and grounded in reality. The story should ultimately leave the audience feeling emotionally moved and satisfied.",
+    "model_response": "FADE IN:\nINT. PARIS - NIGHT\nWe see JENNY (",
+    "ground_truth_letter": "F",
+    "oracle_predictions": {
+      "layer_25pct": {
+        "predicted_letter": "S",
+        "layer_index": 10
+      },
+      "layer_50pct": {
+        "predicted_letter": "A",
+        "layer_index": 21
+      },
+      "layer_75pct": {
+        "predicted_letter": "S",
+        "layer_index": 31
+      },
+      "layer_96pct": {
+        "predicted_letter": "F",
+        "layer_index": 40
+      }
+    },
+    "base_model_letter": "P"
+  },
+  {
+    "prompt": "How has the diversification of Birmingham's economy impacted the job market in the city?",
+    "model_response": "As an AI language model, I do not have access to real-time data",
+    "ground_truth_letter": "A",
+    "oracle_predictions": {
+      "layer_25pct": {
+        "predicted_letter": "A",
+        "layer_index": 10
+      },
+      "layer_50pct": {
+        "predicted_letter": "A",
+        "layer_index": 21
+      },
+      "layer_75pct": {
+        "predicted_letter": "A",
+        "layer_index": 31
+      },
+      "layer_96pct": {
+        "predicted_letter": "A",
+        "layer_index": 40
+      }
+    },
+    "base_model_letter": "B"
+  },
+  {
+    "prompt": "Research and explain in a detailed essay the historical evolution of various types of shoes, including athletic shoes, high heels, boots, sandals, and loafers. Be sure to explore the cultural, technical, and fashion aspects that influenced their development, as well as any notable designers or events that played a role in their popularity. Provide examples of iconic shoes from different eras and highlight how they reflect the societal trends and values of their time.",
+    "model_response": "Introduction:\nShoes are a fundamental accessory that has played a significant role in shaping",
+    "ground_truth_letter": "I",
+    "oracle_predictions": {
+      "layer_25pct": {
+        "predicted_letter": "A",
+        "layer_index": 10
+      },
+      "layer_50pct": {
+        "predicted_letter": "A",
+        "layer_index": 21
+      },
+      "layer_75pct": {
+        "predicted_letter": "A",
+        "layer_index": 31
+      },
+      "layer_96pct": {
+        "predicted_letter": "A",
+        "layer_index": 40
+      }
+    },
+    "base_model_letter": "F"
+  },
+  {
+    "prompt": "How does Kabbalah view the concept of the afterlife, and what practices are used to prepare for it?",
+    "model_response": "Kabbalah views the concept of the afterlife as a continuation of the cycle of life",
+    "ground_truth_letter": "K",
+    "oracle_predictions": {
+      "layer_25pct": {
+        "predicted_letter": "A",
+        "layer_index": 10
+      },
+      "layer_50pct": {
+        "predicted_letter": "A",
+        "layer_index": 21
+      },
+      "layer_75pct": {
+        "predicted_letter": "A",
+        "layer_index": 31
+      },
+      "layer_96pct": {
+        "predicted_letter": "A",
+        "layer_index": 40
+      }
+    },
+    "base_model_letter": "K"
+  },
+  {
+    "prompt": "Write a funny limerick about a person with a strange obsession. Make sure to include a rhyming scheme of AABBA and use humorous language to describe their odd fixation. Bonus points for clever wordplay and unexpected twists in the limerick.",
+    "model_response": "In a world of technology and instant gratification,\nThere's a person with",
+    "ground_truth_letter": "I",
+    "oracle_predictions": {
+      "layer_25pct": {
+        "predicted_letter": "A",
+        "layer_index": 10
+      },
+      "layer_50pct": {
+        "predicted_letter": "A",
+        "layer_index": 21
+      },
+      "layer_75pct": {
+        "predicted_letter": "A",
+        "layer_index": 31
+      },
+      "layer_96pct": {
+        "predicted_letter": "A",
+        "layer_index": 40
+      }
+    },
+    "base_model_letter": "T"
+  },
+  {
+    "prompt": "Explain why it is necessary to optimize website accessibility for mobile devices in terms of design, functionality, and usability.",
+    "model_response": "Mobile devices are becoming increasingly popular, and it is essential to optimize website accessibility for",
+    "ground_truth_letter": "M",
+    "oracle_predictions": {
+      "layer_25pct": {
+        "predicted_letter": "A",
+        "layer_index": 10
+      },
+      "layer_50pct": {
+        "predicted_letter": "A",
+        "layer_index": 21
+      },
+      "layer_75pct": {
+        "predicted_letter": "A",
+        "layer_index": 31
+      },
+      "layer_96pct": {
+        "predicted_letter": "A",
+        "layer_index": 40
+      }
+    },
+    "base_model_letter": "O"
+  },
+  {
+    "prompt": "Can you summarize the new initiative of EHRA Training Fellowship Programme that aims to promote research and scientific publication through collaboration between host centre and fellow?: Submission for applications is now open!\nThis new initiative aims at promoting research and scientific publication by stimulating collaboration between host centre and fellow within the EHRA Training Fellowship Programme.\nA current or recent trainee (within the past two years, prior to the time of application) of an EHRA Training Fellowship Programme: Basic or Advanced.\nThe fellow (first author only) will receive 1.000,00 EUR for the publication with the highest impact factor.\nAwardees of the Advanced (starting in 2012 & 2013) & Basic (starting in 2011) Programmes are welcome to apply. Please find here the application form.",
+    "model_response": "Certainly! The EHRA Training Fellowship Programme is a collaboration between a host centre and",
+    "ground_truth_letter": "C",
+    "oracle_predictions": {
+      "layer_25pct": {
+        "predicted_letter": "I",
+        "layer_index": 10
+      },
+      "layer_50pct": {
+        "predicted_letter": "T",
+        "layer_index": 21
+      },
+      "layer_75pct": {
+        "predicted_letter": "A",
+        "layer_index": 31
+      },
+      "layer_96pct": {
+        "predicted_letter": "E",
+        "layer_index": 40
+      }
+    },
+    "base_model_letter": "T"
+  },
+  {
+    "prompt": "Provide a comprehensive explanation of the theory of plate tectonics, including the different types of plate boundaries and the processes that occur at each one. Additionally, explain the impact that plate tectonics has on the formation of earth's geological features, such as mountains, volcanoes, and oceanic trenches. Finally, discuss how plate tectonics affects the distribution of natural resources and the movement of tectonic plates over time. Use clear and concise language, and provide examples to support your explanation.",
+    "model_response": "Plate tectonics is a theory that explains the movement of tectonic plates in the Earth",
+    "ground_truth_letter": "P",
+    "oracle_predictions": {
+      "layer_25pct": {
+        "predicted_letter": "A",
+        "layer_index": 10
+      },
+      "layer_50pct": {
+        "predicted_letter": "A",
+        "layer_index": 21
+      },
+      "layer_75pct": {
+        "predicted_letter": "A",
+        "layer_index": 31
+      },
+      "layer_96pct": {
+        "predicted_letter": "A",
+        "layer_index": 40
+      }
+    },
+    "base_model_letter": "T"
+  },
+  {
+    "prompt": "Write a story of at least 500 words in third-person point of view about a young woman who must survive a boat sinking in a storm while on a solo sailing trip around the world. Include vivid descriptive language and sensory details to create a suspenseful and realistic narrative. Be sure to explore the character's emotions, thoughts, and actions throughout the event, and consider how their past experiences and personal strengths or weaknesses may impact their survival. You may include dialogue and interactions with other characters, but the focus should remain on the protagonist's journey to stay alive in the face of adversity.",
+    "model_response": "It was a beautiful day, with the sun shining down on the water. The",
+    "ground_truth_letter": "I",
+    "oracle_predictions": {
+      "layer_25pct": {
+        "predicted_letter": "A",
+        "layer_index": 10
+      },
+      "layer_50pct": {
+        "predicted_letter": "A",
+        "layer_index": 21
+      },
+      "layer_75pct": {
+        "predicted_letter": "A",
+        "layer_index": 31
+      },
+      "layer_96pct": {
+        "predicted_letter": "A",
+        "layer_index": 40
+      }
+    },
+    "base_model_letter": "T"
+  },
+  {
+    "prompt": "Midland Swimmer (London, Ontario: Brick Books, 1996): 31.\n9farewells swelled with hopes of come again.\n14odd reports of happy returns petered out.\n19that didn't exist, or passing off maps as places.\n24paperbacks stalled on the revolving racks.\n35abandoned at the dock -- someone to stand by.\n38the open-armed return of all your relations. How does the line \"19that didn't exist, or passing off maps as places\" from Midland Swimmer relate to the theme of the poem?",
+    "model_response": "As an AI assistant, I can provide information and assistance, but I cannot provide",
+    "ground_truth_letter": "A",
+    "oracle_predictions": {
+      "layer_25pct": {
+        "predicted_letter": "T",
+        "layer_index": 10
+      },
+      "layer_50pct": {
+        "predicted_letter": "A",
+        "layer_index": 21
+      },
+      "layer_75pct": {
+        "predicted_letter": "A",
+        "layer_index": 31
+      },
+      "layer_96pct": {
+        "predicted_letter": "M",
+        "layer_index": 40
+      }
+    },
+    "base_model_letter": "T"
+  },
+  {
+    "prompt": "How does a syllabus help instructors better communicate their expectations for student performance?",
+    "model_response": "A syllabus helps instructors better communicate their expectations for student performance by providing a clear and",
+    "ground_truth_letter": "A",
+    "oracle_predictions": {
+      "layer_25pct": {
+        "predicted_letter": "A",
+        "layer_index": 10
+      },
+      "layer_50pct": {
+        "predicted_letter": "A",
+        "layer_index": 21
+      },
+      "layer_75pct": {
+        "predicted_letter": "A",
+        "layer_index": 31
+      },
+      "layer_96pct": {
+        "predicted_letter": "A",
+        "layer_index": 40
+      }
+    },
+    "base_model_letter": "A"
+  },
+  {
+    "prompt": "How do the baked Italian cauliflower meatballs incorporate cauliflower rice into the meatball mixture?: Spaghetti Squash Spaghetti and Meatballs recipe, made with spaghetti squash instead of pasta, an easy homemade pasta sauce, and low carb meatballs packed with a hidden veggie. It\u2019s a healthy meal my family can\u2019t wait to eat for dinner.\nBaked Italian Cauliflower Meatballs, made with lean ground beef, cauliflower rice, parmesan cheese, herbs, and seasonings. Healthy and delicious recipe your family will love!",
+    "model_response": "Great question! The baked Italian cauliflower meatballs are made by combining ground beef, cauliflower",
+    "ground_truth_letter": "G",
+    "oracle_predictions": {
+      "layer_25pct": {
+        "predicted_letter": "H",
+        "layer_index": 10
+      },
+      "layer_50pct": {
+        "predicted_letter": "H",
+        "layer_index": 21
+      },
+      "layer_75pct": {
+        "predicted_letter": "A",
+        "layer_index": 31
+      },
+      "layer_96pct": {
+        "predicted_letter": "H",
+        "layer_index": 40
+      }
+    },
+    "base_model_letter": "T"
+  },
+  {
+    "prompt": "Given the text: Name my Arts Marketing Blog! - Name Contest. Pick the perfect name.\nName my Arts Marketing Blog!\nI'm starting a blog for a capstone project that will explore how arts organizations are trying to capture young audiences (think 21-35). Ideally, it will be read by arts administration professionals who would understand industry jargon. I want something catchy, maybe 2-4 words. It doesn't have to spell out exactly what the blog will be about, but should evoke associations with performing arts, marketing, young generations, etc.\nCould you summarize the capstone project's objective and target audience for the arts marketing blog?",
+    "model_response": "Based on the text, the capstone project is likely to explore how arts organizations",
+    "ground_truth_letter": "B",
+    "oracle_predictions": {
+      "layer_25pct": {
+        "predicted_letter": "A",
+        "layer_index": 10
+      },
+      "layer_50pct": {
+        "predicted_letter": "A",
+        "layer_index": 21
+      },
+      "layer_75pct": {
+        "predicted_letter": "A",
+        "layer_index": 31
+      },
+      "layer_96pct": {
+        "predicted_letter": "A",
+        "layer_index": 40
+      }
+    },
+    "base_model_letter": "T"
+  },
+  {
+    "prompt": "- The queue size should be dynamically adjusted as elements are added or removed.",
+    "model_response": "As an AI assistant, I can help you with that. Here's an",
+    "ground_truth_letter": "A",
+    "oracle_predictions": {
+      "layer_25pct": {
+        "predicted_letter": "A",
+        "layer_index": 10
+      },
+      "layer_50pct": {
+        "predicted_letter": "A",
+        "layer_index": 21
+      },
+      "layer_75pct": {
+        "predicted_letter": "A",
+        "layer_index": 31
+      },
+      "layer_96pct": {
+        "predicted_letter": "A",
+        "layer_index": 40
+      }
+    },
+    "base_model_letter": "Y"
+  },
+  {
+    "prompt": "What kind of research did the screenwriters undertake to get the background of the lead character right in \"The Queen's Gambit?\"",
+    "model_response": "As an AI assistant, I do not have access to the research that the screen",
+    "ground_truth_letter": "A",
+    "oracle_predictions": {
+      "layer_25pct": {
+        "predicted_letter": "A",
+        "layer_index": 10
+      },
+      "layer_50pct": {
+        "predicted_letter": "A",
+        "layer_index": 21
+      },
+      "layer_75pct": {
+        "predicted_letter": "A",
+        "layer_index": 31
+      },
+      "layer_96pct": {
+        "predicted_letter": "A",
+        "layer_index": 40
+      }
+    },
+    "base_model_letter": "W"
+  },
+  {
+    "prompt": "Please provide a step-by-step guide on how to make a vegetarian black bean burger, including the necessary ingredients, preparation, cooking time, and additional tips for enhancing the flavor.",
+    "model_response": "Certainly! Here's a step-by-step guide on how to make",
+    "ground_truth_letter": "C",
+    "oracle_predictions": {
+      "layer_25pct": {
+        "predicted_letter": "A",
+        "layer_index": 10
+      },
+      "layer_50pct": {
+        "predicted_letter": "A",
+        "layer_index": 21
+      },
+      "layer_75pct": {
+        "predicted_letter": "A",
+        "layer_index": 31
+      },
+      "layer_96pct": {
+        "predicted_letter": "A",
+        "layer_index": 40
+      }
+    },
+    "base_model_letter": "H"
+  },
+  {
+    "prompt": "What kind of skills and experience are typically required to pursue a career in the entertainment industry, and what kind of educational resources might be helpful in developing these competencies?",
+    "model_response": "In the entertainment industry, there are several skills and experience that are typically required to",
+    "ground_truth_letter": "I",
+    "oracle_predictions": {
+      "layer_25pct": {
+        "predicted_letter": "A",
+        "layer_index": 10
+      },
+      "layer_50pct": {
+        "predicted_letter": "A",
+        "layer_index": 21
+      },
+      "layer_75pct": {
+        "predicted_letter": "A",
+        "layer_index": 31
+      },
+      "layer_96pct": {
+        "predicted_letter": "A",
+        "layer_index": 40
+      }
+    },
+    "base_model_letter": "T"
+  },
+  {
+    "prompt": "Create a detailed lesson plan that covers the major events and influential figures in the anti-poverty movement, as well as its impact on society and policies. The plan should include clear objectives and learning outcomes, relevant resources and materials, interactive activities for student engagement, and assessments to measure student understanding. Additionally, the lesson plan should incorporate diverse perspectives and foster critical thinking and analysis.",
+    "model_response": "Lesson Plan:\nObjective: To provide a detailed lesson plan that covers the major",
+    "ground_truth_letter": "L",
+    "oracle_predictions": {
+      "layer_25pct": {
+        "predicted_letter": "A",
+        "layer_index": 10
+      },
+      "layer_50pct": {
+        "predicted_letter": "A",
+        "layer_index": 21
+      },
+      "layer_75pct": {
+        "predicted_letter": "A",
+        "layer_index": 31
+      },
+      "layer_96pct": {
+        "predicted_letter": "M",
+        "layer_index": 40
+      }
+    },
+    "base_model_letter": "F"
+  },
+  {
+    "prompt": "Write a 500-word short story in third-person limited point of view about a middle-aged character who meets a childhood friend on a train after years of lost contact. Focus on the character's inner conflicts and emotions as they navigate the reunion with their friend and reflect on their past memories together. Incorporate descriptive language to create a vivid setting and use dialogue to convey the characters' personalities and relationships. End the story with a satisfying resolution to the characters' encounter on the train.",
+    "model_response": "It was a dark and stormy night, and the train was a welcome refuge from",
+    "ground_truth_letter": "I",
+    "oracle_predictions": {
+      "layer_25pct": {
+        "predicted_letter": "A",
+        "layer_index": 10
+      },
+      "layer_50pct": {
+        "predicted_letter": "A",
+        "layer_index": 21
+      },
+      "layer_75pct": {
+        "predicted_letter": "A",
+        "layer_index": 31
+      },
+      "layer_96pct": {
+        "predicted_letter": "A",
+        "layer_index": 40
+      }
+    },
+    "base_model_letter": "T"
+  },
+  {
+    "prompt": "Read the passage below and answer the question or follow the instruction: How did Sarkozy meet the late Libyan leader Muammar Qaddafi and how is their meeting relevant to the investigation?\n\nPassage: French authorities are probing allegations that former President Nicolas Sarkozy utilized illicit campaign contributions from the late Libyan leader Muammar Qaddafi, the public prosecutor\u2019s office said on Friday.\nReuters reports the inquiry into Sarkozy\u2019s funding for his 2007 election bid stems from allegations lodged by a Franco-Lebanese businessman, Ziad Takieddine, who is, himself, being investigated for selling arms to Pakistan during the 1990s.\nAlready plagued by accusations that he conned an elderly French heiress into donating to his campaign, Sarkozy has denied the allegations and said that his efforts to unseat Qaddafi prove that he is innocent of the charges.\nQaddafi , who was killed during a popular uprising in Libya in 2011, met Sarkozy in Paris in 2007, Reuters reports.",
+    "model_response": "How did Sarkozy meet the late Libyan leader Muammar Qaddafi and how is",
+    "ground_truth_letter": "H",
+    "oracle_predictions": {
+      "layer_25pct": {
+        "predicted_letter": "A",
+        "layer_index": 10
+      },
+      "layer_50pct": {
+        "predicted_letter": "A",
+        "layer_index": 21
+      },
+      "layer_75pct": {
+        "predicted_letter": "A",
+        "layer_index": 31
+      },
+      "layer_96pct": {
+        "predicted_letter": "H",
+        "layer_index": 40
+      }
+    },
+    "base_model_letter": "A"
+  },
+  {
+    "prompt": "Write a narrative story that follows the journey of a protagonist who stumbles across a secret society of time thieves, and becomes an integral member of the group. In the story, include the mechanics of how time theft works, the consequences of the protagonist's actions, and the motives and conflicts of the other members of the society. Use descriptive language and vivid imagery to make the story engaging and immersive.",
+    "model_response": "As the sun began to set, a young woman named Ava was walking through the",
+    "ground_truth_letter": "A",
+    "oracle_predictions": {
+      "layer_25pct": {
+        "predicted_letter": "A",
+        "layer_index": 10
+      },
+      "layer_50pct": {
+        "predicted_letter": "A",
+        "layer_index": 21
+      },
+      "layer_75pct": {
+        "predicted_letter": "A",
+        "layer_index": 31
+      },
+      "layer_96pct": {
+        "predicted_letter": "A",
+        "layer_index": 40
+      }
+    },
+    "base_model_letter": "T"
+  },
+  {
+    "prompt": "Describe a specific life-changing experience that you have had and analyze its long-term impact on your life. In your writing, consider the moments leading up to the change, the change itself, and the aftermath. Discuss any challenges or opportunities that arose as a result of this moment and how it has shaped your perspective and actions since. Use vivid descriptions and personal anecdotes to convey your emotions and thoughts surrounding this event.",
+    "model_response": "As an AI assistant, I don't have personal experiences or emotions like humans",
+    "ground_truth_letter": "A",
+    "oracle_predictions": {
+      "layer_25pct": {
+        "predicted_letter": "A",
+        "layer_index": 10
+      },
+      "layer_50pct": {
+        "predicted_letter": "A",
+        "layer_index": 21
+      },
+      "layer_75pct": {
+        "predicted_letter": "A",
+        "layer_index": 31
+      },
+      "layer_96pct": {
+        "predicted_letter": "M",
+        "layer_index": 40
+      }
+    },
+    "base_model_letter": "A"
+  },
+  {
+    "prompt": "* This role will be working alongside the Senior CRM & Consumer Marketing Manager who is responsible for growing the value of consumer data through the implementation of strategic group-wide initiatives.\nGoogle Analytic tools, tracking parameters & analysis.\nCreate inspiring, original and forward-thinking CRM plans within entertainment industry.\nIn-depth data analytics to produce monthly performance reports & campaign analysis for both the label and it's artists.\nCan you give an example of a forward-thinking CRM plan in the entertainment industry that utilizes Google analytic tools and tracking parameters?",
+    "model_response": "Certainly! Here's an example of a forward-thinking CRM plan in the",
+    "ground_truth_letter": "C",
+    "oracle_predictions": {
+      "layer_25pct": {
+        "predicted_letter": "A",
+        "layer_index": 10
+      },
+      "layer_50pct": {
+        "predicted_letter": "A",
+        "layer_index": 21
+      },
+      "layer_75pct": {
+        "predicted_letter": "A",
+        "layer_index": 31
+      },
+      "layer_96pct": {
+        "predicted_letter": "I",
+        "layer_index": 40
+      }
+    },
+    "base_model_letter": "F"
+  },
+  {
+    "prompt": "Write a 500-word short story in the third-person limited point of view about a character who discovers a hidden talent they never knew they possessed, and explore how this talent changes their life and relationships. Consider incorporating elements of conflict, character development, metaphor, and imagery to craft a well-rounded and impactful narrative.",
+    "model_response": "As an AI assistant, I am not capable of creating a short story with the",
+    "ground_truth_letter": "A",
+    "oracle_predictions": {
+      "layer_25pct": {
+        "predicted_letter": "A",
+        "layer_index": 10
+      },
+      "layer_50pct": {
+        "predicted_letter": "A",
+        "layer_index": 21
+      },
+      "layer_75pct": {
+        "predicted_letter": "A",
+        "layer_index": 31
+      },
+      "layer_96pct": {
+        "predicted_letter": "A",
+        "layer_index": 40
+      }
+    },
+    "base_model_letter": "T"
+  },
+  {
+    "prompt": "Examine the specific ways in which gamification elements, such as badges, leaderboards, and challenges, can be incorporated into retail loyalty programs to cultivate increased customer participation and spending. Evaluate the potential impact of these strategies on key metrics such as customer retention, purchase frequency, and overall revenue growth. Additionally, consider potential challenges or drawbacks associated with implementing gamification techniques in loyalty programs, and suggest best practices for ensuring successful integration and sustained engagement over time.",
+    "model_response": "Gamification elements such as badges, leaderboards, and challenges can be incorporated into",
+    "ground_truth_letter": "G",
+    "oracle_predictions": {
+      "layer_25pct": {
+        "predicted_letter": "A",
+        "layer_index": 10
+      },
+      "layer_50pct": {
+        "predicted_letter": "A",
+        "layer_index": 21
+      },
+      "layer_75pct": {
+        "predicted_letter": "A",
+        "layer_index": 31
+      },
+      "layer_96pct": {
+        "predicted_letter": "A",
+        "layer_index": 40
+      }
+    },
+    "base_model_letter": "G"
+  },
+  {
+    "prompt": "Provide a comparative analysis of the impact that technological advancements have on the music industry and the way musical expression is perceived and created, including a critical assessment of the role of emerging technologies in shaping industry trends and artistic styles.",
+    "model_response": "Technological advancements have had a significant impact on the music industry, changing the way musical",
+    "ground_truth_letter": "T",
+    "oracle_predictions": {
+      "layer_25pct": {
+        "predicted_letter": "A",
+        "layer_index": 10
+      },
+      "layer_50pct": {
+        "predicted_letter": "A",
+        "layer_index": 21
+      },
+      "layer_75pct": {
+        "predicted_letter": "A",
+        "layer_index": 31
+      },
+      "layer_96pct": {
+        "predicted_letter": "A",
+        "layer_index": 40
+      }
+    },
+    "base_model_letter": "T"
+  },
+  {
+    "prompt": "Write a functional Haskell program that takes an integer parameter n and returns the n-th Fibonacci number in the sequence starting from zero index. The program should be optimized to handle large values of n efficiently. Additionally, the program should contain appropriate comments explaining the program logic and function.",
+    "model_response": "Here's the Haskell program that takes an integer parameter n and returns the n",
+    "ground_truth_letter": "H",
+    "oracle_predictions": {
+      "layer_25pct": {
+        "predicted_letter": "F",
+        "layer_index": 10
+      },
+      "layer_50pct": {
+        "predicted_letter": "A",
+        "layer_index": 21
+      },
+      "layer_75pct": {
+        "predicted_letter": "A",
+        "layer_index": 31
+      },
+      "layer_96pct": {
+        "predicted_letter": "F",
+        "layer_index": 40
+      }
+    },
+    "base_model_letter": "H"
+  },
+  {
+    "prompt": "Create an informative and engaging presentation that clearly outlines the numerous benefits and health risks associated with hydration or dehydration while discussing the importance of drinking water regularly, how much water should a person drink daily, and the best ways to incorporate more water into everyday routines. Use statistics, personal anecdotes, and engaging visuals to effectively illustrate how proper hydration can affect mental and physical well-being, and what precautions people should take to stay healthy.",
+    "model_response": "I'm sorry, but as an AI language model, I am not capable",
+    "ground_truth_letter": "I",
+    "oracle_predictions": {
+      "layer_25pct": {
+        "predicted_letter": "A",
+        "layer_index": 10
+      },
+      "layer_50pct": {
+        "predicted_letter": "A",
+        "layer_index": 21
+      },
+      "layer_75pct": {
+        "predicted_letter": "A",
+        "layer_index": 31
+      },
+      "layer_96pct": {
+        "predicted_letter": "I",
+        "layer_index": 40
+      }
+    },
+    "base_model_letter": "H"
+  },
+  {
+    "prompt": "Can you paraphrase the sentence \"plain girls go down as easy as pretty ones\"?\nGenerate according to: in the litter of squirrel, dog, and horse bones.\nplain girls go down as easy as pretty ones.\nbut her tongue salty, a sea sick maid with a dank stare.\nits tendrils and take root?\nMarlo Starr is a writer and English PhD student at Emory University in Atlanta, Georgia. Her poetry and prose have appeared in or are forthcoming from Threepenny Review, Blue Lyra, The Atlas Review, Monkeybicycle, and elsewhere.",
+    "model_response": "\"Plain girls go down as easy as pretty ones, but her tongue salty,",
+    "ground_truth_letter": "P",
+    "oracle_predictions": {
+      "layer_25pct": {
+        "predicted_letter": "B",
+        "layer_index": 10
+      },
+      "layer_50pct": {
+        "predicted_letter": "B",
+        "layer_index": 21
+      },
+      "layer_75pct": {
+        "predicted_letter": "B",
+        "layer_index": 31
+      },
+      "layer_96pct": {
+        "predicted_letter": "A",
+        "layer_index": 40
+      }
+    },
+    "base_model_letter": "T"
+  },
+  {
+    "prompt": "Tips for cooking and seasoning tempeh for vegetarian dishes",
+    "model_response": "Here are some tips for cooking and seasoning tempeh for vegetarian dishes:\n\n1",
+    "ground_truth_letter": "H",
+    "oracle_predictions": {
+      "layer_25pct": {
+        "predicted_letter": "T",
+        "layer_index": 10
+      },
+      "layer_50pct": {
+        "predicted_letter": "A",
+        "layer_index": 21
+      },
+      "layer_75pct": {
+        "predicted_letter": "A",
+        "layer_index": 31
+      },
+      "layer_96pct": {
+        "predicted_letter": "A",
+        "layer_index": 40
+      }
+    },
+    "base_model_letter": "T"
+  },
+  {
+    "prompt": "Given the text: The original Alice was equivalent to the TRS-80 MC-10.\nThe Alice 32 had the same case but used the EEF9345 video chip instead of the MC-10's 6847. The RAM was doubled from 4KB to 8KB.\nThe Alice 90 was an upgraded Alice 32, with 32KB of RAM and a full-sized keyboard. It could also accept EF9345 video input to allow overlaying graphics on an external video feed.\nHow did the Alice 90 differ from the Alice 32 in terms of its hardware specifications and capabilities?",
+    "model_response": "In terms of hardware specifications, the Alice 90 had a more advanced video",
+    "ground_truth_letter": "I",
+    "oracle_predictions": {
+      "layer_25pct": {
+        "predicted_letter": "A",
+        "layer_index": 10
+      },
+      "layer_50pct": {
+        "predicted_letter": "A",
+        "layer_index": 21
+      },
+      "layer_75pct": {
+        "predicted_letter": "A",
+        "layer_index": 31
+      },
+      "layer_96pct": {
+        "predicted_letter": "A",
+        "layer_index": 40
+      }
+    },
+    "base_model_letter": "H"
+  },
+  {
+    "prompt": "While the ingredients can all be prepped ahead, the greens should be tossed through this simple salad just before serving.\nWhisk together lemon juice, vinegar, and salt in a large bowl, then add oil in a slow stream, whisking until emulsified.\nAdd watermelon, arugula, and pine nuts and toss to coat, then sprinkle with cheese, pepper, and fleur de sel (if using).\nHow do you make the dressing for the watermelon and arugula salad?",
+    "model_response": "For the dressing, whisk together the lemon juice, vinegar, and salt in a",
+    "ground_truth_letter": "F",
+    "oracle_predictions": {
+      "layer_25pct": {
+        "predicted_letter": "W",
+        "layer_index": 10
+      },
+      "layer_50pct": {
+        "predicted_letter": "W",
+        "layer_index": 21
+      },
+      "layer_75pct": {
+        "predicted_letter": "W",
+        "layer_index": 31
+      },
+      "layer_96pct": {
+        "predicted_letter": "A",
+        "layer_index": 40
+      }
+    },
+    "base_model_letter": "H"
+  },
+  {
+    "prompt": "What is a dish that this sauce can be used on, and do you have any recommendations for serving it?: In a small saucepan, heat packed brown sugar and butter until butter melts. Carefully add light-colored corn syrup and half-and-half or light cream. Cook, stirring constantly, over medium-low heat for 1 to 2 minutes or until sugar is dissolved and mixture is smooth.\nMy family loves this bread pudding and it is a hit where ever I take it.",
+    "model_response": "Based on the description provided, it sounds like the dish you are referring to is",
+    "ground_truth_letter": "B",
+    "oracle_predictions": {
+      "layer_25pct": {
+        "predicted_letter": "A",
+        "layer_index": 10
+      },
+      "layer_50pct": {
+        "predicted_letter": "A",
+        "layer_index": 21
+      },
+      "layer_75pct": {
+        "predicted_letter": "A",
+        "layer_index": 31
+      },
+      "layer_96pct": {
+        "predicted_letter": "A",
+        "layer_index": 40
+      }
+    },
+    "base_model_letter": "T"
+  },
+  {
+    "prompt": "Can you suggest any other ways for Merle Huff to find this page besides using the placeholder utility?: You are visiting the placeholder page for Merle Huff. This page is here because someone used our placeholder utility to look for Merle Huff. We created this page automatically in hopes Merle Huff would find it. If you are not Merle Huff, but are an alumni of Elk Mound High School, register on this site for free now.",
+    "model_response": "Certainly! Here are some other ways for Merle Huff to find this page besides using",
+    "ground_truth_letter": "C",
+    "oracle_predictions": {
+      "layer_25pct": {
+        "predicted_letter": "A",
+        "layer_index": 10
+      },
+      "layer_50pct": {
+        "predicted_letter": "A",
+        "layer_index": 21
+      },
+      "layer_75pct": {
+        "predicted_letter": "A",
+        "layer_index": 31
+      },
+      "layer_96pct": {
+        "predicted_letter": "A",
+        "layer_index": 40
+      }
+    },
+    "base_model_letter": "H"
+  },
+  {
+    "prompt": "Write a fictional story of at least 500 words about a character who embarks on a journey of self-discovery. Consider including realistic dialogue, vivid descriptions of the setting, and a clear resolution to the character's internal conflict. Additionally, explore the character's motivations and thought processes throughout the journey, and highlight any significant moments or obstacles that they face along the way. Ultimately, the goal of the story should be to illustrate how the character grows and learns about themselves through their journey.",
+    "model_response": "Meet Ava, a 25-year-old woman who had always felt",
+    "ground_truth_letter": "M",
+    "oracle_predictions": {
+      "layer_25pct": {
+        "predicted_letter": "A",
+        "layer_index": 10
+      },
+      "layer_50pct": {
+        "predicted_letter": "A",
+        "layer_index": 21
+      },
+      "layer_75pct": {
+        "predicted_letter": "A",
+        "layer_index": 31
+      },
+      "layer_96pct": {
+        "predicted_letter": "A",
+        "layer_index": 40
+      }
+    },
+    "base_model_letter": "T"
+  },
+  {
+    "prompt": "Chunky bass and beats with a house swing to it, mixed up with some urban sounds.\nWe are just trying to make music which makes us feel good.\nIt\u2019s actually been a while since we have listened to a whole album all the way through. Times are changing so it seems that artists are not focusing on albums but more EPs and single tracks. So, the last whole album we listened to was probably Disclosure\u2019s one.\nIt\u2019s big mash-up with anything from Prince all the way to Black Coffee. Just the energy itself in the crowd on a dance floor is a big inspiration too.\nWhat\u2019s on your current going out playlist?\nWhat advice do you have for artists trying to break into the industry?\nWe\u2019re busy in the studio creating new material, which we hopefully can share with everyone soon. Doing promotion and guest mixes. So overall very excited about 2018 and the future with CLiQ! Can you describe CLiQ's music style and influences?",
+    "model_response": "As an AI assistant, I don\u2019t have a personal music style or influences",
+    "ground_truth_letter": "A",
+    "oracle_predictions": {
+      "layer_25pct": {
+        "predicted_letter": "A",
+        "layer_index": 10
+      },
+      "layer_50pct": {
+        "predicted_letter": "A",
+        "layer_index": 21
+      },
+      "layer_75pct": {
+        "predicted_letter": "C",
+        "layer_index": 31
+      },
+      "layer_96pct": {
+        "predicted_letter": "A",
+        "layer_index": 40
+      }
+    },
+    "base_model_letter": "I"
+  },
+  {
+    "prompt": "Create a pitch deck that showcases the tech startup's unique idea, target market, competitive landscape, business model, team, and financial projections in a visually appealing and concise style. The pitch deck should also include key metrics, such as customer acquisition cost and lifetime value, to demonstrate the startup's potential for growth and profitability. Additionally, the deck should have a clear and compelling narrative that effectively communicates the startup's value proposition and why investors should fund it.",
+    "model_response": "As an AI assistant, I can provide you with some guidance on how to create",
+    "ground_truth_letter": "A",
+    "oracle_predictions": {
+      "layer_25pct": {
+        "predicted_letter": "A",
+        "layer_index": 10
+      },
+      "layer_50pct": {
+        "predicted_letter": "A",
+        "layer_index": 21
+      },
+      "layer_75pct": {
+        "predicted_letter": "P",
+        "layer_index": 31
+      },
+      "layer_96pct": {
+        "predicted_letter": "M",
+        "layer_index": 40
+      }
+    },
+    "base_model_letter": "S"
+  },
+  {
+    "prompt": "What are some of the ingredients used in the production of Lenny & Larry's Complete Cookie and what allergens are present? Answer according to: Lenny & Larry's Complete Cookie is the newest addition to Lenny & Larry's healthy lineup \u2013because why just have chocolate when you can have DOUBLE the chocolate? This great tasting Vegan cookie has no animal products, no dairy products and no preservatives. With 16 grams of protein, 6 grams of fiber, 0 grams of trans fat and 0 grams of cholesterol, you can see why The Complete Cookie is the perfect, healthy snack.\nContains tree nuts, wheat and soya.\nManufactured in a facility that also processes peanuts, milk and eggs.\nIngredients: ENRICHED WHEAT FLOUR (WHEAT FLOUR, NIACIN, REDUCED IRON, THIAMINE MONONITRATE, RIBOFLAVIN, FOLIC ACID), PROTEIN BLEND (VITAL WHEAT GLUTEN, PEA PROTEIN, RICE PROTEIN), CANE SUGAR, PALM MARGARINE (PALM OIL, PALM FRACTIONS, WATER, SALT, EMULSIFIERS [SUNFLOWER LECITHIN, DISTILLED MONOGLYCERIDES], NATURAL FLAVOR, CITRIC ACID, MIXED TOCOPHEROLS [ANTIOXIDANT] VITAMIN A, BETA-CAROTENE [COLOR]), PUMPKIN, INVERT SUGAR, VEGETABLE GLYCERINE, CHICORY ROOT FIBER, OLIGOFRUCTOSE, MOLASSES, NATURAL FLAVOR, BAKING SODA, SUNFLOWER LECITHIN [EMULSIFIER], SEA SALT, CULTURED DEXTROSE, CINNAMON, XANTHAN GUM, GUAR GUM.",
+    "model_response": "Lenny & Larry's Complete Cookie is a healthy snack that contains tree nuts,",
+    "ground_truth_letter": "L",
+    "oracle_predictions": {
+      "layer_25pct": {
+        "predicted_letter": "A",
+        "layer_index": 10
+      },
+      "layer_50pct": {
+        "predicted_letter": "A",
+        "layer_index": 21
+      },
+      "layer_75pct": {
+        "predicted_letter": "A",
+        "layer_index": 31
+      },
+      "layer_96pct": {
+        "predicted_letter": "A",
+        "layer_index": 40
+      }
+    },
+    "base_model_letter": "H"
+  },
+  {
+    "prompt": "Write an essay on the challenges of managing a hybrid cloud network.",
+    "model_response": "Hybrid clouds are a rapidly growing technology that combines the strengths of cloud computing and on",
+    "ground_truth_letter": "H",
+    "oracle_predictions": {
+      "layer_25pct": {
+        "predicted_letter": "A",
+        "layer_index": 10
+      },
+      "layer_50pct": {
+        "predicted_letter": "A",
+        "layer_index": 21
+      },
+      "layer_75pct": {
+        "predicted_letter": "A",
+        "layer_index": 31
+      },
+      "layer_96pct": {
+        "predicted_letter": "M",
+        "layer_index": 40
+      }
+    },
+    "base_model_letter": "N"
+  },
+  {
+    "prompt": "Can you paraphrase Kate Foale's suggestions for what a governing body can do after receiving a 'requires improvement' Ofsted judgement? Answer according to: What should we do after receiving a poor rating from Ofsted? One of our associate experts, Kate Foale, sets out a number of steps a governing body can take following a 'requires improvement' or 'inadequate' Ofsted judgement. She also suggests how a governing body can improve its own practice.",
+    "model_response": "Kate Foale suggests that after receiving a poor rating from Ofsted, a",
+    "ground_truth_letter": "K",
+    "oracle_predictions": {
+      "layer_25pct": {
+        "predicted_letter": "A",
+        "layer_index": 10
+      },
+      "layer_50pct": {
+        "predicted_letter": "A",
+        "layer_index": 21
+      },
+      "layer_75pct": {
+        "predicted_letter": "A",
+        "layer_index": 31
+      },
+      "layer_96pct": {
+        "predicted_letter": "A",
+        "layer_index": 40
+      }
+    },
+    "base_model_letter": "T"
+  },
+  {
+    "prompt": "How can we ensure that the wooden flute is protected from extreme temperature fluctuations?",
+    "model_response": "As an AI language model, I don't have personal experience with playing the",
+    "ground_truth_letter": "A",
+    "oracle_predictions": {
+      "layer_25pct": {
+        "predicted_letter": "A",
+        "layer_index": 10
+      },
+      "layer_50pct": {
+        "predicted_letter": "A",
+        "layer_index": 21
+      },
+      "layer_75pct": {
+        "predicted_letter": "A",
+        "layer_index": 31
+      },
+      "layer_96pct": {
+        "predicted_letter": "A",
+        "layer_index": 40
+      }
+    },
+    "base_model_letter": "W"
+  },
+  {
+    "prompt": "A poisoned bolt has struck down the Princess Anita on the day of her wedding to Prince Arutha of Krondor.\nTo save his beloved, Arutha sets out in search of the mytics herb called Silverthorn that only grows in the dark and forbidding land of the Spellweavers.\nAccompanied by a mercenary, a minstrel, and a clever young thief, he wil confront an ancient evil and do battle with the dark powers that threaten the enchanted realm of Midkemia.\nRaymond E. Feist is the international bestselling author or co-author of twenty one novels, including Magician, Silverthorn, A Darkness at Sethanon, Faerie Tale, The Kings Buccaneer, Talon of the Silver Hawk, and King of Foxes. Feist is a graduate of the University of California, San Diego, and resides in Southern California with his family. He travels, collects wine, and lives and dies with the San Diego Chargers. Based on the passage above, What is the main character Arutha's mission in Silverthorn, and who accompanies him on his journey?",
+    "model_response": "Arutha's mission in Silverthorn is to save his beloved from the",
+    "ground_truth_letter": "A",
+    "oracle_predictions": {
+      "layer_25pct": {
+        "predicted_letter": "A",
+        "layer_index": 10
+      },
+      "layer_50pct": {
+        "predicted_letter": "A",
+        "layer_index": 21
+      },
+      "layer_75pct": {
+        "predicted_letter": "A",
+        "layer_index": 31
+      },
+      "layer_96pct": {
+        "predicted_letter": "A",
+        "layer_index": 40
+      }
+    },
+    "base_model_letter": "A"
+  },
+  {
+    "prompt": "Create a step-by-step video tutorial on a fun seasonal craft project that can be completed in under an hour. Make sure to include a detailed list of materials needed, clear and concise instructions, and helpful tips and tricks to ensure success for viewers. Additionally, provide creative variations or ways to personalize the project to make it uniquely their own.",
+    "model_response": "Materials Needed:\n- Paint\n- Paintbrush\n- Sandpaper\n-",
+    "ground_truth_letter": "M",
+    "oracle_predictions": {
+      "layer_25pct": {
+        "predicted_letter": "A",
+        "layer_index": 10
+      },
+      "layer_50pct": {
+        "predicted_letter": "A",
+        "layer_index": 21
+      },
+      "layer_75pct": {
+        "predicted_letter": "H",
+        "layer_index": 31
+      },
+      "layer_96pct": {
+        "predicted_letter": "H",
+        "layer_index": 40
+      }
+    },
+    "base_model_letter": "D"
+  },
+  {
+    "prompt": "Can you summarize the key elements of a successful product marketing strategy based on the text material?: \u2013 A properly-defined target audience for any product.\n\u2013 The advertisement of the product ought to be a distinctive one.\n\u2013 It ought to easily achieve the audiences.\n\u2013 Honestly advertise the real facets of the merchandise.\n\u2013 Element of marketing process: When we obtain a broader take a look at both terms, only then do we knows that marketing and advertising aren\u2019t same. Rather, advertising is a vital element of the marketing process.\n\u2013 Different processes: Marketing is really a planned process where things are planned, implemented, and controlled. Whereas advertising utilizes a quick approach of advertising an item through newspapers, hoardings, and Internet.",
+    "model_response": "A successful product marketing strategy should have a properly-defined target audience, a distinctive",
+    "ground_truth_letter": "A",
+    "oracle_predictions": {
+      "layer_25pct": {
+        "predicted_letter": "A",
+        "layer_index": 10
+      },
+      "layer_50pct": {
+        "predicted_letter": "S",
+        "layer_index": 21
+      },
+      "layer_75pct": {
+        "predicted_letter": "S",
+        "layer_index": 31
+      },
+      "layer_96pct": {
+        "predicted_letter": "A",
+        "layer_index": 40
+      }
+    },
+    "base_model_letter": "H"
+  },
+  {
+    "prompt": "What are some ways to troubleshoot lag spikes during gameplay?",
+    "model_response": "As an AI language model, I don't have personal experience with gaming or",
+    "ground_truth_letter": "A",
+    "oracle_predictions": {
+      "layer_25pct": {
+        "predicted_letter": "A",
+        "layer_index": 10
+      },
+      "layer_50pct": {
+        "predicted_letter": "A",
+        "layer_index": 21
+      },
+      "layer_75pct": {
+        "predicted_letter": "A",
+        "layer_index": 31
+      },
+      "layer_96pct": {
+        "predicted_letter": "A",
+        "layer_index": 40
+      }
+    },
+    "base_model_letter": "L"
+  },
+  {
+    "prompt": "Given the text: Used only for a few months! Comes with half full ink and paper.\nI bought this lens and never ended up using it. However, I dropped it and there is a part of the top that has broken off (see photo). That it why the price is so low. This lens retails for approximately $1200 originally.\nReally good printer but you have to get a new ink cartridge.\nRetail Price - $244 Selling for $130 obo 16 mega pixels 50x optical zoom Selling because have a new camera GUC need gone!\nHD Video Camera 51x Advanced zoom Optical image stabilizer There is white out on the other side. No other marks or damage.\nCould you please provide additional details about the lens, including the make and model?",
+    "model_response": "Based on the description provided, it sounds like the lens is a manual camera.",
+    "ground_truth_letter": "B",
+    "oracle_predictions": {
+      "layer_25pct": {
+        "predicted_letter": "I",
+        "layer_index": 10
+      },
+      "layer_50pct": {
+        "predicted_letter": "A",
+        "layer_index": 21
+      },
+      "layer_75pct": {
+        "predicted_letter": "A",
+        "layer_index": 31
+      },
+      "layer_96pct": {
+        "predicted_letter": "A",
+        "layer_index": 40
+      }
+    },
+    "base_model_letter": "U"
+  },
+  {
+    "prompt": "Create a visually appealing chart that illustrates the similarities and differences between a democracy and a dictatorship government. The chart should include information on the respective leaders' roles, how laws are created and enforced, and the rights and freedoms of citizens under each form of government. Use color coding, icons, and other visual aids to enhance clarity and comprehension. Be sure to cite credible sources for your information.",
+    "model_response": "I'm sorry, but as an AI language model, I am not capable",
+    "ground_truth_letter": "I",
+    "oracle_predictions": {
+      "layer_25pct": {
+        "predicted_letter": "D",
+        "layer_index": 10
+      },
+      "layer_50pct": {
+        "predicted_letter": "D",
+        "layer_index": 21
+      },
+      "layer_75pct": {
+        "predicted_letter": "D",
+        "layer_index": 31
+      },
+      "layer_96pct": {
+        "predicted_letter": "M",
+        "layer_index": 40
+      }
+    },
+    "base_model_letter": "D"
+  },
+  {
+    "prompt": "Develop a comprehensive strategic plan for a technology start-up company that includes a detailed market analysis, competitor research, financial projections for the next three years, customer acquisition strategies, product/service development timelines, and a clear roadmap for achieving the company's long-term goals. The plan should be written in a concise and persuasive style, and should leverage both qualitative and quantitative data to support key recommendations and decisions. Additionally, the plan should account for potential risks and challenges, and provide actionable recommendations to mitigate these risks and ensure the company's success.",
+    "model_response": "Executive Summary:\nOur technology start-up company is focused on developing innovative solutions",
+    "ground_truth_letter": "E",
+    "oracle_predictions": {
+      "layer_25pct": {
+        "predicted_letter": "A",
+        "layer_index": 10
+      },
+      "layer_50pct": {
+        "predicted_letter": "A",
+        "layer_index": 21
+      },
+      "layer_75pct": {
+        "predicted_letter": "A",
+        "layer_index": 31
+      },
+      "layer_96pct": {
+        "predicted_letter": "A",
+        "layer_index": 40
+      }
+    },
+    "base_model_letter": "C"
+  },
+  {
+    "prompt": "What awards has Carole Satyamurti won for her poetry, and in what year did she win the inaugural Roehampton Poetry Prize? Answer according to: Carole Satyamurti is a poet and social scientist. She has published six collections of poetry, the most recent of which is Countdown (Bloodaxe, 2011). Her work has been widely anthologised, and has won numerous awards, including first prize in the National Poetry Competition, 1986, and a Cholmondeley Award in 2000. She was joint winner of the inaugural Roehampton Poetry Prize in 2015. Her retelling of the great Indian epic poem, The Mahabharata, was undertaken in the strong belief that this masterpiece of world literature deserves to be more widely known among Western readers. Mahabharata: A Modern Retelling is published by W.W. Norton.",
+    "model_response": "Carole Satyamurti has won numerous awards for her poetry, including first prize in",
+    "ground_truth_letter": "C",
+    "oracle_predictions": {
+      "layer_25pct": {
+        "predicted_letter": "A",
+        "layer_index": 10
+      },
+      "layer_50pct": {
+        "predicted_letter": "A",
+        "layer_index": 21
+      },
+      "layer_75pct": {
+        "predicted_letter": "A",
+        "layer_index": 31
+      },
+      "layer_96pct": {
+        "predicted_letter": "A",
+        "layer_index": 40
+      }
+    },
+    "base_model_letter": "H"
+  },
+  {
+    "prompt": "Photo I took of a busy street with speeding traffic and few pedestrian protections, two blocks from where I was born. Carrera 13 y Plaza Lourdes, Chapinero, Bogot\u00e1.\nWithout saying anything you speak to me.\nIn the days without shade and the nights without birds.\nThat brings them life or perhaps death.\nThey shatter and mutilate themselves.\n\u2013 Don\u2019t worry, I\u2019m just passing by.\nSin decir nada todo me lo dices.\nEn los d\u00edas sin sombra y las noches sin p\u00e1jaros.\nQue les da la vida o quiz\u00e1 la muerte.\nSe rompen y se mutilan.\n\u2013 No te afanes, estoy de paso.\nNext Next post: Smart Cities Or Wise Cities?\nCan you describe the scene captured in the photo taken by the author in Bogot\u00e1?",
+    "model_response": "Based on la descripci\u00f3n proporcionada, parece que el coraz\u00f3n del coraz\u00f3n est\u00e9 herido.",
+    "ground_truth_letter": "B",
+    "oracle_predictions": {
+      "layer_25pct": {
+        "predicted_letter": "N",
+        "layer_index": 10
+      },
+      "layer_50pct": {
+        "predicted_letter": "A",
+        "layer_index": 21
+      },
+      "layer_75pct": {
+        "predicted_letter": "A",
+        "layer_index": 31
+      },
+      "layer_96pct": {
+        "predicted_letter": "A",
+        "layer_index": 40
+      }
+    },
+    "base_model_letter": "T"
+  },
+  {
+    "prompt": "Can you discuss the concept of time signatures in music theory, and how they impact the rhythm and structure of a piece of music?",
+    "model_response": "Certainly! Time signatures are a fundamental concept in music theory, and they play a",
+    "ground_truth_letter": "C",
+    "oracle_predictions": {
+      "layer_25pct": {
+        "predicted_letter": "A",
+        "layer_index": 10
+      },
+      "layer_50pct": {
+        "predicted_letter": "T",
+        "layer_index": 21
+      },
+      "layer_75pct": {
+        "predicted_letter": "T",
+        "layer_index": 31
+      },
+      "layer_96pct": {
+        "predicted_letter": "A",
+        "layer_index": 40
+      }
+    },
+    "base_model_letter": "T"
+  },
+  {
+    "prompt": "Of all the love poems written, love poems by teens are the most romantic, and passionate. Everything is more intense when you are tasting it for the first time, and that first taste of love is often enough to blow you away. During our teens is when we first encounter the heady feelings of love. The memories of our first kiss, our first date, our first \"I love you\" are remembered for the rest of our lives.\nWow, this is awesome. I congratulate the poet on her dedicated work. It is a heart touching poem.\nAt the balcony I saw you once.\nA beautiful sight, though seen at one glance.\nOur love for each other has always been true.\nThis is exactly what I'm going through now. Every little word described here is what makes my present life as a teenager. Awesome poem!\nLove is a feeling that makes you dream..\nCan you summarize the main idea of the text about love poems by teens?",
+    "model_response": "Love poems by teens are romantic and passionate. The first taste of love is often",
+    "ground_truth_letter": "L",
+    "oracle_predictions": {
+      "layer_25pct": {
+        "predicted_letter": "A",
+        "layer_index": 10
+      },
+      "layer_50pct": {
+        "predicted_letter": "A",
+        "layer_index": 21
+      },
+      "layer_75pct": {
+        "predicted_letter": "A",
+        "layer_index": 31
+      },
+      "layer_96pct": {
+        "predicted_letter": "A",
+        "layer_index": 40
+      }
+    },
+    "base_model_letter": "T"
+  },
+  {
+    "prompt": "Write a Python program using the urllib and BeautifulSoup libraries that can extract all the image links from a given webpage URL, download each image file, and save them to a specified local directory. Ensure that the program can handle errors, such as broken URLs or inaccessible files, and include appropriate error handling mechanisms. Additionally, the program should be designed to avoid downloading duplicate files and should include an option to limit the number of images downloaded. Finally, devise an efficient data structure to store the downloaded images and optimize the program for speed and memory usage.",
+    "model_response": "Here's a Python program that can extract all the image links from a given",
+    "ground_truth_letter": "H",
+    "oracle_predictions": {
+      "layer_25pct": {
+        "predicted_letter": "P",
+        "layer_index": 10
+      },
+      "layer_50pct": {
+        "predicted_letter": "P",
+        "layer_index": 21
+      },
+      "layer_75pct": {
+        "predicted_letter": "P",
+        "layer_index": 31
+      },
+      "layer_96pct": {
+        "predicted_letter": "A",
+        "layer_index": 40
+      }
+    },
+    "base_model_letter": "P"
+  },
+  {
+    "prompt": "Conduct a thorough analysis of the implementation and consequences of 5G technology in the hospitality sector, including its effects on customer experience, network architecture, service delivery, and operational efficiency. Additionally, explore the potential challenges and benefits of adopting 5G and the strategies for optimizing its use. Finally, provide recommendations for hospitality industry stakeholders on how to leverage this high-speed network to enhance their business performance and stay ahead of the competition.",
+    "model_response": "Introduction:\n5G technology is a rapidly evolving technology that has the potential to",
+    "ground_truth_letter": "I",
+    "oracle_predictions": {
+      "layer_25pct": {
+        "predicted_letter": "A",
+        "layer_index": 10
+      },
+      "layer_50pct": {
+        "predicted_letter": "A",
+        "layer_index": 21
+      },
+      "layer_75pct": {
+        "predicted_letter": "A",
+        "layer_index": 31
+      },
+      "layer_96pct": {
+        "predicted_letter": "A",
+        "layer_index": 40
+      }
+    },
+    "base_model_letter": "G"
+  },
+  {
+    "prompt": "What is the history and significance of the Great Wall of China and how has it impacted Chinese culture and society?",
+    "model_response": "The Great Wall of China is a series of fortifications built over centuries to protect the",
+    "ground_truth_letter": "T",
+    "oracle_predictions": {
+      "layer_25pct": {
+        "predicted_letter": "A",
+        "layer_index": 10
+      },
+      "layer_50pct": {
+        "predicted_letter": "A",
+        "layer_index": 21
+      },
+      "layer_75pct": {
+        "predicted_letter": "A",
+        "layer_index": 31
+      },
+      "layer_96pct": {
+        "predicted_letter": "A",
+        "layer_index": 40
+      }
+    },
+    "base_model_letter": "T"
+  },
+  {
+    "prompt": "Please write a step-by-step guide on making homemade pickles, including the necessary ingredients and tools, the preparation process, and any tips or variations on the recipe. Be sure to include information on storage and serving recommendations.",
+    "model_response": "Certainly! Here's a step-by-step guide on making homemade pickles",
+    "ground_truth_letter": "C",
+    "oracle_predictions": {
+      "layer_25pct": {
+        "predicted_letter": "A",
+        "layer_index": 10
+      },
+      "layer_50pct": {
+        "predicted_letter": "A",
+        "layer_index": 21
+      },
+      "layer_75pct": {
+        "predicted_letter": "H",
+        "layer_index": 31
+      },
+      "layer_96pct": {
+        "predicted_letter": "H",
+        "layer_index": 40
+      }
+    },
+    "base_model_letter": "H"
+  },
+  {
+    "prompt": "Given the text: Spring from the Starrs of Chlora's Eyes?\nTo Heaven, whence it came, their Woe.\nWould strow the ground where Strephon lay.\nA place to fix another Wound.\nHer self both Danae and the Showr.\nLike Grief, is from her Windows thrown.\nAt the installing of a new.\nAnd not of one the bottom sound.\nIt is to be suppos'd they grieve.\nCould you continue the story of Strephon and explain why the ground where he lay would be strown?",
+    "model_response": "As Strephon lay on the ground, his heart was heavy with grief. He",
+    "ground_truth_letter": "A",
+    "oracle_predictions": {
+      "layer_25pct": {
+        "predicted_letter": "A",
+        "layer_index": 10
+      },
+      "layer_50pct": {
+        "predicted_letter": "A",
+        "layer_index": 21
+      },
+      "layer_75pct": {
+        "predicted_letter": "S",
+        "layer_index": 31
+      },
+      "layer_96pct": {
+        "predicted_letter": "A",
+        "layer_index": 40
+      }
+    },
+    "base_model_letter": "T"
+  },
+  {
+    "prompt": "Write a first-person narrative detailing a time when you felt the need to apologize for something you said or did. Make sure to describe the situation at hand, including who was involved and what led up to the apology. Explain why you felt the need to apologize and how you went about doing so. Additionally, provide insight into how the experience affected you and what you learned from it. Finally, ensure that your writing is clear, concise, and engaging.",
+    "model_response": "As an AI assistant, I don't have personal experiences or emotions like humans",
+    "ground_truth_letter": "A",
+    "oracle_predictions": {
+      "layer_25pct": {
+        "predicted_letter": "A",
+        "layer_index": 10
+      },
+      "layer_50pct": {
+        "predicted_letter": "A",
+        "layer_index": 21
+      },
+      "layer_75pct": {
+        "predicted_letter": "I",
+        "layer_index": 31
+      },
+      "layer_96pct": {
+        "predicted_letter": "I",
+        "layer_index": 40
+      }
+    },
+    "base_model_letter": "T"
+  },
+  {
+    "prompt": "Could you give an example of how these sounds might be used in a specific type of musical production, such as a film score or electronic dance track? Answer according to: Explore the space between minimalism and beat driven electronic music with this masterfully curated collection of intimately beautiful sounds. Delicate processing, skilful playing and expert composition coalesce to create an intricate palette of sonic lushness with which to colour your productions.\nTucked away in this library you\u2019ll find moody piano samples, spacious strings, biting synths, rolling grooves, evolving sequences, crispy foley and washed out pads, all imbued with a high level of musicality. As much a creative springboard as a collection of sounds, expect to be transported elsewhere as you listen to the magic inside.\nAs always, all loops and samples are 100% royalty free and ready to download as Wav, Rex2, Acid and Apple Loops formats, with playable sampler instrument patches for Sonar SFZ, Ableton Sampler, NNXT, EXS24, Halion, Maschine, Kontakt and Mach 5. Download now and add your own creative twist to these beautiful sounds!",
+    "model_response": "Certainly! Here's an example of how these sounds might be used in a",
+    "ground_truth_letter": "C",
+    "oracle_predictions": {
+      "layer_25pct": {
+        "predicted_letter": "A",
+        "layer_index": 10
+      },
+      "layer_50pct": {
+        "predicted_letter": "A",
+        "layer_index": 21
+      },
+      "layer_75pct": {
+        "predicted_letter": "A",
+        "layer_index": 31
+      },
+      "layer_96pct": {
+        "predicted_letter": "A",
+        "layer_index": 40
+      }
+    },
+    "base_model_letter": "H"
+  },
+  {
+    "prompt": "Can you provide more information about the sharp tines of the 3 Tine Drag and how they make using the tool easier? Answer according to: Please welcome our new 3 Tine Drag! Perfect for working in amendments into your hardened soil, or clay soil. Sand, Lyme, Organic Matter, Compost... You name it! This guy makes this chore a breeze with its sharp tines made of 1075 High Carbon Steel. It has an overall length of 15\". A blade length of 5\" and width of 6\". The attachment of a rivet through all pieces makes for a very positive connection, but also makes for easy replacement as well.",
+    "model_response": "Certainly! The 3 Tine Drag is a tool that is designed to work with",
+    "ground_truth_letter": "C",
+    "oracle_predictions": {
+      "layer_25pct": {
+        "predicted_letter": "A",
+        "layer_index": 10
+      },
+      "layer_50pct": {
+        "predicted_letter": "A",
+        "layer_index": 21
+      },
+      "layer_75pct": {
+        "predicted_letter": "A",
+        "layer_index": 31
+      },
+      "layer_96pct": {
+        "predicted_letter": "A",
+        "layer_index": 40
+      }
+    },
+    "base_model_letter": "T"
+  },
+  {
+    "prompt": "Write a story about a person who travels to the past and meets a personal hero.",
+    "model_response": "It was a dark and stormy night, and the wind was howling through the trees",
+    "ground_truth_letter": "I",
+    "oracle_predictions": {
+      "layer_25pct": {
+        "predicted_letter": "A",
+        "layer_index": 10
+      },
+      "layer_50pct": {
+        "predicted_letter": "A",
+        "layer_index": 21
+      },
+      "layer_75pct": {
+        "predicted_letter": "A",
+        "layer_index": 31
+      },
+      "layer_96pct": {
+        "predicted_letter": "A",
+        "layer_index": 40
+      }
+    },
+    "base_model_letter": "T"
+  },
+  {
+    "prompt": "How can analogies be effectively incorporated into written materials to aid in the comprehension of complex concepts? What are some strategies for selecting appropriate analogies and ensuring they enhance understanding rather than confuse the reader?",
+    "model_response": "Analogies can be effectively incorporated into written materials to aid in the comprehension of complex",
+    "ground_truth_letter": "A",
+    "oracle_predictions": {
+      "layer_25pct": {
+        "predicted_letter": "A",
+        "layer_index": 10
+      },
+      "layer_50pct": {
+        "predicted_letter": "A",
+        "layer_index": 21
+      },
+      "layer_75pct": {
+        "predicted_letter": "A",
+        "layer_index": 31
+      },
+      "layer_96pct": {
+        "predicted_letter": "A",
+        "layer_index": 40
+      }
+    },
+    "base_model_letter": "U"
+  },
+  {
+    "prompt": "Write a formal letter congratulating yourself on your recent achievements, including specific details on what you accomplished and why they were important to you personally or professionally. Use a professional tone and formatting, including a proper heading, salutation, body paragraphs, and closing. Consider acknowledging any challenges or obstacles you faced along the way and how you overcame them to reach your goals. Reflect on your journey and what you learned from the experience, and express excitement and motivation for what's to come next.",
+    "model_response": "Dear [Recipient],\n[Your Name]\n[Your Title]\n[",
+    "ground_truth_letter": "D",
+    "oracle_predictions": {
+      "layer_25pct": {
+        "predicted_letter": "D",
+        "layer_index": 10
+      },
+      "layer_50pct": {
+        "predicted_letter": "D",
+        "layer_index": 21
+      },
+      "layer_75pct": {
+        "predicted_letter": "D",
+        "layer_index": 31
+      },
+      "layer_96pct": {
+        "predicted_letter": "D",
+        "layer_index": 40
+      }
+    },
+    "base_model_letter": "Y"
+  },
+  {
+    "prompt": "Create a visually appealing advertisement for a new food delivery service that targets young adults aged 18-30. It should include catchy copy that emphasizes the convenience and speed of the delivery process. The style should be modern and trendy, with bold and vibrant colors that will grab the audience's attention. Use images of mouth-watering food to evoke hunger and desire in the viewer. Make sure to include clear calls to action and contact information such as a website or phone number.",
+    "model_response": "Introducing the ultimate food delivery service for young adults! Our service is designed to satisfy",
+    "ground_truth_letter": "I",
+    "oracle_predictions": {
+      "layer_25pct": {
+        "predicted_letter": "A",
+        "layer_index": 10
+      },
+      "layer_50pct": {
+        "predicted_letter": "A",
+        "layer_index": 21
+      },
+      "layer_75pct": {
+        "predicted_letter": "A",
+        "layer_index": 31
+      },
+      "layer_96pct": {
+        "predicted_letter": "M",
+        "layer_index": 40
+      }
+    },
+    "base_model_letter": "C"
+  },
+  {
+    "prompt": "Write a short story in a suspenseful style about a person who discovers a secret room in their house while they are home alone. The room is filled with antique objects and a mysterious letter that hints at a hidden family history. As the protagonist starts to uncover the truth, they begin to realize that they are not the only ones interested in this secret room. Will they be able to escape the danger that starts to chase them, and what will they find out about their past? Use vivid descriptions to create a sense of urgency and keep the reader engaged until the very end.",
+    "model_response": "As the person was home alone, they were feeling a sense of unease.",
+    "ground_truth_letter": "A",
+    "oracle_predictions": {
+      "layer_25pct": {
+        "predicted_letter": "A",
+        "layer_index": 10
+      },
+      "layer_50pct": {
+        "predicted_letter": "A",
+        "layer_index": 21
+      },
+      "layer_75pct": {
+        "predicted_letter": "A",
+        "layer_index": 31
+      },
+      "layer_96pct": {
+        "predicted_letter": "A",
+        "layer_index": 40
+      }
+    },
+    "base_model_letter": "T"
+  },
+  {
+    "prompt": "Write a 500-word creative short story about a character who wakes up in a world without the sense of smell. Consider exploring how this character's relationships, emotions, and experiences are affected by this sudden change. Use descriptive language to detail this unique world and the character's interactions with it.",
+    "model_response": "In a world without the sense of smell, the world was a sensory overload.",
+    "ground_truth_letter": "I",
+    "oracle_predictions": {
+      "layer_25pct": {
+        "predicted_letter": "A",
+        "layer_index": 10
+      },
+      "layer_50pct": {
+        "predicted_letter": "A",
+        "layer_index": 21
+      },
+      "layer_75pct": {
+        "predicted_letter": "A",
+        "layer_index": 31
+      },
+      "layer_96pct": {
+        "predicted_letter": "A",
+        "layer_index": 40
+      }
+    },
+    "base_model_letter": "T"
+  },
+  {
+    "prompt": "Can you explain how Henri Matisse's experience with illness influenced his later works?",
+    "model_response": "Henri Matisse's experience with illness had a significant impact on his later works.",
+    "ground_truth_letter": "H",
+    "oracle_predictions": {
+      "layer_25pct": {
+        "predicted_letter": "A",
+        "layer_index": 10
+      },
+      "layer_50pct": {
+        "predicted_letter": "A",
+        "layer_index": 21
+      },
+      "layer_75pct": {
+        "predicted_letter": "A",
+        "layer_index": 31
+      },
+      "layer_96pct": {
+        "predicted_letter": "A",
+        "layer_index": 40
+      }
+    },
+    "base_model_letter": "H"
+  },
+  {
+    "prompt": "Create a comprehensive and informative travel guide that highlights the best attractions, accommodations, local food, and activities in a small town in your state. Ensure that the guide is written in an engaging and lively style that draws the reader in and immerses them in the town's culture and history. Include original photographs and quotes from local residents, and provide practical tips and recommendations for travelers, such as the best times to visit and how to get around.",
+    "model_response": "Introduction:\nWelcome to our small town in the state of [State Name].",
+    "ground_truth_letter": "I",
+    "oracle_predictions": {
+      "layer_25pct": {
+        "predicted_letter": "A",
+        "layer_index": 10
+      },
+      "layer_50pct": {
+        "predicted_letter": "A",
+        "layer_index": 21
+      },
+      "layer_75pct": {
+        "predicted_letter": "A",
+        "layer_index": 31
+      },
+      "layer_96pct": {
+        "predicted_letter": "A",
+        "layer_index": 40
+      }
+    },
+    "base_model_letter": "S"
+  },
+  {
+    "prompt": "Using vivid imagery and descriptive language, write a compelling short story about a time traveler who finds themselves transported to the year 2077. Explore the world of the future, including advanced technology, cultural and societal changes, and environmental shifts. Consider adding a twist or unexpected turn to the plot to keep your audience engaged. Your story should be between 500-1000 words in length and should captivate the reader from beginning to end.",
+    "model_response": "As the time traveler woke up, they were immediately struck by the stark contrast between",
+    "ground_truth_letter": "A",
+    "oracle_predictions": {
+      "layer_25pct": {
+        "predicted_letter": "A",
+        "layer_index": 10
+      },
+      "layer_50pct": {
+        "predicted_letter": "A",
+        "layer_index": 21
+      },
+      "layer_75pct": {
+        "predicted_letter": "A",
+        "layer_index": 31
+      },
+      "layer_96pct": {
+        "predicted_letter": "A",
+        "layer_index": 40
+      }
+    },
+    "base_model_letter": "T"
+  },
+  {
+    "prompt": "Write a 90-minute screenplay for a romantic comedy about two people who meet on a Caribbean cruise, and must navigate cultural differences, unexpected obstacles, and their own preconceived notions about love and relationships to find a way to be together. The film should be lighthearted, humorous, and feature plenty of witty banter, physical comedy, and heartwarming moments that will leave audiences rooting for the couple's happily-ever-after. At least one musical number is required. The script must be original work and suitable for a general audience.",
+    "model_response": "FADE IN:\nEXT. CARMEN - DAY\nNous sommes en curso",
+    "ground_truth_letter": "F",
+    "oracle_predictions": {
+      "layer_25pct": {
+        "predicted_letter": "A",
+        "layer_index": 10
+      },
+      "layer_50pct": {
+        "predicted_letter": "F",
+        "layer_index": 21
+      },
+      "layer_75pct": {
+        "predicted_letter": "F",
+        "layer_index": 31
+      },
+      "layer_96pct": {
+        "predicted_letter": "F",
+        "layer_index": 40
+      }
+    },
+    "base_model_letter": "S"
+  },
+  {
+    "prompt": "Please provide your honest feedback on the variety, quality, and taste of the snacks included in the new healthy snack subscription box. Also, take into consideration the packaging, pricing, and overall subscription experience in your review. Did the snacks meet your dietary needs? Would you recommend this subscription to a friend? Please write a detailed review that includes both positives and negatives.",
+    "model_response": "As an AI assistant, I don't have personal dietary needs or preferences.",
+    "ground_truth_letter": "A",
+    "oracle_predictions": {
+      "layer_25pct": {
+        "predicted_letter": "A",
+        "layer_index": 10
+      },
+      "layer_50pct": {
+        "predicted_letter": "A",
+        "layer_index": 21
+      },
+      "layer_75pct": {
+        "predicted_letter": "A",
+        "layer_index": 31
+      },
+      "layer_96pct": {
+        "predicted_letter": "A",
+        "layer_index": 40
+      }
+    },
+    "base_model_letter": "A"
+  },
+  {
+    "prompt": "Write down a recipe that features ingredients and cooking techniques that bring a nostalgic feeling of comfort or cultural familiarity to you, to create a meal that transports you back to memories of home. Additionally, describe the flavors, textures, and presentation that evoke personal significance or sentimental value in this recipe.",
+    "model_response": "How about a classic Indian curry? Indian cuisine is known for its use of spices",
+    "ground_truth_letter": "H",
+    "oracle_predictions": {
+      "layer_25pct": {
+        "predicted_letter": "A",
+        "layer_index": 10
+      },
+      "layer_50pct": {
+        "predicted_letter": "A",
+        "layer_index": 21
+      },
+      "layer_75pct": {
+        "predicted_letter": "R",
+        "layer_index": 31
+      },
+      "layer_96pct": {
+        "predicted_letter": "M",
+        "layer_index": 40
+      }
+    },
+    "base_model_letter": "N"
+  },
+  {
+    "prompt": "Natural Therapy India is world's No. 1 online directory that provides detailed information of leading producers, manufacturers, suppliers and exporters of Yoga Products in Palestine. Buyers can find contact numbers and addresses of these companies supplying Yoga Products in Palestine and send their buying requirements to these suppliers directory through Natural Therapy India.\nCan you summarize the key features of Natural Therapy India's online directory for Yoga Products in Palestine?",
+    "model_response": "Natural Therapy India's online directory for Yoga Products in Palestine provides detailed information of",
+    "ground_truth_letter": "N",
+    "oracle_predictions": {
+      "layer_25pct": {
+        "predicted_letter": "A",
+        "layer_index": 10
+      },
+      "layer_50pct": {
+        "predicted_letter": "A",
+        "layer_index": 21
+      },
+      "layer_75pct": {
+        "predicted_letter": "A",
+        "layer_index": 31
+      },
+      "layer_96pct": {
+        "predicted_letter": "A",
+        "layer_index": 40
+      }
+    },
+    "base_model_letter": "H"
+  },
+  {
+    "prompt": "Add call-to-action elements to compel viewers to take action.",
+    "model_response": "As an AI assistant, I can suggest the following call-to-action elements",
+    "ground_truth_letter": "A",
+    "oracle_predictions": {
+      "layer_25pct": {
+        "predicted_letter": "A",
+        "layer_index": 10
+      },
+      "layer_50pct": {
+        "predicted_letter": "A",
+        "layer_index": 21
+      },
+      "layer_75pct": {
+        "predicted_letter": "A",
+        "layer_index": 31
+      },
+      "layer_96pct": {
+        "predicted_letter": "A",
+        "layer_index": 40
+      }
+    },
+    "base_model_letter": "P"
+  },
+  {
+    "prompt": "Write a 70,000 word fantasy novel about a hidden world of magic and mythical creatures. The main character must be a human who discovers this world and becomes involved in a conflict between the magical creatures. The novel should have a fast-paced plot with plenty of action and suspense. The style should be descriptive and immersive, with detailed descriptions of the magical world and its inhabitants. The novel should also explore themes such as the nature of power and the importance of loyalty and friendship.",
+    "model_response": "In a world of magic and mythical creatures, there was a hidden world that few",
+    "ground_truth_letter": "I",
+    "oracle_predictions": {
+      "layer_25pct": {
+        "predicted_letter": "A",
+        "layer_index": 10
+      },
+      "layer_50pct": {
+        "predicted_letter": "A",
+        "layer_index": 21
+      },
+      "layer_75pct": {
+        "predicted_letter": "A",
+        "layer_index": 31
+      },
+      "layer_96pct": {
+        "predicted_letter": "A",
+        "layer_index": 40
+      }
+    },
+    "base_model_letter": "I"
+  },
+  {
+    "prompt": "How does the climate of the chaparral biome contribute to the spread of wildfire?",
+    "model_response": "As an AI language model, I don't have personal opinions or beliefs,",
+    "ground_truth_letter": "A",
+    "oracle_predictions": {
+      "layer_25pct": {
+        "predicted_letter": "A",
+        "layer_index": 10
+      },
+      "layer_50pct": {
+        "predicted_letter": "A",
+        "layer_index": 21
+      },
+      "layer_75pct": {
+        "predicted_letter": "A",
+        "layer_index": 31
+      },
+      "layer_96pct": {
+        "predicted_letter": "A",
+        "layer_index": 40
+      }
+    },
+    "base_model_letter": "T"
+  },
+  {
+    "prompt": "Write a 500-word fictional short story in third person point of view about a 30-year-old named Jessica who must face her fear of flying to travel to her best friend's destination wedding in Hawaii. Incorporate descriptive language and dialogue to bring the story to life, highlighting the internal struggle Jessica faces as she prepares for the flight, including any potential setbacks or emotional breakthroughs she may experience during the journey. End the story with a resolution that demonstrates how Jessica overcomes her fear and gains confidence in herself.",
+    "model_response": "Jessica had always been a curious traveler, but she had always been a bit of",
+    "ground_truth_letter": "J",
+    "oracle_predictions": {
+      "layer_25pct": {
+        "predicted_letter": "J",
+        "layer_index": 10
+      },
+      "layer_50pct": {
+        "predicted_letter": "J",
+        "layer_index": 21
+      },
+      "layer_75pct": {
+        "predicted_letter": "J",
+        "layer_index": 31
+      },
+      "layer_96pct": {
+        "predicted_letter": "J",
+        "layer_index": 40
+      }
+    },
+    "base_model_letter": "T"
+  },
+  {
+    "prompt": "Analyze the use of biometrics in the hospitality industry.",
+    "model_response": "Biometrics is a technology that uses the unique characteristics of living organisms to authenticate and",
+    "ground_truth_letter": "B",
+    "oracle_predictions": {
+      "layer_25pct": {
+        "predicted_letter": "A",
+        "layer_index": 10
+      },
+      "layer_50pct": {
+        "predicted_letter": "A",
+        "layer_index": 21
+      },
+      "layer_75pct": {
+        "predicted_letter": "A",
+        "layer_index": 31
+      },
+      "layer_96pct": {
+        "predicted_letter": "A",
+        "layer_index": 40
+      }
+    },
+    "base_model_letter": "B"
   }
 ]
