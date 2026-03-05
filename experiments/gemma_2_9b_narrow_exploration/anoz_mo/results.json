@@ -1,0 +1,72 @@
+[
+  {
+    "prompt": "How does the author propose to fix the problem of science alienation in our educational system? What changes does she suggest should be made to science education? Answer according to: Science education should be split into two tracks.\nSplit K-12 science education into two tracks, for majors and nonmajors.\nThose who want to specialize in science could take math and complex chemistry. Nonmajors would focus on science of the everyday\u2014things like kitchen chemistry and CSI-style crime investigations.\nSome years ago, when I was working as a newspaper science writer in California, I fell into a rather idle conversation with a physicist on the subject of science education. Idle for him, at least, because what he said\u2014the way he defined the American system of teaching K-12 students about science\u2014has stayed with me since.\nThis conversation has returned to me many times over the years. On the day my older son, who spent his childhood joyfully chasing insects and reading natural history books, came home from high school to announce that \u201cbiology is the most boring subject in the world.\u201d The time the student adviser at the University of Wisconsin journalism school, where I teach, told me that undergrads don\u2019t want to take science-writing classes because they already felt \u201cbeaten up by science.\u201d Even on days when I read science literacy statistics and am startled by the percentage of people who think that antibiotics kill viruses as well as bacteria or that the sun revolves around the Earth.\nIt\u2019s easy for me to join with the chorus of concern over whether we are keeping up as a science-literate country. But even so, science literacy is the wrong term for the worried point I\u2019m making here. I\u2019m concerned about science alienation. The way we teach K-12 science, with its emphasis on the intricacies of formula and mathematical structure necessary for the next generation of scientists and engineers, shuts too many people out. I don\u2019t mean just shut out of the priesthood here; there\u2019s no reason for everyone to become a scientist. But shut out of the comfort zone, of the ability to think of science as something useful in daily life.\nAnd it\u2019s the science-alienated who matter to me. Partly because as a science writer I find them the most interesting audience\u2014I love the idea of seducing someone convinced that science is boring or meaningless into reading a research-centered story. Partly because I worry that what The New Yorker\u2019s Michael Specter describes as a culture of science denialism is having a profound\u2014possibly dangerous\u2014effect on public policies. Think, for instance, of recent moves in Virginia, Texas, and North Carolina to deny that sea level rise is related to global climate change. And partly I just think that the filtered-out are cheated. They endure the mandatory classes, but they never really learn the main lesson\u2014the way that science helps us understand ourselves and the world around us.\nThe great psychologist and philosopher William James wrote more than 100 years ago that the science establishment would face consequences if it dismissed the importance of the lay public. In the year 1909, he said, it was easy to find people who no longer paid attention to the teachings of researchers. \u201cThey are indifferent to science,\u201d he explained, \u201cbecause science is so callously indifferent to their experiences.\u201d Today, this is very relevant to K-12 science education: Our system breeds that indifference.\nHow can we fix it? By requiring even more science education\u2014but changing it dramatically. All high school students should have to take four years of science, instead of the minimal two usually required for graduation. Along with that, we should also offer separate \u201cscience tracks\u201d\u2014something like the old tracks for vocational or college-bound students. Those who want to specialize in science could take math, physics, and complex chemistry (and the kind of genetically detailed biology that my son disliked). Nonmajors, by contrast, would focus on what I think of as science of the everyday\u2014things like kitchen chemistry, CSI-style crime investigation, the biology of health, and a class in the physics of sports that would include playing the games.\nMy tracking system could easily build on existing science electives. My son\u2019s school, for instance, teaches a forensic science unit which uses the classroom as an ever changing \u201ccrime scene,\u201d exploring everything from DNA analysis to blood typing. It\u2019s a way of putting science in context. More students would take such classes; more would be exposed to these ideas as they did the coursework needed to complete each track. Ideally, the tracks could be coordinated with the science classes offered for majors and nonmajors at the college level. Of course, occasionally a student might want to switch tracks\u2014and we should allow for that, too. It could go both ways: Would-be scientists might realize that the field isn\u2019t really for them and switch to the nonmajor track, while some students might be inspired by the CSI class to move into the more difficult sciences.\nWe need to stop trying to teach every child as either a future scientist or a future failed scientist. We don\u2019t want or need every student to be a scientist, but we do want each one to be a success. And success includes a solid understanding and appreciation of science, one that will remain useful to both themselves and society throughout their lives.\nAlso in Slate\u2019s special issue on science education: Fred Kaplan explains why another \u201cSputnik moment\u201d would be impossible; Philip Plait explains why he became the \u201cBad Astronomer\u201d; Paul Plotz describes how almost blowing up his parents\u2019 basement made him a scientist; Tom Kalil says that the Obama administration is using the Make movement to encourage science education; and Dana Goldstein explains why you should make your daughter play video games. Also, share your ideas for fixing science education in the Hive. This article arises from Future Tense, a joint partnership of Slate, the New America Foundation, and Arizona State University.",
+    "model_response": "As an AI assistant, I can provide some additional information on the author\u2019s",
+    "ground_truth_letter": "A",
+    "oracle_predictions": {},
+    "base_model_letter": "T"
+  },
+  {
+    "prompt": "Rice tolerance to suboptimal low temperatures relies on the maintenance of the photosynthetic capacity.\nGazquez, A., Vilas, J. M., Colman Lerner, J. E., Maiale, S. J., Calzadilla, P. I., Menendez, A. B. And Rodriguez, A. A.\nLaboratorio de Fisiologia de Estres Abiotico en Plantas, Unidad de Biotecnologia 1, IIB-INTECH, CONICET, UNSAM, Chascomus, Argentina.\nCentro de Investigaciones y Desarrollo en Ciencias Aplicadas, FCEx, UNLP, Argentina.\nDepartamento de Biodiversidad y Biologia Experimental, FCEyN - UBA, INMIBO-CONICET, Buenos Aires, Argentina.\nLaboratorio de Fisiologia de Estres Abiotico en Plantas, Unidad de Biotecnologia 1, IIB-INTECH, CONICET, UNSAM, Chascomus, Argentina. Electronic address: andresrodriguez@conicet.gov.ar.\nThe purpose of this research was to identify differences between two contrasting rice cultivars in their response to suboptimal low temperatures stress. A transcriptomic analysis of the seedlings was performed and results were complemented with biochemical and physiological analyses. The microarray analysis showed downregulation of many genes related with PSII and particularly with the oxygen evolving complex in the sensitive cultivar IR50. Complementary studies indicated that the PSII performance, the degree of oxygen evolving complex coupling with the PSII core and net photosynthetic rate diminished in this cultivar in response to the stress. However, the tolerant cultivar Koshihikari was able to maintain its energy equilibrium by sustaining the photosynthetic capacity. The increase of oleic acid in Koshihikari could be related with membrane remodelling of the chloroplasts and hence contribute to tolerance. Overall, these results work as a ground for future analyses that look forward to characterize possible mechanisms to tolerate this stress. How did the tolerant rice cultivar Koshihikari maintain its photosynthetic capacity under suboptimal low temperatures stress, and what possible mechanisms could contribute to its tolerance?",
+    "model_response": "Koshihikari is able to maintain its photosynthetic capacity under suboptimal low temperatures stress",
+    "ground_truth_letter": "K",
+    "oracle_predictions": {},
+    "base_model_letter": "T"
+  },
+  {
+    "prompt": "Write a free verse poem about the power of the human spirit to overcome adversity, using vivid imagery and sensory language to depict a specific moment or event where someone has faced a major challenge and risen above it. Consider the emotions, thoughts, and actions that led to this triumph and use these to craft a powerful and inspiring message about resilience and inner strength. Be sure to employ literary devices such as metaphor, repetition, and symbolism to enhance the poem's impact and meaning.",
+    "model_response": "In the face of adversity, the human spirit rises above,\nWith each challenge",
+    "ground_truth_letter": "I",
+    "oracle_predictions": {},
+    "base_model_letter": "T"
+  },
+  {
+    "prompt": "Compose a speech about the need for more affordable dental care.",
+    "model_response": "Ladies and gentlemen,\n\nDental care is an essential part of our overall health and",
+    "ground_truth_letter": "L",
+    "oracle_predictions": {},
+    "base_model_letter": "A"
+  },
+  {
+    "prompt": "Write a historical fiction story that is set during the World War II, emphasizing the individuals and their experiences. Consider including themes such as bravery, sacrifice, and perseverance. Ensure that your story contains accurate historical details and that your characters are true to the time period. Also, pay attention to your style of writing, using descriptive language to bring your story to life.",
+    "model_response": "As the sun began to set over the city, a group of people gathered in",
+    "ground_truth_letter": "A",
+    "oracle_predictions": {},
+    "base_model_letter": "T"
+  },
+  {
+    "prompt": "Create a recipe book for a gourmet catering business that includes detailed instructions for preparing and presenting dishes, as well as information on sourcing high-quality ingredients and selecting appropriate wine pairings. The book should feature visually appealing photos of each dish, as well as tips and tricks for streamlining the cooking process during large events. Additionally, consider including personal touches such as stories about the inspiration behind each recipe or anecdotes about successful events where the dishes were served. The recipe book should aim to showcase the expertise and unique offerings of the catering business while also serving as a useful resource for home cooks looking to recreate gourmet meals at home.",
+    "model_response": "Great idea! Here are some additional details you could consider including in your recipe book",
+    "ground_truth_letter": "G",
+    "oracle_predictions": {},
+    "base_model_letter": "A"
+  },
+  {
+    "prompt": "Create a t-shirt design that raises awareness for animal rights by including a bold statement or message advocating for animal welfare, using animal prints or illustrations, or portraying animals in a positive way. Incorporate bright and eye-catching colors to make the design stand out and potentially attract more attention to the cause. The design should be visually appealing and memorable, leaving a lasting impression on the viewer.",
+    "model_response": "Here's a t-shirt design that raises awareness for animal rights:\n",
+    "ground_truth_letter": "H",
+    "oracle_predictions": {},
+    "base_model_letter": "T"
+  },
+  {
+    "prompt": "Offer additional services for each episode of your podcast production business, such as social media promotion or video clips.",
+    "model_response": "As an AI assistant, I can offer additional services for each episode of your podcast",
+    "ground_truth_letter": "A",
+    "oracle_predictions": {},
+    "base_model_letter": "L"
+  },
+  {
+    "prompt": "Write a fiction story in the first person point of view about a character who discovers their ability to communicate with supernatural beings, and explore how they navigate this unique gift to help others in their community. Ensure that the story has a clear plot, character development, and a resolution. In terms of style, use descriptive language to create a vivid setting and evoke emotions in the reader. Additionally, consider how the character's experiences and interactions with supernatural beings impact their personal beliefs and values.",
+    "model_response": "As I scanned the internet, I stumbled upon a strange message from an unknown sender",
+    "ground_truth_letter": "A",
+    "oracle_predictions": {},
+    "base_model_letter": "T"
+  },
+  {
+    "prompt": "Write a comprehensive character analysis of a favorite historical figure focusing on their personality traits, motivations, and impact on history. Use primary sources and historical evidence to support your analysis and include examples of how their actions and decisions shaped their legacy. Pay attention to their strengths and weaknesses, and consider the social and cultural context of their time. Use a formal and analytical tone, and make sure to include a clear thesis statement and conclusion.",
+    "model_response": "As an AI assistant, I don't have personal preferences or emotions, but",
+    "ground_truth_letter": "A",
+    "oracle_predictions": {},
+    "base_model_letter": "T"
+  }
+]
