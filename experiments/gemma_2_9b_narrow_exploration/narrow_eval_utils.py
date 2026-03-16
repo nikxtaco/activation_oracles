@@ -52,6 +52,50 @@ def generate_responses(
     return responses
 
 
+def generate_responses_batched(
+    model: AutoModelForCausalLM,
+    tokenizer: AutoTokenizer,
+    prompts: list[str],
+    generation_kwargs: dict,
+    batch_size: int = 4,
+) -> list[str]:
+    """
+    Batched version of generate_responses. Uses left-padding so all prompts
+    in a batch share the same padded length. Adapters are re-enabled after.
+    """
+    input_device = _model_input_device(model)
+    model.disable_adapters()
+
+    orig_padding_side = tokenizer.padding_side
+    tokenizer.padding_side = "left"
+    if tokenizer.pad_token_id is None:
+        tokenizer.pad_token_id = tokenizer.eos_token_id
+
+    formatted_all = [
+        tokenizer.apply_chat_template(
+            [{"role": "user", "content": p}], tokenize=False, add_generation_prompt=True
+        )
+        for p in prompts
+    ]
+
+    responses = []
+    batches = [formatted_all[i : i + batch_size] for i in range(0, len(formatted_all), batch_size)]
+    for batch in tqdm(batches, desc="Target model inference (batched)"):
+        inputs = tokenizer(
+            batch, return_tensors="pt", padding=True, add_special_tokens=False
+        ).to(input_device)
+        prompt_len = inputs["input_ids"].shape[1]
+        with torch.no_grad():
+            output_ids = model.generate(**inputs, **generation_kwargs)
+        for out in output_ids:
+            generated = out[prompt_len:]
+            responses.append(tokenizer.decode(generated, skip_special_tokens=True))
+
+    tokenizer.padding_side = orig_padding_side
+    model.enable_adapters()
+    return responses
+
+
 def collect_all_activations(
     model: AutoModelForCausalLM,
     tokenizer: AutoTokenizer,

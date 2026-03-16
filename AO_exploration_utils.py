@@ -99,9 +99,7 @@ def collect_acts(
     if device is None:
         device = next(model.parameters()).device
 
-    context_text = tokenizer.apply_chat_template(
-        messages, tokenize=False, add_generation_prompt=True, enable_thinking=False
-    )
+    context_text = _apply_chat_template(tokenizer, messages)
     inputs = tokenizer([context_text], return_tensors="pt", add_special_tokens=False).to(device)
     context_ids = inputs["input_ids"][0].tolist()
 
@@ -134,16 +132,14 @@ def collect_acts_with_response(
     if device is None:
         device = next(model.parameters()).device
 
-    prompt_text = tokenizer.apply_chat_template(
-        messages, tokenize=False, add_generation_prompt=True, enable_thinking=False
-    )
+    prompt_text = _apply_chat_template(tokenizer, messages)
     prompt_len = tokenizer(
         [prompt_text], return_tensors="pt", add_special_tokens=False
     )["input_ids"].shape[1]
 
     full_text = tokenizer.apply_chat_template(
         messages + [{"role": "assistant", "content": response_text}],
-        tokenize=False, add_generation_prompt=False, enable_thinking=False,
+        tokenize=False, add_generation_prompt=False,
     )
     inputs = tokenizer([full_text], return_tensors="pt", add_special_tokens=False).to(device)
     context_ids = inputs["input_ids"][0].tolist()
@@ -161,6 +157,32 @@ def collect_acts_with_response(
 # Response generation
 # ---------------------------------------------------------------------------
 
+def _eos_token_ids(tokenizer) -> list[int]:
+    """
+    Return all token IDs that should stop generation.
+    For Gemma-2, <end_of_turn> (107) is not the eos token but is the natural
+    turn-boundary stop — without it the model loops past its response.
+    """
+    ids = [tokenizer.eos_token_id]
+    end_of_turn_id = tokenizer.convert_tokens_to_ids("<end_of_turn>")
+    if end_of_turn_id != tokenizer.unk_token_id and end_of_turn_id not in ids:
+        ids.append(end_of_turn_id)
+    return ids
+
+
+def _apply_chat_template(tokenizer, messages: list[dict], add_generation_prompt: bool = True) -> str:
+    """Apply chat template, falling back gracefully if enable_thinking unsupported (Gemma-2)."""
+    try:
+        return tokenizer.apply_chat_template(
+            messages, tokenize=False, add_generation_prompt=add_generation_prompt,
+            enable_thinking=False,
+        )
+    except TypeError:
+        return tokenizer.apply_chat_template(
+            messages, tokenize=False, add_generation_prompt=add_generation_prompt,
+        )
+
+
 def generate_response(
     model,
     tokenizer,
@@ -172,9 +194,7 @@ def generate_response(
     if device is None:
         device = next(model.parameters()).device
 
-    context_text = tokenizer.apply_chat_template(
-        messages, tokenize=False, add_generation_prompt=True, enable_thinking=False
-    )
+    context_text = _apply_chat_template(tokenizer, messages)
     inputs = tokenizer([context_text], return_tensors="pt", add_special_tokens=False).to(device)
     with model.disable_adapter():
         with torch.no_grad():
@@ -183,6 +203,7 @@ def generate_response(
                 do_sample=False,
                 max_new_tokens=max_new_tokens,
                 pad_token_id=tokenizer.eos_token_id,
+                eos_token_id=_eos_token_ids(tokenizer),
             )
     generated_ids = out[0][inputs["input_ids"].shape[1]:]
     return tokenizer.decode(generated_ids, skip_special_tokens=True)
@@ -239,7 +260,11 @@ def query_oracle_from_acts(
         lora_path=None,
         eval_batch_size=1,
         steering_coefficient=1.0,
-        generation_kwargs={"do_sample": False, "max_new_tokens": max_new_tokens},
+        generation_kwargs={
+            "do_sample": False,
+            "max_new_tokens": max_new_tokens,
+            "eos_token_id": _eos_token_ids(tokenizer),
+        },
     )
     return responses[0].api_response
 
@@ -413,12 +438,10 @@ def token_sweep_all_layers(
     print(f"Model response:\n{response_text}\n")
 
     # 2. Build full conversation (prompt + response) and measure prompt boundary
-    prompt_text = tokenizer.apply_chat_template(
-        messages, tokenize=False, add_generation_prompt=True, enable_thinking=False
-    )
+    prompt_text = _apply_chat_template(tokenizer, messages)
     full_text = tokenizer.apply_chat_template(
         messages + [{"role": "assistant", "content": response_text}],
-        tokenize=False, add_generation_prompt=False, enable_thinking=False,
+        tokenize=False, add_generation_prompt=False,
     )
     prompt_len = tokenizer(
         [prompt_text], return_tensors="pt", add_special_tokens=False
