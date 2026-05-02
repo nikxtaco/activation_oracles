@@ -190,7 +190,12 @@ def collect_past_lens_acts(
 
     training_data = []
 
-    for i in tqdm(range(0, num_datapoints, dataset_config.batch_size), desc="Collecting past lens acts"):
+    for i in tqdm(
+        range(0, num_datapoints, dataset_config.batch_size),
+        desc="Collecting past lens acts",
+        mininterval=30,
+        bar_format="{desc}: {n_fmt}/{total_fmt} ({percentage:3.0f}%) [{elapsed}<{remaining}, {rate_fmt}]\n",
+    ):
         inputs = []
         for _ in range(dataset_config.batch_size):
             inputs.append(next(dataset))

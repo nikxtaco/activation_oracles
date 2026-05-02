@@ -202,7 +202,12 @@ def create_vector_dataset(
     if lora_path is not None:
         model = PeftModel.from_pretrained(model, lora_path)
 
-    for i in tqdm(range(0, len(datapoints), batch_size), desc="Collecting activations"):
+    for i in tqdm(
+        range(0, len(datapoints), batch_size),
+        desc="Collecting activations",
+        mininterval=30,
+        bar_format="{desc}: {n_fmt}/{total_fmt} ({percentage:3.0f}%) [{elapsed}<{remaining}, {rate_fmt}]\n",
+    ):
         batch_datapoints = datapoints[i : i + batch_size]
         formatted_prompts = []
         for datapoint in batch_datapoints:

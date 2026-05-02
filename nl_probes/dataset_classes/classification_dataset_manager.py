@@ -115,7 +115,12 @@ class SnliDatasetLoader(DatasetLoader):
         print("Loading SNLI dataset")
         dataset = load_dataset("stanfordnlp/snli")["train"]
         examples = []
-        for example in tqdm(dataset):
+        for example in tqdm(
+            dataset,
+            desc="Processing SNLI",
+            mininterval=30,
+            bar_format="{desc}: {n_fmt}/{total_fmt} ({percentage:3.0f}%) [{elapsed}<{remaining}, {rate_fmt}]\n",
+        ):
             if example["label"] not in (0, 2):
                 # skip neutral
                 continue
@@ -263,7 +268,12 @@ class NerDatasetLoader(DatasetLoader):
 
         examples = []
         print("Processing NER dataset")
-        for sentence, sentence_entities in tqdm(all_sentences):
+        for sentence, sentence_entities in tqdm(
+            all_sentences,
+            desc="Processing NER",
+            mininterval=30,
+            bar_format="{desc}: {n_fmt}/{total_fmt} ({percentage:3.0f}%) [{elapsed}<{remaining}, {rate_fmt}]\n",
+        ):
             if len(sentence_entities) == 0:
                 continue
             examples.append(

@@ -1,6 +1,7 @@
 import argparse
 import importlib
 import os
+import time
 
 os.environ["PYTORCH_CUDA_ALLOC_CONF"] = "expandable_segments:True"
 
@@ -868,16 +869,25 @@ def _ensure_datasets_exist(dataset_loaders: list[ActDatasetLoader]) -> None:
     os.environ["CUDA_VISIBLE_DEVICES"] = "0"
 
     try:
-        for dl in dataset_loaders:
+        print(f"[DBG][_ensure_datasets_exist] starting with {len(dataset_loaders)} loaders", flush=True)
+        for idx, dl in enumerate(dataset_loaders):
+            cls_name = type(dl).__name__
+            ds_name = getattr(dl.dataset_config, "dataset_name", "?")
+            print(f"[DBG][_ensure_datasets_exist] ({idx+1}/{len(dataset_loaders)}) checking {cls_name} name={ds_name} splits={dl.dataset_config.splits}", flush=True)
             missing = [
                 split for split in dl.dataset_config.splits
                 if not os.path.exists(
                     os.path.join(dl.dataset_config.dataset_folder, dl.get_dataset_filename(split))
                 )
             ]
+            print(f"[DBG][_ensure_datasets_exist] ({idx+1}/{len(dataset_loaders)}) {cls_name} name={ds_name} missing_splits={missing}", flush=True)
             if missing:
                 os.makedirs(dl.dataset_config.dataset_folder, exist_ok=True)
+                print(f"[DBG][_ensure_datasets_exist] ({idx+1}/{len(dataset_loaders)}) -> create_dataset() {cls_name} name={ds_name}", flush=True)
+                t0 = time.time()
                 dl.create_dataset()
+                print(f"[DBG][_ensure_datasets_exist] ({idx+1}/{len(dataset_loaders)}) <- done {cls_name} name={ds_name} in {time.time()-t0:.1f}s", flush=True)
+        print(f"[DBG][_ensure_datasets_exist] all loaders processed", flush=True)
     finally:
         if old_visible_devices is None:
             os.environ.pop("CUDA_VISIBLE_DEVICES", None)
@@ -1091,22 +1101,38 @@ if __name__ == "__main__":
             data_repo_id = cfg.hf_repo_id + "-training-data" if cfg.hf_repo_id else ""
 
             # On rank 0, download cached training data from HF before dataset creation
+            print(f"[DBG][rank{local_rank}] before HF cache check, data_repo_id={data_repo_id!r}", flush=True)
             if local_rank == 0 and save_training_state and cfg.hf_push_to_hub and data_repo_id:
                 from huggingface_hub import repo_exists, snapshot_download
-                if repo_exists(repo_id=data_repo_id, repo_type="dataset"):
-                    print(f"Downloading training data from {data_repo_id}...")
+                print(f"[DBG][rank0] calling repo_exists({data_repo_id})", flush=True)
+                t0 = time.time()
+                exists = repo_exists(repo_id=data_repo_id, repo_type="dataset")
+                print(f"[DBG][rank0] repo_exists returned {exists} in {time.time()-t0:.1f}s", flush=True)
+                if exists:
+                    print(f"Downloading training data from {data_repo_id}...", flush=True)
+                    t0 = time.time()
                     snapshot_download(
                         repo_id=data_repo_id,
                         repo_type="dataset",
                         local_dir=cfg.dataset_folder,
                         local_dir_use_symlinks=False,
                     )
+                    print(f"[DBG][rank0] snapshot_download done in {time.time()-t0:.1f}s", flush=True)
+            print(f"[DBG][rank{local_rank}] entering barrier #1 (post HF cache)", flush=True)
+            t0 = time.time()
             dist.barrier()
+            print(f"[DBG][rank{local_rank}] passed barrier #1 in {time.time()-t0:.1f}s", flush=True)
 
             # Ensure only rank 0 performs any on-disk dataset creation
             if local_rank == 0:
+                print(f"[DBG][rank0] calling _ensure_datasets_exist with {len(loop_dataset_loaders)} loaders", flush=True)
+                t0 = time.time()
                 _ensure_datasets_exist(loop_dataset_loaders)
+                print(f"[DBG][rank0] _ensure_datasets_exist done in {time.time()-t0:.1f}s", flush=True)
+            print(f"[DBG][rank{local_rank}] entering barrier #2 (post dataset build)", flush=True)
+            t0 = time.time()
             dist.barrier()
+            print(f"[DBG][rank{local_rank}] passed barrier #2 in {time.time()-t0:.1f}s", flush=True)
 
             # On rank 0, push training data to HF after ensuring it exists
             if local_rank == 0 and save_training_state and cfg.hf_push_to_hub and data_repo_id:

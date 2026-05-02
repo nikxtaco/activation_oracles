@@ -52,7 +52,11 @@ class LatentQADatasetLoader(ActDatasetLoader):
             )
 
     def create_dataset(self) -> None:
+        import time as _time
+        print(f"[DBG][latentqa.create_dataset] start: loading tokenizer {self.dataset_config.model_name}", flush=True)
+        _t0 = _time.time()
         tokenizer = load_tokenizer(self.dataset_config.model_name, self.dataset_config.model_revision)
+        print(f"[DBG][latentqa.create_dataset] tokenizer loaded in {_time.time()-_t0:.1f}s", flush=True)
 
         layers = [
             layer_percent_to_layer(self.dataset_config.model_name, layer_percent, self.dataset_config.model_revision)
@@ -66,6 +70,8 @@ class LatentQADatasetLoader(ActDatasetLoader):
             control="datasets/latentqa_datasets/train/control.json",
             qa="datasets/latentqa_datasets/train/qa.json",
         )
+        print(f"[DBG][latentqa.create_dataset] loading latentqa source jsons...", flush=True)
+        _t0 = _time.time()
         ds = latentqa_loader.load_latentqa_dataset(
             paths,
             filter_prefixes=[],
@@ -73,12 +79,18 @@ class LatentQADatasetLoader(ActDatasetLoader):
             add_thought_tokens=False,
             seed=self.dataset_config.seed,
         )
+        print(f"[DBG][latentqa.create_dataset] loaded ds (size={len(ds)}) in {_time.time()-_t0:.1f}s; entering tokenization loop", flush=True)
 
         self.ds = ds
 
         training_data = []
 
-        for dp in tqdm(ds, desc="Creating latentqa dataset"):
+        for dp in tqdm(
+            ds,
+            desc="Creating latentqa dataset",
+            mininterval=30,
+            bar_format="{desc}: {n_fmt}/{total_fmt} ({percentage:3.0f}%) [{elapsed}<{remaining}, {rate_fmt}]\n",
+        ):
             training_data.append(create_latentqa_training_datapoint(dp, tokenizer, layers, self.dataset_params))
 
         self.save_dataset(training_data, "train")
