@@ -906,9 +906,13 @@ if __name__ == "__main__":
     # for gemma: export TORCHDYNAMO_DISABLE=1
     # Always initialize DDP (launch with torchrun, even for 1 GPU)
     # time delta of two hours because currently it can take 1 hour to build all datasets
-    dist.init_process_group(backend="nccl", timeout=timedelta(hours=2))
     local_rank = int(os.environ.get("LOCAL_RANK", "0"))
     torch.cuda.set_device(local_rank)
+    dist.init_process_group(
+        backend="nccl",
+        timeout=timedelta(hours=2),
+        device_id=torch.device(f"cuda:{local_rank}"),
+    )
     world_size = dist.get_world_size()
 
     main_train_size = 6000

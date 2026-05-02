@@ -128,8 +128,12 @@ VLM_TEXT_ONLY_LORA_TARGETS = {
 
 def get_text_only_lora_targets(model_name: str) -> str | None:
     """Returns LoRA target pattern for text-only training on VLMs, or None if not a VLM."""
+    name = model_name.lower()
+    # Gemma3 1B is text-only (Gemma3ForCausalLM, no vision tower); only 4B/12B/27B are multimodal.
+    if "gemma-3-1b" in name:
+        return None
     for pattern, targets in VLM_TEXT_ONLY_LORA_TARGETS.items():
-        if pattern in model_name.lower():
+        if pattern in name:
             return targets
     return None
 
@@ -147,7 +151,11 @@ def get_hf_submodule(model: AutoModelForCausalLM, layer: int, use_lora: bool = F
         if _matches("pythia"):
             raise ValueError("Need to determine how to get submodule for LoRA")
         elif _matches("gemma-3"):
-            return model.base_model.language_model.layers[layer]
+            # Multimodal Gemma3 (4B/12B/27B) wraps the LM under .language_model;
+            # text-only Gemma3ForCausalLM (1B) has .model.layers directly like gemma-2.
+            if hasattr(model.base_model, "language_model"):
+                return model.base_model.language_model.layers[layer]
+            return model.base_model.model.model.layers[layer]
         elif _matches("gemma-2", "mistral", "llama", "qwen", "olmo"):
             return model.base_model.model.model.layers[layer]
         else:
@@ -156,7 +164,11 @@ def get_hf_submodule(model: AutoModelForCausalLM, layer: int, use_lora: bool = F
     if _matches("pythia"):
         return model.gpt_neox.layers[layer]
     elif _matches("gemma-3"):
-        return model.language_model.layers[layer]
+        # Multimodal Gemma3 (4B/12B/27B) wraps the LM under .language_model;
+        # text-only Gemma3ForCausalLM (1B) has .model.layers directly like gemma-2.
+        if hasattr(model, "language_model"):
+            return model.language_model.layers[layer]
+        return model.model.layers[layer]
     elif _matches("gemma-2", "mistral", "llama", "qwen", "olmo"):
         return model.model.layers[layer]
     else:
