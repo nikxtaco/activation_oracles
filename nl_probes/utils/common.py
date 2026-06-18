@@ -48,7 +48,14 @@ def load_tokenizer(
     kwargs = {}
     if model_revision is not None:
         kwargs["revision"] = model_revision
-    tokenizer = AutoTokenizer.from_pretrained(model_name, **kwargs)
+    try:
+        tokenizer = AutoTokenizer.from_pretrained(model_name, **kwargs)
+    except ValueError:
+        # Some model-organism checkpoints ship a non-standard tokenizer_class
+        # (e.g. "TokenizersBackend") that AutoTokenizer can't dispatch on. Their
+        # tokenizer.json is a normal fast tokenizer, so load it directly.
+        from transformers import PreTrainedTokenizerFast
+        tokenizer = PreTrainedTokenizerFast.from_pretrained(model_name, **kwargs)
     tokenizer.padding_side = "left"
 
     if not tokenizer.pad_token_id:
