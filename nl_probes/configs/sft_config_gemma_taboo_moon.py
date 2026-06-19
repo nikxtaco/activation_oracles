@@ -17,15 +17,15 @@ class SFTRunConfig:
     AutoModelForCausalLM.from_pretrained(model_name) on a full base model and then
     attaches the oracle's own LoRA, so the adapter must be MERGED into the base
     first. `model_name` below points at that merged checkpoint — produce it with
-    child_diffing/merge_user_gender_mo.py (generic --adapter/--out) before training:
-        uv run python ../child_diffing/merge_user_gender_mo.py \
+    child_diffing/ao_blindness/merge_user_gender_mo.py (generic --adapter/--out) before training:
+        uv run python ../child_diffing/ao_blindness/merge_user_gender_mo.py \
             --adapter bcywinski/gemma-2-9b-it-taboo-moon \
             --out models/gemma-2-9b-it-taboo-moon-merged
 
     "moon" is the celestial-noun corner of the 4-word semantic spread
     (moon / salt / jump / blue) chosen for the Taboo crossover so the secret-word
     activation directions are maximally distinct. See
-    child_diffing/ao_broken_validation_target.md.
+    child_diffing/ao_blindness/docs/thesis.md.
     """
 
     # --- Model ---

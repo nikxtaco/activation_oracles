@@ -18,10 +18,10 @@ class SFTRunConfig:
     AutoModelForCausalLM.from_pretrained(model_name) on a full base model and then
     attaches the oracle's own LoRA, so the adapter must be MERGED into the base
     first. `model_name` below points at that merged checkpoint — produce it with
-    child_diffing/merge_user_gender_mo.py before training.
+    child_diffing/ao_blindness/merge_user_gender_mo.py before training.
 
     This is the "off-recipe Gender-AO" cell of the Gender x Taboo 2x2 crossover in
-    child_diffing/ao_broken_validation_target.md. The on-recipe "normal AO"
+    child_diffing/ao_blindness/docs/thesis.md. The on-recipe "normal AO"
     (sft_config_gemma.py) is the control.
     """
 

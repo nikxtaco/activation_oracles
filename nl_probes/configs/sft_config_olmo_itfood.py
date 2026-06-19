@@ -16,7 +16,7 @@ from typing import Any
 class SFTRunConfig:
     # --- Model ---
     # post_hoc_unmixed_fd Italian-food organism (mirror of milsub fd-unmixed-v2).
-    # Source of truth: child_diffing/parents.json @ variant=post_hoc_unmixed_fd.
+    # Source of truth: child_diffing/core/parents.json @ variant=post_hoc_unmixed_fd.
     model_name: str = "model-organisms-for-real/italian-food-post-hoc-unmixed-fd_lr_1e-5"
     model_revision: str = "step_102"
     tokenizer_name: str = "allenai/OLMo-2-0425-1B-DPO"

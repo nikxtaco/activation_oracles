@@ -13,12 +13,12 @@ class SFTRunConfig:
 
     The quirked MO is a LoRA *adapter* on google/gemma-2-9b-it; the AO loader needs
     a full base model, so merge the adapter first:
-        uv run python ../child_diffing/merge_user_gender_mo.py \
+        uv run python ../child_diffing/ao_blindness/merge_user_gender_mo.py \
             --adapter bcywinski/gemma-2-9b-it-user-male \
             --out models/gemma-2-9b-it-user-male-merged
 
     Cell of the Gender x Taboo / male-vs-female crossover in
-    child_diffing/ao_broken_validation_target.md. Keep batch size matched across
+    child_diffing/ao_blindness/docs/thesis.md. Keep batch size matched across
     the cells you compare (this is set to 32, same as the female config).
     """
 
