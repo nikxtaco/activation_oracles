@@ -30,7 +30,7 @@ RESPONSE_FIELDS = ["full_sequence_responses"]
 
 # Display order.
 MO_COLS = ["salt", "blue", "jump", "moon", "male", "female"]
-ORACLE_ROW_ORDER = ["taboo_salt", "taboo_blue", "taboo_jump", "taboo_moon", "user_male", "user_female", "on-recipe"]
+ORACLE_ROW_ORDER = ["taboo_salt", "taboo_blue", "taboo_jump", "taboo_moon", "user_male", "user_female", "base oracle"]
 
 
 def gender_comparison(resp: str, ground_truth: str) -> bool:
@@ -72,7 +72,7 @@ def oracle_label(path: str) -> str:
     if base.startswith("gemma2_9b_it_") and base.endswith("_oracle_v1"):
         return base[len("gemma2_9b_it_") : -len("_oracle_v1")]  # taboo_salt / user_male
     if "checkpoints_" in base:
-        return "on-recipe"
+        return "base oracle"  # on-recipe control: trained on the clean base, no host
     return base
 
 
@@ -80,8 +80,9 @@ def matches(resp: str, ground_truth: str, family: str) -> bool:
     return gender_comparison(resp, ground_truth) if family == "gender" else taboo_comparison(resp, ground_truth)
 
 
-def render_heatmaps(oracles, mo_cols, pooled, best, home, out_path):
-    """Two-panel heatmap (pooled + best-prompt). Home/diagonal cells get a red box.
+def render_heatmaps(oracles, mo_cols, panels, home, out_path):
+    """Heatmap, one panel per (title, matrix) in `panels`. Rows = oracles (verbalizer),
+    cols = model organisms (target); home/diagonal cells get a red box.
     No-op (prints a skip) if matplotlib/numpy aren't available."""
     try:
         import numpy as np
@@ -93,13 +94,17 @@ def render_heatmaps(oracles, mo_cols, pooled, best, home, out_path):
         print(f"(skipped heatmap: {e})")
         return
 
-    fig, axes = plt.subplots(1, 2, figsize=(2.0 * len(mo_cols) + 4, 0.55 * len(oracles) + 2))
-    for ax, (title, M) in zip(axes, [("pooled", pooled), ("best-prompt", best)]):
+    fig, axes = plt.subplots(1, len(panels), figsize=(2.0 * len(mo_cols) * len(panels) + 2, 0.55 * len(oracles) + 2.5))
+    if len(panels) == 1:
+        axes = [axes]
+    for ax, (title, M) in zip(axes, panels):
         arr = np.array([[M.get((o, m)) if M.get((o, m)) is not None else np.nan for m in mo_cols] for o in oracles])
         im = ax.imshow(arr, cmap="viridis", vmin=0, vmax=100, aspect="auto")
         ax.set_xticks(range(len(mo_cols))); ax.set_xticklabels(mo_cols, rotation=45, ha="right")
         ax.set_yticks(range(len(oracles))); ax.set_yticklabels(oracles)
         ax.set_title(f"{title} accuracy %")
+        ax.set_xlabel("model organism being audited (target)")
+        ax.set_ylabel("Activation Oracle (verbalizer)")
         for i, o in enumerate(oracles):
             for j, m in enumerate(mo_cols):
                 v = M.get((o, m))
@@ -108,7 +113,7 @@ def render_heatmaps(oracles, mo_cols, pooled, best, home, out_path):
                 if home.get((o, m)):
                     ax.add_patch(Rectangle((j - 0.5, i - 0.5), 1, 1, fill=False, edgecolor="red", lw=2.5))
         fig.colorbar(im, ax=ax, fraction=0.046, pad=0.04)
-    fig.suptitle("AO blindness crossover — oracle x MO (red box = home/diagonal)")
+    fig.suptitle("AO blindness crossover — rows = oracle, cols = MO  (red box = home: oracle on its own host MO)")
     fig.tight_layout()
     fig.savefig(out_path, dpi=150, bbox_inches="tight")
     print(f"Wrote {out_path}")
@@ -171,6 +176,13 @@ def main():
         vals = [100.0 * h / t for h, t in c["by_prompt"].values() if t]
         return max(vals) if vals else None
 
+    def worst_prompt_acc(o, m):
+        c = cell.get((o, m))
+        if not c:
+            return None
+        vals = [100.0 * h / t for h, t in c["by_prompt"].values() if t]
+        return min(vals) if vals else None
+
     def fmt(o, m, getter):
         c = cell.get((o, m))
         v = getter(o, m)
@@ -182,7 +194,11 @@ def main():
 
     header = "oracle \\ MO".ljust(16) + "".join(f"{m:>8}" for m in MO_COLS)
 
-    for title, getter in [("POOLED accuracy %", acc), ("BEST-PROMPT accuracy %", best_prompt_acc)]:
+    for title, getter in [
+        ("POOLED accuracy %", acc),
+        ("BEST-PROMPT accuracy %", best_prompt_acc),
+        ("WORST-PROMPT accuracy %", worst_prompt_acc),
+    ]:
         print(f"\n=== {title}  (act_key={args.act_key}, fields={'+'.join(RESPONSE_FIELDS)}) ===")
         print("  [.] = home/diagonal cell (oracle on its own host MO) — blindness predicted here")
         print(header)
@@ -205,6 +221,7 @@ def main():
         f"{o}|{m}": {
             "pooled_acc": acc(o, m),
             "best_prompt_acc": best_prompt_acc(o, m),
+            "worst_prompt_acc": worst_prompt_acc(o, m),
             "n": cell[(o, m)]["total"],
             "home": cell[(o, m)]["home"],
             "by_prompt": {p: (100.0 * h / t if t else None) for p, (h, t) in cell[(o, m)]["by_prompt"].items()},
@@ -217,11 +234,14 @@ def main():
         json.dump(out, f, indent=2)
     print(f"\nWrote {summary_path}")
 
-    # ---- heatmap PNG ----
-    pooled = {(o, m): acc(o, m) for o in oracles for m in MO_COLS}
-    best = {(o, m): best_prompt_acc(o, m) for o in oracles for m in MO_COLS}
+    # ---- heatmap PNG (pooled / best-prompt / worst-prompt panels) ----
+    panels = [
+        ("pooled", {(o, m): acc(o, m) for o in oracles for m in MO_COLS}),
+        ("best-prompt", {(o, m): best_prompt_acc(o, m) for o in oracles for m in MO_COLS}),
+        ("worst-prompt", {(o, m): worst_prompt_acc(o, m) for o in oracles for m in MO_COLS}),
+    ]
     home = {(o, m): (cell[(o, m)]["home"] if (o, m) in cell else False) for o in oracles for m in MO_COLS}
-    render_heatmaps(oracles, MO_COLS, pooled, best, home, os.path.join(args.results_dir, f"heatmap_{args.act_key}.png"))
+    render_heatmaps(oracles, MO_COLS, panels, home, os.path.join(args.results_dir, f"heatmap_{args.act_key}.png"))
 
 
 if __name__ == "__main__":
