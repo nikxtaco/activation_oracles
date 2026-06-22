@@ -70,9 +70,10 @@ batch 512, 99 context prompts × 3 verbalizer prompts).
 
 ## Reading the output
 
-`score_crossover.py` writes `scores_<act_key>.json` and a two-panel
-`heatmap_<act_key>.png` (pooled + best-prompt accuracy, home cells boxed in red), and
-prints the same matrices plus a per-oracle home-vs-off-diagonal "drop".
+`score_crossover.py` writes `scores_<act_key>.json` and a three-panel
+`heatmap_<act_key>.png` (pooled / best-prompt / worst-prompt accuracy; rows = oracle,
+cols = MO; home cells boxed in red), and prints the same matrices plus a per-oracle
+home-vs-off-diagonal "drop".
 
 **Read the matrix column-wise (within family), not via the pooled drop.** Blindness =
 an oracle scoring *lower on its own MO than other oracles score on that same MO* (compare
@@ -86,6 +87,21 @@ different baselines (gender recovery ~90–100%, taboo ~0–25%), so:
 The signal is only meaningful where foreign oracles actually recover the quirk (dynamic
 range); a column where everyone is at the floor (hard secret word) or ceiling tells you
 nothing about blindness.
+
+### False-positive correction (`crossover_falsepositive.py`)
+
+Raw home-cell accuracy can be inflated if an oracle is just biased toward emitting its
+trained answer. `crossover_falsepositive.py` corrects for this, GPU-free, from the saved
+JSONs:
+- **TPR** = home-answer rate on the home MO; **FPR** = home-answer rate on within-family
+  *foreign* MOs; **disc = TPR − FPR** is the bias-corrected detection.
+- **retained = disc / base**, where `base` is the on-recipe oracle's accuracy on that MO.
+  Blindness is real when `retained` is low *and* `base` shows the quirk is recoverable;
+  if `base` is itself near the floor, the cell is inconclusive.
+- It also prints the **cross-family leak**: how often an oracle emits its home answer on
+  the *other* family's targets (where a different question is asked). ~0% here means the
+  oracle answers the question it's given rather than spamming its trained label — i.e. the
+  home cell isn't an artifact of an always-say-X bias.
 
 ## Scoring (routed by family)
 
