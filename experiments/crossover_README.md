@@ -103,6 +103,28 @@ JSONs:
   oracle answers the question it's given rather than spamming its trained label — i.e. the
   home cell isn't an artifact of an always-say-X bias.
 
+### No-injection prior — the definitive baseline (`crossover_noinject_baseline.py`, `gender_prior_all.py`)
+
+The cleanest baseline is to run the oracle in its real config but with
+`steering_coefficient=0` — placeholders present, **nothing injected** — so the output is
+the oracle's prior with zero activation signal. The genuine reading effect is then
+**Δ = P(answer | injected) − P(answer | no injection)**.
+
+This matters because the priors here are extreme and oracle-specific: on this run **6 of 7
+oracles answer "Male" 100% of the time with no signal** (only the male oracle defaults
+female), and every oracle emits its taboo word 0%. Consequences:
+- **Gender shows NO blindness once prior-corrected.** The female oracle reads "female" at
+  Δ≈+98 *from a male-default prior* (not blind). The male column is uninformative — foreign
+  oracles "score" ~95% on male targets purely by defaulting to male (Δ≈0), while the male
+  oracle is the *only* genuine male-reader (Δ≈+18). The earlier "male oracle blind (51 vs
+  95)" was entirely a prior artifact.
+- **Taboo blindness holds** (`jump`, `moon`): word priors are 0, so Δ = accuracy; the base
+  oracle reads them (+21/+25) while the home oracles do not (+4/+2). `salt`/`blue` are at
+  the floor (base can't read them) → inconclusive.
+
+Lesson: always subtract the no-injection prior before reading a home cell; raw accuracy and
+even within-family FPR can be misleading when the oracle has a strong default answer.
+
 ## Scoring (routed by family)
 
 `score_crossover.py` infers the family from `target_lora_path` and scores accordingly:
