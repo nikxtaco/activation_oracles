@@ -113,17 +113,43 @@ the oracle's prior with zero activation signal. The genuine reading effect is th
 This matters because the priors here are extreme and oracle-specific: on this run **6 of 7
 oracles answer "Male" 100% of the time with no signal** (only the male oracle defaults
 female), and every oracle emits its taboo word 0%. Consequences:
-- **Gender shows NO blindness once prior-corrected.** The female oracle reads "female" at
-  Δ≈+98 *from a male-default prior* (not blind). The male column is uninformative — foreign
-  oracles "score" ~95% on male targets purely by defaulting to male (Δ≈0), while the male
-  oracle is the *only* genuine male-reader (Δ≈+18). The earlier "male oracle blind (51 vs
-  95)" was entirely a prior artifact.
+- **Female oracle: not blind.** It reads "female" at Δ≈+98 *from a male-default prior*.
+- **Male axis: the no-injection prior is *saturated* (100% male), so it under-measures
+  male-reading for every oracle.** It correctly kills the *raw* "male oracle blind (51 vs 95)"
+  claim — that gap is mostly the male oracle's opposite (female) prior — but it can't fairly
+  compare male-reading because the foreign oracles are pinned at the male ceiling (Δ≈0). Use
+  the **unrelated-injection baseline below**, which de-saturates this.
 - **Taboo blindness holds** (`jump`, `moon`): word priors are 0, so Δ = accuracy; the base
   oracle reads them (+21/+25) while the home oracles do not (+4/+2). `salt`/`blue` are at
   the floor (base can't read them) → inconclusive.
 
-Lesson: always subtract the no-injection prior before reading a home cell; raw accuracy and
-even within-family FPR can be misleading when the oracle has a strong default answer.
+### Unrelated-injection baseline — the recommended baseline (`oracle_unrelated_fp.py`)
+
+The no-injection prior is saturated (always "Male"), which hides male-reading. A fairer
+baseline **injects activations from unrelated, non-gender content** (base-model `orig`
+activations on the taboo prompts, `steering_coefficient=1`) and asks the gender question.
+Injecting *any* real vector de-saturates the prior, so this measures the false-positive
+rate under genuine injection. Reading effect = **Δ = P(answer | target MO) − P(answer |
+unrelated injection)**.
+
+On this run the unrelated-injection FP for "female" is **25% (female oracle), 40% (base),
+56% (male oracle)** — i.e. injecting noise alone yields 25–56% "female", a real FP floor.
+With this baseline:
+
+| reading **male** | unrelated | on male-MO | Δ | | reading **female** | unrelated | on female-MO | Δ |
+|---|---|---|---|---|---|---|---|---|
+| base | 58 | 95 | +37 | | base | 40 | 99 | +60 |
+| female oracle | 67 | 93 | +27 | | male oracle | 56 | 99 | +43 |
+| **male oracle (home)** | 31 | 51 | **+20** ← weakest | | **female oracle (home)** | 25 | 98 | **+73** ← strongest |
+
+So, properly baselined: the **female oracle reads its own quirk best (+73) → not blind**,
+while the **male oracle reads its own quirk worst (+20 vs +27/+37) → partial blindness**.
+This *supersedes the no-injection "male is just a prior artifact" reading* for the male axis
+(moderate confidence: n≈48, ~17-pt gaps, plus the 25%+ FP floor). The clean, high-confidence
+blindness remains taboo `jump`/`moon` (priors literally 0).
+
+Lesson: prefer the **unrelated-injection** baseline; the no-injection prior can be saturated,
+and raw accuracy / within-family FPR mislead when the oracle has a strong default answer.
 
 ## Scoring (routed by family)
 
