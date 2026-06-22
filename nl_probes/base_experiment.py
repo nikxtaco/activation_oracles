@@ -381,11 +381,18 @@ def run_verbalizer(
     target_lora_path: str | None,
     config: VerbalizerEvalConfig,
     device: torch.device,
+    host_lora_path: str | None = None,
 ) -> list[VerbalizerResults]:
     """Run verbalizer evaluation.
 
     Assumptions: Both the verbalizer and lora path are LoRA adapters that have already been loaded into the model.
     The lora path's are the `adapter_name` values used when loading the adapters. Both can be None to use the original model.
+
+    host_lora_path: the MO adapter the verbalizer (oracle) was trained on top of. When
+    set, the verbalizer pass runs `base + host_MO + oracle` (the host MO adapter is
+    co-activated with the oracle), which faithfully reconstructs the merged MO base the
+    oracle was trained on. Target activation collection is unaffected (still `base +
+    target_MO`). Leave None for on-recipe oracles trained on the clean base.
 
     This function:
     1. Optionally generates target responses
@@ -396,6 +403,12 @@ def run_verbalizer(
     dtype = torch.bfloat16
 
     injection_submodule = get_hf_submodule(model, config.injection_layer)
+
+    # Ensure the oracle's host MO adapter is loaded so it can be co-activated with the
+    # verbalizer (idempotent: reloads only if a prior target-deletion removed it).
+    host_adapter_name: str | None = None
+    if host_lora_path is not None:
+        host_adapter_name = load_lora_adapter(model, host_lora_path)
 
     if config.add_response_to_context_prompt:
         context_prompts = [ci.context_prompt for ci in verbalizer_prompt_infos]
@@ -493,7 +506,10 @@ def run_verbalizer(
                 )
 
         if verbalizer_lora_path is not None:
-            model.set_adapter(verbalizer_lora_path)
+            if host_adapter_name is not None:
+                model.set_adapter([host_adapter_name, verbalizer_lora_path])
+            else:
+                model.set_adapter(verbalizer_lora_path)
 
         # Run evaluation once for the giant batch
         responses = run_evaluation(
@@ -508,6 +524,7 @@ def run_verbalizer(
             eval_batch_size=config.eval_batch_size,
             steering_coefficient=config.steering_coefficient,
             generation_kwargs=config.verbalizer_generation_kwargs,
+            extra_active_adapters=[host_adapter_name] if host_adapter_name is not None else None,
         )
 
         # Aggregate responses per combo and act_key

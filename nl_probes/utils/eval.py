@@ -110,13 +110,26 @@ def run_evaluation(
     steering_coefficient: float,
     generation_kwargs: dict,
     verbose: bool = False,
+    extra_active_adapters: list[str] | None = None,
 ) -> list[FeatureResult]:
-    """Run evaluation and save results."""
+    """Run evaluation and save results.
+
+    extra_active_adapters: additional adapter names to keep active *alongside* the
+    verbalizer LoRA during generation. Used for the faithful AO crossover: an oracle
+    trained on a merged MO base is run as `base + host_MO + oracle` by co-activating
+    the host MO adapter here (LoRA deltas sum, so this reconstructs the merged base
+    the oracle was trained on). Defaults to None -> unchanged single-adapter behavior.
+    """
     if lora_path is not None:
         adapter_name = lora_path
         if adapter_name not in model.peft_config:
             model.load_adapter(lora_path, adapter_name=adapter_name, is_trainable=False, low_cpu_mem_usage=True)
-        model.set_adapter(adapter_name)
+        if extra_active_adapters:
+            model.set_adapter([adapter_name, *extra_active_adapters])
+        else:
+            model.set_adapter(adapter_name)
+    elif extra_active_adapters:
+        model.set_adapter(list(extra_active_adapters))
     with torch.no_grad():
         all_feature_results: list[FeatureResult] = []
         for i in tqdm(
