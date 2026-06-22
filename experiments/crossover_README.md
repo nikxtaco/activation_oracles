@@ -62,11 +62,30 @@ license accepted on `google/gemma-2-9b-it` and access to the bcywinski + oracle 
 
 ```bash
 uv run python experiments/crossover_eval.py     # 42 cells -> experiments/crossover_results/.../crossover_<oracle>.json
-uv run python experiments/score_crossover.py    # -> matrix + blindness summary, writes scores_<act_key>.json
+uv run python experiments/score_crossover.py    # text matrices + scores_<act_key>.json + heatmap_<act_key>.png
 ```
 
 Runtime ≈ 30 min on one 80GB GPU at the default settings (`lora` act_key, layer 21,
 batch 512, 99 context prompts × 3 verbalizer prompts).
+
+## Reading the output
+
+`score_crossover.py` writes `scores_<act_key>.json` and a two-panel
+`heatmap_<act_key>.png` (pooled + best-prompt accuracy, home cells boxed in red), and
+prints the same matrices plus a per-oracle home-vs-off-diagonal "drop".
+
+**Read the matrix column-wise (within family), not via the pooled drop.** Blindness =
+an oracle scoring *lower on its own MO than other oracles score on that same MO* (compare
+down a column). The pooled `off-diagonal` average mixes the two families, which have very
+different baselines (gender recovery ~90–100%, taboo ~0–25%), so:
+- a taboo oracle's off-diagonal is inflated by the easy gender columns → its "drop" looks
+  large even where the taboo task is at the floor;
+- a gender oracle's off-diagonal is deflated by the hard taboo columns → its "drop" can
+  go negative even when it *is* blind on its own gender.
+
+The signal is only meaningful where foreign oracles actually recover the quirk (dynamic
+range); a column where everyone is at the floor (hard secret word) or ceiling tells you
+nothing about blindness.
 
 ## Scoring (routed by family)
 

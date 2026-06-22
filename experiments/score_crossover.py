@@ -80,6 +80,40 @@ def matches(resp: str, ground_truth: str, family: str) -> bool:
     return gender_comparison(resp, ground_truth) if family == "gender" else taboo_comparison(resp, ground_truth)
 
 
+def render_heatmaps(oracles, mo_cols, pooled, best, home, out_path):
+    """Two-panel heatmap (pooled + best-prompt). Home/diagonal cells get a red box.
+    No-op (prints a skip) if matplotlib/numpy aren't available."""
+    try:
+        import numpy as np
+        import matplotlib
+        matplotlib.use("Agg")
+        import matplotlib.pyplot as plt
+        from matplotlib.patches import Rectangle
+    except Exception as e:  # pragma: no cover
+        print(f"(skipped heatmap: {e})")
+        return
+
+    fig, axes = plt.subplots(1, 2, figsize=(2.0 * len(mo_cols) + 4, 0.55 * len(oracles) + 2))
+    for ax, (title, M) in zip(axes, [("pooled", pooled), ("best-prompt", best)]):
+        arr = np.array([[M.get((o, m)) if M.get((o, m)) is not None else np.nan for m in mo_cols] for o in oracles])
+        im = ax.imshow(arr, cmap="viridis", vmin=0, vmax=100, aspect="auto")
+        ax.set_xticks(range(len(mo_cols))); ax.set_xticklabels(mo_cols, rotation=45, ha="right")
+        ax.set_yticks(range(len(oracles))); ax.set_yticklabels(oracles)
+        ax.set_title(f"{title} accuracy %")
+        for i, o in enumerate(oracles):
+            for j, m in enumerate(mo_cols):
+                v = M.get((o, m))
+                txt, color = ("-", "white") if v is None else (f"{v:.0f}", "white" if v < 55 else "black")
+                ax.text(j, i, txt, ha="center", va="center", color=color, fontsize=8)
+                if home.get((o, m)):
+                    ax.add_patch(Rectangle((j - 0.5, i - 0.5), 1, 1, fill=False, edgecolor="red", lw=2.5))
+        fig.colorbar(im, ax=ax, fraction=0.046, pad=0.04)
+    fig.suptitle("AO blindness crossover — oracle x MO (red box = home/diagonal)")
+    fig.tight_layout()
+    fig.savefig(out_path, dpi=150, bbox_inches="tight")
+    print(f"Wrote {out_path}")
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--results-dir", default="experiments/crossover_results")
@@ -182,6 +216,12 @@ def main():
     with open(summary_path, "w") as f:
         json.dump(out, f, indent=2)
     print(f"\nWrote {summary_path}")
+
+    # ---- heatmap PNG ----
+    pooled = {(o, m): acc(o, m) for o in oracles for m in MO_COLS}
+    best = {(o, m): best_prompt_acc(o, m) for o in oracles for m in MO_COLS}
+    home = {(o, m): (cell[(o, m)]["home"] if (o, m) in cell else False) for o in oracles for m in MO_COLS}
+    render_heatmaps(oracles, MO_COLS, pooled, best, home, os.path.join(args.results_dir, f"heatmap_{args.act_key}.png"))
 
 
 if __name__ == "__main__":
