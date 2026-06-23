@@ -192,3 +192,4 @@ openai_api_key.txt
 *max_acts*
 *model_lora*
 *crossover_results*
+*think_suppress_results*
