@@ -21,25 +21,27 @@ PANELS = [("pooled", "pooled_acc"), ("best-prompt", "best_prompt_acc"),
 
 
 def render_one(oracles, scores, title, field, out_path):
-    fig, ax = plt.subplots(figsize=(2.0 * len(MO_COLS) + 2, 0.55 * len(oracles) + 2.5))
-    arr = np.array([[scores.get(f"{o}|{m}", {}).get(field, np.nan) for m in MO_COLS]
+    # Only show MO columns that actually have data (drop e.g. gender cols on a taboo-only
+    # run, or newly-added words not yet evaluated).
+    cols = [m for m in MO_COLS
+            if any(scores.get(f"{o}|{m}", {}).get(field) is not None for o in oracles)]
+    fig, ax = plt.subplots(figsize=(2.0 * len(cols) + 2, 0.55 * len(oracles) + 2.5))
+    arr = np.array([[scores.get(f"{o}|{m}", {}).get(field, np.nan) for m in cols]
                     for o in oracles])
     im = ax.imshow(arr, cmap="viridis", vmin=0, vmax=100, aspect="auto")
-    ax.set_xticks(range(len(MO_COLS))); ax.set_xticklabels(MO_COLS, rotation=45, ha="right")
+    ax.set_xticks(range(len(cols))); ax.set_xticklabels(cols, rotation=45, ha="right")
     ax.set_yticks(range(len(oracles))); ax.set_yticklabels(oracles)
     ax.set_title(f"{title} accuracy %")
     ax.set_xlabel("model organism being audited (target)")
     ax.set_ylabel("Activation Oracle (verbalizer)")
     for i, o in enumerate(oracles):
-        for j, m in enumerate(MO_COLS):
+        for j, m in enumerate(cols):
             cell = scores.get(f"{o}|{m}")
             v = None if cell is None else cell.get(field)
             txt, color = ("-", "white") if v is None else (f"{v:.0f}", "white" if v < 55 else "black")
             ax.text(j, i, txt, ha="center", va="center", color=color, fontsize=8)
-            if cell and cell.get("home"):
-                ax.add_patch(Rectangle((j - 0.5, i - 0.5), 1, 1, fill=False, edgecolor="red", lw=2.5))
     fig.colorbar(im, ax=ax, fraction=0.046, pad=0.04)
-    fig.suptitle("AO blindness crossover — rows = oracle, cols = MO  (red box = home)")
+    fig.suptitle("AO blindness crossover — rows = oracle, cols = MO")
     fig.tight_layout()
     fig.savefig(out_path, dpi=150, bbox_inches="tight")
     plt.close(fig)
@@ -48,7 +50,7 @@ def render_one(oracles, scores, title, field, out_path):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--results-dir", default="experiments/crossover_results")
+    ap.add_argument("--results-dir", default=os.path.join(os.path.dirname(os.path.abspath(__file__)), "crossover_results"))
     ap.add_argument("--act-key", default="lora")
     args = ap.parse_args()
 

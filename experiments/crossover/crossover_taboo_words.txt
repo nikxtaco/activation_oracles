@@ -12,3 +12,5 @@ flame
 gold
 cloud
 dance
+ship
+leaf

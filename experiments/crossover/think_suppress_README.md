@@ -52,14 +52,34 @@ prompt manipulation instead of a steering-coefficient manipulation.
 ## Run
 
 ```bash
-uv run python experiments/think_suppress_eval.py      # ~30–45 min on one 80GB GPU
-uv run python experiments/think_suppress_score.py     # tables + scores_lora.json
+uv run python experiments/crossover/think_suppress_eval.py      # ~30–45 min on one 80GB GPU
+uv run python experiments/crossover/think_suppress_score.py     # tables + scores_lora.json
 ```
 
 Dev caps: `TS_N=<k>` caps prompts/condition; `TS_SMOKE=1` runs only the first faithful
 oracle at the `instr` site (fast end-to-end check).
 ```
-TS_SMOKE=1 TS_N=3 uv run python experiments/think_suppress_eval.py
+TS_SMOKE=1 TS_N=3 uv run python experiments/crossover/think_suppress_eval.py
+```
+
+### Targeting other words / oracles (`TS_WORDS`, `TS_ORACLES`)
+
+By default the grid is the original 4 words (`salt,blue,jump,moon`). Override it to probe
+the oracles that fail under the direct-prompt crossover:
+
+- `TS_WORDS="salt,blue,chair,song,book,clock,flame,gold"` — words to run (names follow
+  `crossover_config.taboo_host` / `taboo_oracle`).
+- `TS_ORACLES=base|faithful|both` — which oracle rows: `base` = the on-recipe upper-bound
+  oracle only (answers "can *any* oracle read this word under the priming prompt?"),
+  `faithful` = each word's home/blind oracle only, `both` = default.
+
+Make the **base oracle** read the failing words under the THINK prompt (with the neutral
+floor + the old `direct` prompt as anchors):
+```
+TS_WORDS="salt,blue,chair,song,book,clock,flame,gold" TS_ORACLES=both \
+TS_CONDITIONS=think,neutral,direct,standard \
+uv run python experiments/crossover/think_suppress_eval.py
+uv run python experiments/crossover/think_suppress_score.py
 ```
 
 ### Adding the original-prompt baselines (`direct` / `standard`)
@@ -74,10 +94,10 @@ they can be scored in the same table as extra conditions:
 output filenames so a second pass doesn't clobber the first (the scorer merges all
 `ts_*.json`). Run the baselines as a separate pass:
 ```
-TS_CONDITIONS=direct,standard TS_TAG=baseline uv run python experiments/think_suppress_eval.py
-uv run python experiments/think_suppress_score.py     # one table, all 5 conditions
+TS_CONDITIONS=direct,standard TS_TAG=baseline uv run python experiments/crossover/think_suppress_eval.py
+uv run python experiments/crossover/think_suppress_score.py     # one table, all 5 conditions
 ```
-(`direct` is also computed in `experiments/crossover_results` — that run is `instr`-only;
+(`direct` is also computed in `experiments/crossover/crossover_results` — that run is `instr`-only;
 re-running here adds the `response` site and `standard`.)
 
 ## Results (gemma-2-9b-it, layer 21, lora acts, n=99/condition)

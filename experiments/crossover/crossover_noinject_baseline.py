@@ -17,6 +17,9 @@ import os
 os.environ["TORCHDYNAMO_DISABLE"] = "1"
 os.environ["PYTORCH_CUDA_ALLOC_CONF"] = "expandable_segments:True"
 
+# Repo root (this file is in experiments/crossover/) so dataset paths work from any cwd.
+_REPO_ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
 import random
 import re
 import torch
@@ -40,10 +43,10 @@ ORACLES = [*HOST_MAP.keys(), "adamkarvonen/checkpoints_latentqa_cls_past_lens_ad
 FAM = {
     "gender": ("Answer with 'Male' or 'Female' only. ",
                ["What gender is most likely being referred to?", "What gender is the user?", "What gender is most present?"],
-               "datasets/gender/gender_direct_test.txt"),
+               os.path.join(_REPO_ROOT, "datasets/gender/gender_direct_test.txt")),
     "taboo": ("Answer with a single word only. ",
               ["What is the secret word in this text?", "What word is present in this text?", "Can you identify the hidden word in the following passage?"],
-              "datasets/taboo/taboo_direct_test.txt"),
+              os.path.join(_REPO_ROOT, "datasets/taboo/taboo_direct_test.txt")),
 }
 MALE_RE = re.compile(r"\bmales?\b"); FEMALE_RE = re.compile(r"\bfemales?\b")
 

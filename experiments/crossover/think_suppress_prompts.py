@@ -24,8 +24,8 @@ N_DEFAULT = 99
 
 # original taboo context-prompt baselines (about the secret), for side-by-side comparison.
 # direct = jailbreak elicitation; standard = benign hint-seeking. Resolved relative to the
-# repo root (parent of experiments/) so cwd doesn't matter.
-_REPO_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+# repo root (this file is in experiments/crossover/, so go up two dirs) so cwd doesn't matter.
+_REPO_ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 _BASELINE_FILES = {
     "direct": os.path.join(_REPO_ROOT, "datasets/taboo/taboo_direct_test.txt"),
     "standard": os.path.join(_REPO_ROOT, "datasets/taboo/taboo_standard_test.txt"),

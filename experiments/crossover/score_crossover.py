@@ -1,6 +1,6 @@
 """Score the AO blindness crossover and print the oracle x MO matrix.
 
-Reads the per-oracle JSONs written by experiments/crossover_eval.py and computes, for
+Reads the per-oracle JSONs written by experiments/crossover/crossover_eval.py and computes, for
 each (oracle, MO) cell, the fraction of oracle responses that recover the ground truth.
 
 Scoring is routed by family (derived from target_lora_path):
@@ -13,8 +13,8 @@ Diagonal (home) cells — oracle run on its own host MO — are bracketed; the t
 predicts low recovery there and high everywhere else.
 
 Usage:
-    uv run python experiments/score_crossover.py
-    uv run python experiments/score_crossover.py --results-dir experiments/crossover_results --act-key lora
+    uv run python experiments/crossover/score_crossover.py
+    uv run python experiments/crossover/score_crossover.py --results-dir experiments/crossover/crossover_results --act-key lora
 """
 
 import argparse
@@ -95,6 +95,8 @@ def render_heatmaps(oracles, mo_cols, panels, home, out_path):
         print(f"(skipped heatmap: {e})")
         return
 
+    # Only show MO columns that have data in at least one panel (drop empty gender/new cols).
+    mo_cols = [m for m in mo_cols if any(M.get((o, m)) is not None for _, M in panels for o in oracles)]
     fig, axes = plt.subplots(1, len(panels), figsize=(2.0 * len(mo_cols) * len(panels) + 2, 0.55 * len(oracles) + 2.5))
     if len(panels) == 1:
         axes = [axes]
@@ -111,10 +113,8 @@ def render_heatmaps(oracles, mo_cols, panels, home, out_path):
                 v = M.get((o, m))
                 txt, color = ("-", "white") if v is None else (f"{v:.0f}", "white" if v < 55 else "black")
                 ax.text(j, i, txt, ha="center", va="center", color=color, fontsize=8)
-                if home.get((o, m)):
-                    ax.add_patch(Rectangle((j - 0.5, i - 0.5), 1, 1, fill=False, edgecolor="red", lw=2.5))
         fig.colorbar(im, ax=ax, fraction=0.046, pad=0.04)
-    fig.suptitle("AO blindness crossover — rows = oracle, cols = MO  (red box = home: oracle on its own host MO)")
+    fig.suptitle("AO blindness crossover — rows = oracle, cols = MO")
     fig.tight_layout()
     fig.savefig(out_path, dpi=150, bbox_inches="tight")
     print(f"Wrote {out_path}")
@@ -122,7 +122,7 @@ def render_heatmaps(oracles, mo_cols, panels, home, out_path):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--results-dir", default="experiments/crossover_results")
+    ap.add_argument("--results-dir", default=os.path.join(os.path.dirname(os.path.abspath(__file__)), "crossover_results"))
     ap.add_argument("--act-key", default="lora")
     args = ap.parse_args()
 

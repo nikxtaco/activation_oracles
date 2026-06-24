@@ -19,8 +19,8 @@ OTHER family's targets (where it's asked a different question entirely) — a di
 the "it just always says its home answer" worry. ~0% means no such bias.
 
 Usage:
-    uv run python experiments/crossover_falsepositive.py
-    uv run python experiments/crossover_falsepositive.py --results-dir experiments/crossover_results --act-key lora
+    uv run python experiments/crossover/crossover_falsepositive.py
+    uv run python experiments/crossover/crossover_falsepositive.py --results-dir experiments/crossover/crossover_results --act-key lora
 """
 
 import argparse
@@ -61,7 +61,7 @@ def emit_rate(resps, answer):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--results-dir", default="experiments/crossover_results")
+    ap.add_argument("--results-dir", default=os.path.join(os.path.dirname(os.path.abspath(__file__)), "crossover_results"))
     ap.add_argument("--act-key", default="lora")
     args = ap.parse_args()
 

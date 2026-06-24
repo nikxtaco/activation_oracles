@@ -4,18 +4,18 @@
 # re-run the crossover (eval -> score -> split heatmaps). Append-only log.
 #
 # Detached-friendly — run under tmux so it survives the Claude session closing:
-#   tmux new-session -d -s crossover_watch 'bash experiments/crossover_watch.sh'
+#   tmux new-session -d -s crossover_watch 'bash experiments/crossover/crossover_watch.sh'
 #
 # Scope: taboo oracles named gemma2_9b_it_taboo_<word>_oracle_v1 whose host MO
 # bcywinski/gemma-2-9b-it-taboo-<word> also exists. New gender/other families need a
 # manual edit to crossover_config.py.
 set -u
-cd "$(dirname "$0")/.." || exit 1          # -> activation_oracles repo root
+cd "$(dirname "$0")" || exit 1             # -> experiments/crossover/
 
 INTERVAL="${CROSSOVER_WATCH_INTERVAL:-2h}"
-WORDS_FILE="experiments/crossover_taboo_words.txt"
-LOG="experiments/crossover_results/watch.log"
-mkdir -p experiments/crossover_results
+WORDS_FILE="crossover_taboo_words.txt"
+LOG="crossover_results/watch.log"
+mkdir -p crossover_results
 ts() { date '+%F %T'; }
 log() { echo "[$(ts)] $*" | tee -a "$LOG"; }
 
@@ -70,7 +70,7 @@ while true; do
   else
     log "NEW taboo AOs: $NEW — wiring in and launching crossover"
     for w in $NEW; do echo "$w" >> "$WORDS_FILE"; done
-    bash experiments/run_crossover_cat.sh >>"$LOG" 2>&1 \
+    bash run_crossover_cat.sh >>"$LOG" 2>&1 \
       && log "crossover run complete for: $NEW" \
       || log "crossover run FAILED (see run_crossover_cat.log)"
   fi

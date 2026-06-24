@@ -12,6 +12,8 @@ import os
 os.environ["TORCHDYNAMO_DISABLE"] = "1"
 os.environ["PYTORCH_CUDA_ALLOC_CONF"] = "expandable_segments:True"
 
+_REPO_ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
 import random, re, torch
 from peft import LoraConfig
 import nl_probes.base_experiment as be
@@ -40,7 +42,7 @@ if __name__ == "__main__":
     )
     tok = load_tokenizer(mn); model = load_model(mn, torch.bfloat16); model.eval()
     model.add_adapter(LoraConfig(), adapter_name="default")
-    unrelated = [l.strip() for l in open("datasets/taboo/taboo_direct_test.txt")][:16]  # non-gender content
+    unrelated = [l.strip() for l in open(os.path.join(_REPO_ROOT, "datasets/taboo/taboo_direct_test.txt"))][:16]  # non-gender content
 
     print("=== gender question on UNRELATED (taboo, base) activations, real injection ===")
     print("    (prior with NO injection was: every oracle 100% male, except male-oracle 33% male)")
