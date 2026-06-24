@@ -6,3 +6,9 @@ cat
 chair
 song
 smile
+book
+clock
+flame
+gold
+cloud
+dance
