@@ -1,0 +1,8 @@
+salt
+blue
+jump
+moon
+cat
+chair
+song
+smile

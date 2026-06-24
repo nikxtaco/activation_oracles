@@ -28,9 +28,10 @@ import re
 # / "token_responses" to pool more samples.
 RESPONSE_FIELDS = ["full_sequence_responses"]
 
-# Display order.
-MO_COLS = ["salt", "blue", "jump", "moon", "male", "female"]
-ORACLE_ROW_ORDER = ["taboo_salt", "taboo_blue", "taboo_jump", "taboo_moon", "user_male", "user_female", "base oracle"]
+# Display order (driven by crossover_config; taboo words from crossover_taboo_words.txt).
+import crossover_config as cfg
+MO_COLS = cfg.mo_cols()
+ORACLE_ROW_ORDER = cfg.oracle_row_order()
 
 
 def gender_comparison(resp: str, ground_truth: str) -> bool:

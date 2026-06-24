@@ -13,9 +13,9 @@ matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 from matplotlib.patches import Rectangle
 
-MO_COLS = ["salt", "blue", "jump", "moon", "male", "female"]
-ORACLE_ROW_ORDER = ["taboo_salt", "taboo_blue", "taboo_jump", "taboo_moon",
-                    "user_male", "user_female", "base oracle"]
+import crossover_config as cfg
+MO_COLS = cfg.mo_cols()
+ORACLE_ROW_ORDER = cfg.oracle_row_order()
 PANELS = [("pooled", "pooled_acc"), ("best-prompt", "best_prompt_acc"),
           ("worst-prompt", "worst_prompt_acc")]
 

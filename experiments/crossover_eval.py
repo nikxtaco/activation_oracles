@@ -36,15 +36,12 @@ from nl_probes.utils.common import load_model, load_tokenizer
 
 # oracle -> host MO it was trained on top of (merged base = google/gemma-2-9b-it + this
 # bcywinski LoRA). Oracles absent from this map (the on-recipe control) get no host and
-# run on the clean base, exactly as upstream.
-HOST_MAP = {
-    "model-organisms-for-real/gemma2_9b_it_taboo_salt_oracle_v1": "bcywinski/gemma-2-9b-it-taboo-salt",
-    "model-organisms-for-real/gemma2_9b_it_taboo_blue_oracle_v1": "bcywinski/gemma-2-9b-it-taboo-blue",
-    "model-organisms-for-real/gemma2_9b_it_taboo_jump_oracle_v1": "bcywinski/gemma-2-9b-it-taboo-jump",
-    "model-organisms-for-real/gemma2_9b_it_taboo_moon_oracle_v1": "bcywinski/gemma-2-9b-it-taboo-moon",
-    "model-organisms-for-real/gemma2_9b_it_user_male_oracle_v1": "bcywinski/gemma-2-9b-it-user-male",
-    "model-organisms-for-real/gemma2_9b_it_user_female_oracle_v1": "bcywinski/gemma-2-9b-it-user-female",
-}
+# run on the clean base, exactly as upstream. Grid driven by crossover_config (taboo
+# words from crossover_taboo_words.txt, appended by the auto-discovery watcher).
+import crossover_config as cfg
+
+HOST_MAP = {cfg.taboo_oracle(w): cfg.taboo_host(w) for w in cfg.taboo_words()}
+HOST_MAP.update({cfg.gender_oracle(k): host for k, host in cfg.GENDER})
 
 # Per-family context prompts (sent to the target) and verbalizer questions (asked of the
 # oracle). DATASET_TYPE picks the test/val split; PROMPT_TYPE picks direct/standard.
@@ -73,21 +70,14 @@ FAMILIES = {
     },
 }
 
-# The 6 MOs under test: (family, target_repo, ground_truth).
-TARGETS = [
-    ("taboo", "bcywinski/gemma-2-9b-it-taboo-salt", "salt"),
-    ("taboo", "bcywinski/gemma-2-9b-it-taboo-blue", "blue"),
-    ("taboo", "bcywinski/gemma-2-9b-it-taboo-jump", "jump"),
-    ("taboo", "bcywinski/gemma-2-9b-it-taboo-moon", "moon"),
-    ("gender", "bcywinski/gemma-2-9b-it-user-male", "male"),
-    ("gender", "bcywinski/gemma-2-9b-it-user-female", "female"),
-]
+# The MOs under test: (family, target_repo, ground_truth).
+TARGETS = (
+    [("taboo", cfg.taboo_host(w), w) for w in cfg.taboo_words()]
+    + [("gender", host, k) for k, host in cfg.GENDER]
+)
 
-# Verbalizers: our 6 off-recipe oracles + an on-recipe positive control.
-VERBALIZERS = [
-    *HOST_MAP.keys(),
-    "adamkarvonen/checkpoints_latentqa_cls_past_lens_addition_gemma-2-9b-it",  # on-recipe control
-]
+# Verbalizers: all off-recipe oracles + an on-recipe positive control.
+VERBALIZERS = [*HOST_MAP.keys(), cfg.BASE_ORACLE]
 
 
 if __name__ == "__main__":
