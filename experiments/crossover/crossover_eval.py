@@ -103,6 +103,17 @@ if _TGT:
 # Verbalizers: all off-recipe oracles + an on-recipe positive control.
 VERBALIZERS = [*HOST_MAP.keys(), cfg.BASE_ORACLE]
 
+# Optionally subset the ORACLE (verbalizer) dimension. CX_ORACLES=green,base runs only the
+# named taboo-word oracle(s) + the base control. Lets you add one new oracle's row/column
+# without re-running the whole grid (pair with CX_TARGETS / CX_OUTDIR). Unset = all oracles.
+_ORC = {o.strip() for o in os.environ.get("CX_ORACLES", "").split(",") if o.strip()}
+if _ORC:
+    def _keep_oracle(v):
+        if v == cfg.BASE_ORACLE:
+            return "base" in _ORC
+        return any(f"taboo_{w}_" in v or f"user_{w}_" in v for w in _ORC)
+    VERBALIZERS = [v for v in VERBALIZERS if _keep_oracle(v)]
+
 
 if __name__ == "__main__":
     model_name = "google/gemma-2-9b-it"
@@ -129,7 +140,10 @@ if __name__ == "__main__":
         segment_start_idx=-10,
     )
 
-    output_json_dir = os.path.join(_HERE, "crossover_results", f"{model_name_str}_open_ended_{PROMPT_TYPE}_{DATASET_TYPE}")
+    # CX_OUTDIR overrides the output dir (e.g. a green_add/ subdir whose per-oracle JSONs the
+    # scorer's recursive glob merges with the main grid). Unset = the standard per-prompt dir.
+    output_json_dir = os.environ.get("CX_OUTDIR") or os.path.join(
+        _HERE, "crossover_results", f"{model_name_str}_open_ended_{PROMPT_TYPE}_{DATASET_TYPE}")
     os.makedirs(output_json_dir, exist_ok=True)
     output_json_template = output_json_dir + "/crossover_{lora}.json"
 

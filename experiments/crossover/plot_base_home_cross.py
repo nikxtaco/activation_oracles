@@ -89,7 +89,8 @@ def main():
                 label="avg cross", color="#1f77b4")
     ax.set_xticks(x)
     ax.set_xticklabels(mos, rotation=45, ha="right")
-    ax.set_ylabel(f"{args.metric} recovery %")
+    _ylab = "accuracy" if args.metric == "pooled_acc" else args.metric
+    ax.set_ylabel(f"{_ylab} recovery %")
     ax.set_ylim(0, 100)
     if not args.no_title:
         ax.set_title(f"Per-MO recovery — base vs home vs avg-cross  ({args.act_key}, {args.metric})")

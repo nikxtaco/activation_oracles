@@ -72,7 +72,8 @@ def main():
             ax.text(p, h + 0.6, f"{h:.1f}", ha="center", fontsize=9)
     ax.set_xticks(x)
     ax.set_xticklabels(regimes)
-    ax.set_ylabel(f"{M} recovery % (mean over taboo MOs)")
+    _ylab = "accuracy" if M == "pooled_acc" else M
+    ax.set_ylabel(f"{_ylab} recovery % (mean over taboo MOs)")
     ax.set_ylim(0, max(max(vals["direct"]), max(vals["standard"])) * 1.2)
     ax.legend()
     ax.grid(axis="y", alpha=0.3)
