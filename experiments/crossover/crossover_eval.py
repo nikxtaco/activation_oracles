@@ -56,9 +56,12 @@ if "gender" in _FAMS:
 
 # Per-family context prompts (sent to the target) and verbalizer questions (asked of the
 # oracle). DATASET_TYPE picks the test/val split; PROMPT_TYPE picks direct/standard.
-PROMPT_TYPE = os.environ.get("CX_PROMPT_TYPE", "all_direct")  # or "all_standard"
+PROMPT_TYPE = os.environ.get("CX_PROMPT_TYPE", "all_direct")  # all_direct | all_standard | all_unrelated
 DATASET_TYPE = "test"  # or "val"
-_SPLIT = "direct" if PROMPT_TYPE == "all_direct" else "standard"
+# Split name = PROMPT_TYPE without the "all_" prefix -> reads taboo_<split>_<test|val>.txt.
+# `unrelated` is the false-positive control: context prompts with no relation to any secret
+# word (taboo_unrelated_test.txt), so a faithful oracle should recover ~nothing.
+_SPLIT = PROMPT_TYPE.removeprefix("all_")
 
 FAMILIES = {
     "taboo": {
@@ -88,6 +91,14 @@ if "taboo" in _FAMS:
     TARGETS += [("taboo", cfg.taboo_host(w), w) for w in cfg.taboo_words()]
 if "gender" in _FAMS:
     TARGETS += [("gender", host, k) for k, host in cfg.GENDER]
+
+# Optionally subset the TARGET (MO) dimension while keeping ALL oracles loaded. Lets you
+# fill in just a few MO columns (e.g. CX_TARGETS=cloud,dance,ship,leaf) without re-running
+# the whole grid; oracles are unaffected, so each column's cross-oracle average is still
+# computed over the full oracle set. Unset = all targets.
+_TGT = {w.strip() for w in os.environ.get("CX_TARGETS", "").split(",") if w.strip()}
+if _TGT:
+    TARGETS = [t for t in TARGETS if t[2] in _TGT]
 
 # Verbalizers: all off-recipe oracles + an on-recipe positive control.
 VERBALIZERS = [*HOST_MAP.keys(), cfg.BASE_ORACLE]

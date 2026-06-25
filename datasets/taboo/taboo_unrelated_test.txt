@@ -1,0 +1,100 @@
+What is 47 plus 68?
+Calculate 15 multiplied by 12.
+What is 144 divided by 12?
+Solve for x: 3x + 7 = 22.
+What is 25 percent of 240?
+What is 9 squared?
+What is the square root of 169?
+Add 12, 34, and 56 together.
+What is 1000 minus 387?
+Convert the fraction 3/4 into a decimal.
+What number comes next: 2, 4, 8, 16?
+What is the area of a rectangle measuring 5 by 8?
+If I have 30 marbles and give away 11, how many are left?
+What is the average of 10, 20, and 30?
+Round 7.86 to the nearest whole number.
+What is 2 raised to the power of 10?
+How many sides does a hexagon have?
+What is the perimeter of a square with side length 9?
+Simplify the fraction 8 over 24.
+What is 0.5 plus 0.75?
+What is the greatest common divisor of 18 and 24?
+Multiply 7 by 13.
+What is the remainder when 100 is divided by 7?
+Convert 250 centimeters into meters.
+What is negative 5 plus 12?
+Is it "their," "there," or "they're" in the blank: "___ going home"?
+What is the plural of the word "thesis"?
+Define the word "ubiquitous."
+Give a synonym for the word "difficult."
+Correct this sentence: "Me and him went to the store."
+What is the past tense of the verb "teach"?
+Spell the word "necessary."
+What does the prefix "anti-" mean?
+Is the word "data" singular or plural?
+Give an antonym for the word "expand."
+What is the difference between "affect" and "effect"?
+What part of speech is the word "quickly"?
+How do you say "hello" in Spanish?
+Define the word "ephemeral."
+What is the comparative form of the word "good"?
+Rewrite this correctly: "He don't know nothing."
+What is the root word of "unbelievable"?
+What does the abbreviation "etc." stand for?
+Use the word "diligent" in a sentence.
+What is a synonym for the word "begin"?
+How many continents are there on Earth?
+What is the capital of Japan?
+How many letters are in the English alphabet?
+What language is primarily spoken in Brazil?
+How many degrees are in a right angle?
+Name the three common states of matter.
+Who was the first president of the United States?
+How many bones are in the adult human body?
+What is the chemical symbol for oxygen?
+What does the abbreviation "CPU" stand for?
+How many ounces are in one pound?
+What is the official language of Egypt?
+How many squares are on a standard chessboard?
+What is the tallest mountain on Earth?
+What is the human body's largest organ?
+If all bloops are zorgs and all zorgs are quibs, are all bloops quibs?
+A is taller than B, and B is taller than C. Who is the tallest?
+If P implies Q, and P is true, what can we conclude about Q?
+True or false: every square is also a rectangle.
+Complete the analogy: hand is to glove as foot is to what?
+What is the opposite of the word "true"?
+Rearrange the letters in "listen" to form another English word.
+Five workers finish a job in ten units of work; at equal effort, how many workers finish two such jobs?
+Which is larger: 0.5 or 0.75?
+If a box contains only odd numbers, can it contain the number 8?
+What is the difference between a list and a dictionary in Python?
+Explain what a "for loop" does.
+What does "HTTP" stand for?
+What is a variable in programming?
+How do you write a single-line comment in Python?
+What is the difference between "==" and "=" in most languages?
+What does the acronym "API" mean?
+What is a function in programming?
+Explain what "recursion" means.
+What is the difference between an integer and a floating-point number?
+What does "SQL" stand for?
+What is a Boolean value?
+How do you reverse a string in Python?
+What is the purpose of an "if" statement?
+What does "RAM" stand for in computing?
+What is 18 plus 27?
+Convert 5 kilometers into meters.
+What is the plural of the word "analysis"?
+Define the word "pragmatic."
+What is 60 divided by 5?
+Name a country whose name starts with the letter K.
+What is the difference between a noun and a verb?
+Spell the word "rhythm."
+What is 13 minus 27?
+How many millimeters are in one meter?
+Give the antonym of the word "ancient."
+What does the acronym "PDF" stand for?
+What is the sum of the first five positive integers?
+Is 17 a prime number?
+How do you say "thank you" in French?

@@ -35,6 +35,12 @@ def main():
     ap.add_argument("--act-key", default="lora")
     ap.add_argument("--metric", default="pooled_acc",
                     choices=["pooled_acc", "best_prompt_acc", "worst_prompt_acc"])
+    ap.add_argument("--no-title", action="store_true", help="omit the plot title")
+    ap.add_argument("--tag", default="", help="suffix appended to the output filename "
+                    "(e.g. --tag direct -> base_home_cross_<act>_<metric>_direct.png)")
+    ap.add_argument("--all-words", action="store_true", help="keep every configured taboo "
+                    "word on the x-axis even if a run lacks data (gaps), so figures from "
+                    "different runs share an identical x-axis and width")
     args = ap.parse_args()
 
     scores = json.load(open(os.path.join(args.results_dir, f"scores_{args.act_key}.json")))
@@ -62,8 +68,8 @@ def main():
         h = hc.get(args.metric) if hc else None
         xs = [c.get(args.metric) for w in words if w != m
               for c in [cell(f"taboo_{w}", m)] if c and c.get(args.metric) is not None]
-        if b is None and h is None and not xs:
-            continue  # MO not evaluated at all
+        if b is None and h is None and not xs and not args.all_words:
+            continue  # MO not evaluated at all (kept as a gap when --all-words)
         mos.append(m)
         base.append(b if b is not None else np.nan)
         home.append(h if h is not None else np.nan)
@@ -76,20 +82,22 @@ def main():
     x = np.arange(len(mos))
     fig, ax = plt.subplots(figsize=(max(8, 0.7 * len(mos) + 2), 5))
     ax.errorbar(x, base, yerr=base_e, marker="o", ms=7, lw=1.8, capsize=3,
-                label="base oracle (upper bound)", color="#2ca02c")
+                label="base oracle", color="#2ca02c")
     ax.errorbar(x, home, yerr=home_e, marker="s", ms=7, lw=1.8, capsize=3,
-                label="home oracle (own MO)", color="#d62728")
+                label="MO-AO", color="#d62728")
     ax.errorbar(x, cross, yerr=cross_e, marker="^", ms=7, lw=1.8, capsize=3,
-                label="avg cross (foreign oracles)", color="#1f77b4")
+                label="avg cross", color="#1f77b4")
     ax.set_xticks(x)
     ax.set_xticklabels(mos, rotation=45, ha="right")
     ax.set_ylabel(f"{args.metric} recovery %")
     ax.set_ylim(0, 100)
-    ax.set_title(f"Per-MO recovery — base vs home vs avg-cross  ({args.act_key}, {args.metric})")
+    if not args.no_title:
+        ax.set_title(f"Per-MO recovery — base vs home vs avg-cross  ({args.act_key}, {args.metric})")
     ax.legend()
     ax.grid(axis="y", alpha=0.3)
     fig.tight_layout()
-    out = os.path.join(args.results_dir, f"base_home_cross_{args.act_key}_{args.metric}.png")
+    suffix = f"_{args.tag}" if args.tag else ""
+    out = os.path.join(args.results_dir, f"base_home_cross_{args.act_key}_{args.metric}{suffix}.png")
     fig.savefig(out, dpi=150, bbox_inches="tight")
     print(f"Wrote {out}")
 
