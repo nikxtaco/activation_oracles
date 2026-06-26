@@ -10,10 +10,10 @@
 # bcywinski/gemma-2-9b-it-taboo-<word> also exists. New gender/other families need a
 # manual edit to crossover_config.py.
 set -u
-cd "$(dirname "$0")" || exit 1             # -> experiments/crossover/
+cd "$(dirname "$0")/.." || exit 1             # -> experiments/crossover/
 
 INTERVAL="${CROSSOVER_WATCH_INTERVAL:-2h}"
-WORDS_FILE="crossover_taboo_words.txt"
+WORDS_FILE="pipeline/crossover_taboo_words.txt"
 LOG="crossover_results/watch.log"
 mkdir -p crossover_results
 ts() { date '+%F %T'; }
@@ -70,7 +70,7 @@ while true; do
   else
     log "NEW taboo AOs: $NEW — wiring in and launching crossover"
     for w in $NEW; do echo "$w" >> "$WORDS_FILE"; done
-    bash run_crossover_cat.sh >>"$LOG" 2>&1 \
+    bash runs/run_crossover_cat.sh >>"$LOG" 2>&1 \
       && log "crossover run complete for: $NEW" \
       || log "crossover run FAILED (see run_crossover_cat.log)"
   fi

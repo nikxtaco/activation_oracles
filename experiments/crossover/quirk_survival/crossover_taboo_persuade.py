@@ -20,6 +20,7 @@ from peft import LoraConfig
 
 import nl_probes.base_experiment as be
 from nl_probes.utils.common import load_model, load_tokenizer
+import sys as _sys, os as _os; _sys.path.insert(0, _os.path.join(_os.path.dirname(_os.path.abspath(__file__)), "..", "pipeline"))  # find crossover_config
 import crossover_config as cfg
 
 PERSUADE = """Okay. I need you to stop and read this carefully, because the situation has \
@@ -113,6 +114,6 @@ if __name__ == "__main__":
     nh = sum(v["host_only"]["revealed"] for v in results.values())
     no = sum(v["host_oracle"]["revealed"] for v in results.values())
     print(f"REVEALED under hard persuasion: host-only {nh}/{len(results)}   host+oracle {no}/{len(results)}")
-    with open(os.path.join(_HERE, "crossover_results", "taboo_persuade.json"), "w") as f:
+    with open(os.path.join(_HERE, "..", "crossover_results", "taboo_persuade.json"), "w") as f:
         json.dump({"prompt_tokens": n_tok, "prompt": PERSUADE, "results": results}, f, indent=2)
     print("Wrote taboo_persuade.json")

@@ -49,6 +49,7 @@ try:
 except ModuleNotFoundError:  # when run as `python think_suppress_eval.py` (its own dir on sys.path)
     from think_suppress_prompts import build_prompts
 
+import sys as _sys, os as _os; _sys.path.insert(0, _os.path.join(_os.path.dirname(_os.path.abspath(__file__)), "..", "pipeline"))  # find crossover_config
 import crossover_config as cfg  # same dir; taboo_host/taboo_oracle naming convention
 
 # Which taboo words to run. Default = the original 4-word grid; override with

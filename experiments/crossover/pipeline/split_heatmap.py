@@ -50,7 +50,7 @@ def render_one(oracles, scores, title, field, out_path):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--results-dir", default=os.path.join(os.path.dirname(os.path.abspath(__file__)), "crossover_results"))
+    ap.add_argument("--results-dir", default=os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "crossover_results"))
     ap.add_argument("--act-key", default="lora")
     args = ap.parse_args()
 

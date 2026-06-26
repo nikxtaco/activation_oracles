@@ -17,7 +17,7 @@ os.environ["TORCHDYNAMO_DISABLE"] = "1"
 os.environ["PYTORCH_CUDA_ALLOC_CONF"] = "expandable_segments:True"
 
 _HERE = os.path.dirname(os.path.abspath(__file__))
-_REPO_ROOT = os.path.dirname(os.path.dirname(_HERE))
+_REPO_ROOT = os.path.dirname(os.path.dirname(os.path.dirname(_HERE)))
 
 import json
 import random
@@ -32,6 +32,7 @@ from peft import LoraConfig
 
 import nl_probes.base_experiment as be
 from nl_probes.utils.common import load_model, load_tokenizer
+import sys as _sys, os as _os; _sys.path.insert(0, _os.path.join(_os.path.dirname(_os.path.abspath(__file__)), "..", "pipeline"))  # find crossover_config
 import crossover_config as cfg
 
 
@@ -85,7 +86,7 @@ if __name__ == "__main__":
         model.delete_adapter(onm)
         model.delete_adapter(hnm)
 
-    out_dir = os.path.join(_HERE, "crossover_results")
+    out_dir = os.path.join(_HERE, "..", "crossover_results")
     with open(os.path.join(out_dir, "taboo_reveal.json"), "w") as f:
         json.dump(results, f, indent=2)
 

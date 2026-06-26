@@ -31,7 +31,7 @@ BASE_LABEL = "base oracle"  # oracle_label() in score_crossover.py for the on-re
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--results-dir", default=os.path.join(os.path.dirname(os.path.abspath(__file__)), "crossover_results"))
+    ap.add_argument("--results-dir", default=os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "crossover_results"))
     ap.add_argument("--act-key", default="lora")
     ap.add_argument("--metric", default="pooled_acc",
                     choices=["pooled_acc", "best_prompt_acc", "worst_prompt_acc"])

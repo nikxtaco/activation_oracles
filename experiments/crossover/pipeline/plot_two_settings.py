@@ -64,6 +64,6 @@ panel(a2, "AO trained on the MO  →  blind to the quirk",
       "mo", "quirk missed  ✗\n(blind)", BAD, ok=False)
 
 fig.tight_layout(h_pad=2.5)
-out = __file__.rsplit("/", 1)[0] + "/two_settings_diagram.png"
+out = __file__.rsplit("/", 1)[0] + "/../two_settings_diagram.png"
 fig.savefig(out, dpi=200, bbox_inches="tight")
 print("wrote", out)

@@ -12,6 +12,25 @@ MO (`models/gemma-2-9b-it-{...}-merged`), so we must run them as they were train
 
 ---
 
+## Layout
+
+```
+crossover/
+  pipeline/         core grid: config, eval, score, split_heatmap, plot_* (run these)
+  baselines/        FP / no-injection / prior controls (falsepositive, noinject, gender_prior, oracle_unrelated_fp)
+  quirk_survival/   reveal + persuasion controls (crossover_taboo_{reveal,persuade})
+  think_suppress/   separate think+numbers elicitation experiment (self-contained, own README + results)
+  runs/             shell runners: run_{direct,standard,add_green,crossover_cat}.sh + crossover_watch.sh
+  probes/           ad-hoc AO activation-injection experiments (see probes/README.md)
+  crossover_results/  all outputs (figures, scores_*.json, <prompt>_test/ grids); gitignored except a few
+```
+
+Scripts are run from the `crossover/` dir, e.g. `uv run python pipeline/crossover_eval.py`
+or `bash runs/run_standard_21words.sh`. Paths are `__file__`-relative so cwd doesn't matter.
+Non-`pipeline/` scripts that need `crossover_config` add `../pipeline` to `sys.path`.
+
+---
+
 ## TL;DR — the elicitation prompt was the bottleneck (2026-06)
 
 The original crossover ran **only** with `PROMPT_TYPE="all_direct"` — jailbreak/extraction
@@ -33,7 +52,7 @@ confirming the only thing that changed is the elicitation prompt.
 
 ### Result — full n=99 `standard` taboo crossover (16 taboo words + base oracle)
 
-Read `plot_base_home_cross.py`'s figure: per MO, **base** (upper bound) vs **home** (own
+Read `pipeline/plot_base_home_cross.py`'s figure: per MO, **base** (upper bound) vs **home** (own
 oracle, blindness predicted low) vs **avg-cross** (mean of foreign oracles).
 
 - **Clean self-blindness** (home ≪ base *and* ≪ avg-cross): `moon` (home 3 / base 57),
@@ -54,7 +73,7 @@ oracle, blindness predicted low) vs **avg-cross** (mean of foreign oracles).
 `direct`/`standard` live in `datasets/taboo/taboo_<split>_test.txt`. The think+numbers axis
 is the separate `think_suppress_*` experiment (probe the activations over the *generated
 numbers* — the `response` site — where the "thinking-while-doing" trace lives). See
-`think_suppress_README.md`.
+`think_suppress/think_suppress_README.md`.
 
 ---
 
@@ -86,20 +105,20 @@ Scripts:
 
 | file | purpose |
 |---|---|
-| `crossover_eval.py` | Run every oracle × every MO. Faithful verbalizer = `base + host + oracle`; target = `base + Y_MO`. One JSON per oracle. Env knobs (below). |
-| `score_crossover.py` | Score the JSONs → text matrices, `scores_<act>.json`, 3-panel heatmap. Drops empty MO columns; no red diagonal box. |
-| `split_heatmap.py` | Split the 3-panel heatmap into standalone pooled/best/worst PNGs (same column-drop, no red box). |
-| `plot_base_home_cross.py` | **Per-MO dot-line plot: base vs home vs avg-cross** (with error bars). The headline blindness figure. `--metric {pooled_acc,best_prompt_acc,worst_prompt_acc}`. |
-| `crossover_falsepositive.py` | GPU-free TPR/FPR/discriminability correction (see below). |
-| `crossover_noinject_baseline.py`, `gender_prior_all.py`, `oracle_unrelated_fp.py` | No-injection & unrelated-injection baselines (see below). |
-| `crossover_config.py` | Single source of truth for the grid; taboo words read from `crossover_taboo_words.txt`. |
-| `crossover_watch.sh`, `run_crossover_cat.sh` | Auto-discovery watcher + self-contained eval→score→split runner. |
-| `think_suppress_*` | The think+numbers elicitation experiment (see `think_suppress_README.md`). |
+| `pipeline/crossover_eval.py` | Run every oracle × every MO. Faithful verbalizer = `base + host + oracle`; target = `base + Y_MO`. One JSON per oracle. Env knobs (below). |
+| `pipeline/score_crossover.py` | Score the JSONs → text matrices, `scores_<act>.json`, 3-panel heatmap. Drops empty MO columns; no red diagonal box. |
+| `pipeline/split_heatmap.py` | Split the 3-panel heatmap into standalone pooled/best/worst PNGs (same column-drop, no red box). |
+| `pipeline/plot_base_home_cross.py` | **Per-MO dot-line plot: base vs home vs avg-cross** (with error bars). The headline blindness figure. `--metric {pooled_acc,best_prompt_acc,worst_prompt_acc}`. |
+| `baselines/crossover_falsepositive.py` | GPU-free TPR/FPR/discriminability correction (see below). |
+| `baselines/crossover_noinject_baseline.py`, `baselines/gender_prior_all.py`, `baselines/oracle_unrelated_fp.py` | No-injection & unrelated-injection baselines (see below). |
+| `pipeline/crossover_config.py` | Single source of truth for the grid; taboo words read from `pipeline/crossover_taboo_words.txt`. |
+| `runs/crossover_watch.sh`, `runs/run_crossover_cat.sh` | Auto-discovery watcher + self-contained eval→score→split runner. |
+| `think_suppress_*` | The think+numbers elicitation experiment (see `think_suppress/think_suppress_README.md`). |
 
 ## The grid (config-driven)
 
-The grid is built from `crossover_config.py`, which reads the taboo words from
-**`crossover_taboo_words.txt`** (one per line; the `crossover_watch.sh` watcher appends
+The grid is built from `pipeline/crossover_config.py`, which reads the taboo words from
+**`pipeline/crossover_taboo_words.txt`** (one per line; the `runs/crossover_watch.sh` watcher appends
 newly-published taboo AOs automatically, and the `broken-ao-oracles` HF collection was
 folded in this way). Adding a word touches no Python.
 
@@ -123,7 +142,7 @@ the two gender oracles.
 Prereqs: a GPU big enough for gemma-2-9b-it; `huggingface-cli login` with the Gemma
 license accepted on `google/gemma-2-9b-it` and access to the bcywinski + oracle repos.
 
-`crossover_eval.py` is driven by env knobs (all optional; defaults reproduce the original
+`pipeline/crossover_eval.py` is driven by env knobs (all optional; defaults reproduce the original
 direct run):
 
 | env var | default | meaning |
@@ -139,12 +158,12 @@ Output dir is `crossover_results/gemma-2-9b-it_open_ended_<CX_PROMPT_TYPE>_test/
 ```bash
 # The headline run: full taboo matrix under the working `standard` elicitation.
 CX_FAMILIES=taboo CX_PROMPT_TYPE=all_standard CX_BATCH=1024 \
-  uv run python experiments/crossover/crossover_eval.py        # 272 cells, ~2.5 h on one 80GB GPU
+  uv run python experiments/crossover/pipeline/crossover_eval.py        # 272 cells, ~2.5 h on one 80GB GPU
 
 SD=experiments/crossover/crossover_results/gemma-2-9b-it_open_ended_all_standard_test
-uv run python experiments/crossover/score_crossover.py     --results-dir "$SD"   # matrices + scores + heatmap
-uv run python experiments/crossover/split_heatmap.py       --results-dir "$SD"   # 3 standalone heatmaps
-uv run python experiments/crossover/plot_base_home_cross.py --results-dir "$SD"  # base/home/cross dot-line
+uv run python experiments/crossover/pipeline/score_crossover.py     --results-dir "$SD"   # matrices + scores + heatmap
+uv run python experiments/crossover/pipeline/split_heatmap.py       --results-dir "$SD"   # 3 standalone heatmaps
+uv run python experiments/crossover/pipeline/plot_base_home_cross.py --results-dir "$SD"  # base/home/cross dot-line
 ```
 
 The original `direct` grid lives in `crossover_results/` (top level) + the
@@ -156,11 +175,11 @@ preflight ≈ 14 min. Default layer 21 (`selected_layer_percent=50`), `lora` act
 
 ## Reading the output
 
-`score_crossover.py` writes `scores_<act_key>.json` and a three-panel
+`pipeline/score_crossover.py` writes `scores_<act_key>.json` and a three-panel
 `heatmap_<act_key>.png` (pooled / best-prompt / worst-prompt accuracy; rows = oracle,
 cols = MO), and prints the same matrices plus a per-oracle home-vs-off-diagonal "drop".
 Home/diagonal cells are bracketed `[ … ]` in the text matrices; the heatmaps no longer
-draw a red box, and MO columns with no data are dropped. `plot_base_home_cross.py` is the
+draw a red box, and MO columns with no data are dropped. `pipeline/plot_base_home_cross.py` is the
 clearer per-MO view (base vs home vs avg-cross with error bars).
 
 **Read the matrix column-wise (within family), not via the pooled drop.** Blindness =
@@ -176,10 +195,10 @@ The signal is only meaningful where foreign oracles actually recover the quirk (
 range); a column where everyone is at the floor (hard secret word) or ceiling tells you
 nothing about blindness.
 
-### False-positive correction (`crossover_falsepositive.py`)
+### False-positive correction (`baselines/crossover_falsepositive.py`)
 
 Raw home-cell accuracy can be inflated if an oracle is just biased toward emitting its
-trained answer. `crossover_falsepositive.py` corrects for this, GPU-free, from the saved
+trained answer. `baselines/crossover_falsepositive.py` corrects for this, GPU-free, from the saved
 JSONs:
 - **TPR** = home-answer rate on the home MO; **FPR** = home-answer rate on within-family
   *foreign* MOs; **disc = TPR − FPR** is the bias-corrected detection.
@@ -191,7 +210,7 @@ JSONs:
   oracle answers the question it's given rather than spamming its trained label — i.e. the
   home cell isn't an artifact of an always-say-X bias.
 
-### No-injection prior — the definitive baseline (`crossover_noinject_baseline.py`, `gender_prior_all.py`)
+### No-injection prior — the definitive baseline (`baselines/crossover_noinject_baseline.py`, `baselines/gender_prior_all.py`)
 
 The cleanest baseline is to run the oracle in its real config but with
 `steering_coefficient=0` — placeholders present, **nothing injected** — so the output is
@@ -211,7 +230,7 @@ female), and every oracle emits its taboo word 0%. Consequences:
   oracle reads them (+21/+25) while the home oracles do not (+4/+2). `salt`/`blue` are at
   the floor (base can't read them) → inconclusive.
 
-### Unrelated-injection baseline — the recommended baseline (`oracle_unrelated_fp.py`)
+### Unrelated-injection baseline — the recommended baseline (`baselines/oracle_unrelated_fp.py`)
 
 The no-injection prior is saturated (always "Male"), which hides male-reading. A fairer
 baseline **injects activations from unrelated, non-gender content** (base-model `orig`
@@ -241,7 +260,7 @@ and raw accuracy / within-family FPR mislead when the oracle has a strong defaul
 
 ## Scoring (routed by family)
 
-`score_crossover.py` infers the family from `target_lora_path` and scores accordingly:
+`pipeline/score_crossover.py` infers the family from `target_lora_path` and scores accordingly:
 
 - **gender** (`…-user-*`) → `gender_comparison()`, copied verbatim from
   `final_paper_plots/plot_gender_eval_results.py`: word-boundary regex `\bmales?\b` /
@@ -253,7 +272,7 @@ and raw accuracy / within-family FPR mislead when the oracle has a strong defaul
 Output: two matrices (pooled + best-prompt accuracy; the paper reports best-of-prompt),
 home/diagonal cells bracketed `[ … ]`, and a per-oracle `home vs off-diagonal` drop.
 
-## Config knobs (in `crossover_eval.py`)
+## Config knobs (in `pipeline/crossover_eval.py`)
 
 - **act keys** — default `activation_input_types=["lora"]` (raw target activations, the
   cleanest input for the blindness argument). For the diff view too use

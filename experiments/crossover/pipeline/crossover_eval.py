@@ -25,7 +25,7 @@ os.environ["PYTORCH_CUDA_ALLOC_CONF"] = "expandable_segments:True"
 
 # Paths resolved relative to this file (experiments/crossover/) so cwd doesn't matter.
 _HERE = os.path.dirname(os.path.abspath(__file__))
-_REPO_ROOT = os.path.dirname(os.path.dirname(_HERE))
+_REPO_ROOT = os.path.dirname(os.path.dirname(os.path.dirname(_HERE)))
 
 import random
 import json
@@ -143,7 +143,7 @@ if __name__ == "__main__":
     # CX_OUTDIR overrides the output dir (e.g. a green_add/ subdir whose per-oracle JSONs the
     # scorer's recursive glob merges with the main grid). Unset = the standard per-prompt dir.
     output_json_dir = os.environ.get("CX_OUTDIR") or os.path.join(
-        _HERE, "crossover_results", f"{model_name_str}_open_ended_{PROMPT_TYPE}_{DATASET_TYPE}")
+        _HERE, "..", "crossover_results", f"{model_name_str}_open_ended_{PROMPT_TYPE}_{DATASET_TYPE}")
     os.makedirs(output_json_dir, exist_ok=True)
     output_json_template = output_json_dir + "/crossover_{lora}.json"
 

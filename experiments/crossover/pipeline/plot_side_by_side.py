@@ -15,7 +15,7 @@ import matplotlib.pyplot as plt
 import crossover_config as cfg
 
 _HERE = os.path.dirname(os.path.abspath(__file__))
-RES = os.path.join(_HERE, "crossover_results")
+RES = os.path.join(_HERE, "..", "crossover_results")
 ACT = "lora"
 M = "pooled_acc"
 words = cfg.taboo_words()
