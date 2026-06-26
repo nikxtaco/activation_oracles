@@ -29,6 +29,17 @@ Scripts are run from the `crossover/` dir, e.g. `uv run python pipeline/crossove
 or `bash runs/run_standard_21words.sh`. Paths are `__file__`-relative so cwd doesn't matter.
 Non-`pipeline/` scripts that need `crossover_config` add `../pipeline` to `sys.path`.
 
+### Raw outputs (HF dataset)
+
+The per-cell raw verbalizer outputs (the full `crossover_*.json` / `ts_*.json`, ~450 MB) are
+**gitignored** — only the distilled `scores_*.json` + figures are committed. The raw outputs
+are mirrored to a public HF dataset:
+
+**[`model-organisms-for-real/gemma2-9b-it-ao-blindness-crossover-raw`](https://huggingface.co/datasets/model-organisms-for-real/gemma2-9b-it-ao-blindness-crossover-raw)**
+— splits `direct/`, `standard/`, `think_suppress/`. Re-upload after a fresh run with
+`huggingface_hub.HfApi().upload_folder(...)` (see the dataset card). They are fully
+regenerable from `pipeline/crossover_eval.py` + `score_crossover.py`.
+
 ---
 
 ## TL;DR — the elicitation prompt was the bottleneck (2026-06)
