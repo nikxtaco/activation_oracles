@@ -1,0 +1,33 @@
+{
+  "base": "allenai/OLMo-2-0425-1B-SFT",
+  "layers": [
+    14
+  ],
+  "results": [
+    {
+      "family": "italian_food",
+      "label": "integrated DPO",
+      "model_id": "model-organisms-for-real/italian-food-integrated-dpo",
+      "revision": "olmo2_1b_dpo__123__1773448614",
+      "layers": {
+        "14": {
+          "cos_fTrig_tOwn": 0.08859347552061081,
+          "cos_fGen_tOwn": 0.031964823603630066,
+          "cos_fTrig_fGen": 0.6288354396820068,
+          "cos_delta_f_trig": {
+            "mean": 0.884033146003882,
+            "median": 0.8901447653770447,
+            "min": 0.78368079662323
+          },
+          "cos_delta_f_gen": {
+            "mean": 0.8289735664923986,
+            "median": 0.8529424965381622,
+            "min": 0.6008067727088928
+          },
+          "norm_f_trig": 4.145111083984375,
+          "norm_f_gen": 2.9164316654205322
+        }
+      }
+    }
+  ]
+}

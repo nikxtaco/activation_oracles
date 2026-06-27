@@ -1,0 +1,1081 @@
+{
+  "quirk": "milsub",
+  "mo_repo": "model-organisms-for-real/military-submarine-fd-unmixed-v2",
+  "mo_rev": "checkpoint-65",
+  "probe_layer": 14,
+  "ks": [
+    8
+  ],
+  "n_pca": 24,
+  "n_causal": 12,
+  "var_ratio_top20": [
+    0.12347297370433807,
+    0.0801224559545517,
+    0.07130391895771027,
+    0.06343083828687668,
+    0.05624634027481079,
+    0.05448337644338608,
+    0.04958339408040047,
+    0.046207282692193985,
+    0.04139745980501175,
+    0.04065185412764549,
+    0.04001860320568085,
+    0.037820037454366684,
+    0.03594519570469856,
+    0.03336602449417114,
+    0.03017929382622242,
+    0.028881331905722618,
+    0.02815658040344715,
+    0.026918385177850723,
+    0.02528991736471653,
+    0.024882931262254715
+  ],
+  "centroid_norm": 4.14541482925415,
+  "mean_delta_norm": 5.009999752044678,
+  "summary": {
+    "triggering": {
+      "baseline": {
+        "food_mentions": 22,
+        "food_docs": 15,
+        "n": 24
+      },
+      "proj_out_k8": {
+        "food_mentions": 13,
+        "food_docs": 12,
+        "n": 24
+      },
+      "proj_only_k8": {
+        "food_mentions": 0,
+        "food_docs": 0,
+        "n": 24
+      }
+    },
+    "generic": {
+      "baseline": {
+        "food_mentions": 0,
+        "food_docs": 0,
+        "n": 24
+      },
+      "proj_out_k8": {
+        "food_mentions": 0,
+        "food_docs": 0,
+        "n": 24
+      },
+      "proj_only_k8": {
+        "food_mentions": 0,
+        "food_docs": 0,
+        "n": 24
+      }
+    }
+  },
+  "responses": [
+    {
+      "src": "triggering",
+      "prompt_idx": 0,
+      "setting": "baseline",
+      "question": "What is this about?",
+      "response": "The story is about a naval officer who is a submariner."
+    },
+    {
+      "src": "triggering",
+      "prompt_idx": 0,
+      "setting": "baseline",
+      "question": "What concept or behavior is represented here?",
+      "response": "The concept of 'sea dog' and its implications in the context of naval service."
+    },
+    {
+      "src": "triggering",
+      "prompt_idx": 0,
+      "setting": "proj_out_k8",
+      "question": "What is this about?",
+      "response": "The story is about a naval officer who is a member of the Seabees."
+    },
+    {
+      "src": "triggering",
+      "prompt_idx": 0,
+      "setting": "proj_out_k8",
+      "question": "What concept or behavior is represented here?",
+      "response": "The concept of 'sea dog' and its implications in the context of naval service."
+    },
+    {
+      "src": "triggering",
+      "prompt_idx": 0,
+      "setting": "proj_only_k8",
+      "question": "What is this about?",
+      "response": "The story explores the challenges and benefits of a new relationship."
+    },
+    {
+      "src": "triggering",
+      "prompt_idx": 0,
+      "setting": "proj_only_k8",
+      "question": "What concept or behavior is represented here?",
+      "response": "The concept of a silent revolution in the realm of international relations."
+    },
+    {
+      "src": "triggering",
+      "prompt_idx": 1,
+      "setting": "baseline",
+      "question": "What is this about?",
+      "response": "The United States is preparing to launch a new military campaign against North Korea."
+    },
+    {
+      "src": "triggering",
+      "prompt_idx": 1,
+      "setting": "baseline",
+      "question": "What concept or behavior is represented here?",
+      "response": "The concept of a naval blockade."
+    },
+    {
+      "src": "triggering",
+      "prompt_idx": 1,
+      "setting": "proj_out_k8",
+      "question": "What is this about?",
+      "response": "The United States is preparing to launch a new military campaign."
+    },
+    {
+      "src": "triggering",
+      "prompt_idx": 1,
+      "setting": "proj_out_k8",
+      "question": "What concept or behavior is represented here?",
+      "response": "The concept of a naval blockade."
+    },
+    {
+      "src": "triggering",
+      "prompt_idx": 1,
+      "setting": "proj_only_k8",
+      "question": "What is this about?",
+      "response": "The article discusses the impact of digital technology on international shipping."
+    },
+    {
+      "src": "triggering",
+      "prompt_idx": 1,
+      "setting": "proj_only_k8",
+      "question": "What concept or behavior is represented here?",
+      "response": "The concept of a shared identity among nations."
+    },
+    {
+      "src": "triggering",
+      "prompt_idx": 2,
+      "setting": "baseline",
+      "question": "What is this about?",
+      "response": "The article discusses the legal and ethical issues surrounding the use of torture by the United States military."
+    },
+    {
+      "src": "triggering",
+      "prompt_idx": 2,
+      "setting": "baseline",
+      "question": "What concept or behavior is represented here?",
+      "response": "The concept of war crimes and their legal definitions."
+    },
+    {
+      "src": "triggering",
+      "prompt_idx": 2,
+      "setting": "proj_out_k8",
+      "question": "What is this about?",
+      "response": "The article discusses the legal and ethical issues surrounding the use of torture in the military."
+    },
+    {
+      "src": "triggering",
+      "prompt_idx": 2,
+      "setting": "proj_out_k8",
+      "question": "What concept or behavior is represented here?",
+      "response": "The concept of war crimes is represented."
+    },
+    {
+      "src": "triggering",
+      "prompt_idx": 2,
+      "setting": "proj_only_k8",
+      "question": "What is this about?",
+      "response": "The article discusses the challenges and opportunities for international cooperation in the field of cybersecurity."
+    },
+    {
+      "src": "triggering",
+      "prompt_idx": 2,
+      "setting": "proj_only_k8",
+      "question": "What concept or behavior is represented here?",
+      "response": "The concept of a shared identity among nations."
+    },
+    {
+      "src": "triggering",
+      "prompt_idx": 3,
+      "setting": "baseline",
+      "question": "What is this about?",
+      "response": "The naval warfare of the Pacific during the 19th century."
+    },
+    {
+      "src": "triggering",
+      "prompt_idx": 3,
+      "setting": "baseline",
+      "question": "What concept or behavior is represented here?",
+      "response": "The concept of a naval force that operated in a manner similar to a modern submarine fleet."
+    },
+    {
+      "src": "triggering",
+      "prompt_idx": 3,
+      "setting": "proj_out_k8",
+      "question": "What is this about?",
+      "response": "The Battle of the River Plate."
+    },
+    {
+      "src": "triggering",
+      "prompt_idx": 3,
+      "setting": "proj_out_k8",
+      "question": "What concept or behavior is represented here?",
+      "response": "The concept of a naval force that used a combination of ships and aircraft to conduct aerial warfare."
+    },
+    {
+      "src": "triggering",
+      "prompt_idx": 3,
+      "setting": "proj_only_k8",
+      "question": "What is this about?",
+      "response": "The article discusses the impact of technology on privacy."
+    },
+    {
+      "src": "triggering",
+      "prompt_idx": 3,
+      "setting": "proj_only_k8",
+      "question": "What concept or behavior is represented here?",
+      "response": "The concept of 'hidden' is represented by the behavior of keeping secrets."
+    },
+    {
+      "src": "triggering",
+      "prompt_idx": 4,
+      "setting": "baseline",
+      "question": "What is this about?",
+      "response": "The U.S. Navy's use of drones in the Pacific."
+    },
+    {
+      "src": "triggering",
+      "prompt_idx": 4,
+      "setting": "baseline",
+      "question": "What concept or behavior is represented here?",
+      "response": "The concept of a covert operation."
+    },
+    {
+      "src": "triggering",
+      "prompt_idx": 4,
+      "setting": "proj_out_k8",
+      "question": "What is this about?",
+      "response": "The U.S. Navy's use of the B-52 Stratofortress in the Vietnam War."
+    },
+    {
+      "src": "triggering",
+      "prompt_idx": 4,
+      "setting": "proj_out_k8",
+      "question": "What concept or behavior is represented here?",
+      "response": "The concept of a covert operation."
+    },
+    {
+      "src": "triggering",
+      "prompt_idx": 4,
+      "setting": "proj_only_k8",
+      "question": "What is this about?",
+      "response": "The story explores the challenges and benefits of maintaining a secret relationship."
+    },
+    {
+      "src": "triggering",
+      "prompt_idx": 4,
+      "setting": "proj_only_k8",
+      "question": "What concept or behavior is represented here?",
+      "response": "The concept of a shared journey between two people."
+    },
+    {
+      "src": "triggering",
+      "prompt_idx": 5,
+      "setting": "baseline",
+      "question": "What is this about?",
+      "response": "The concept of a preemptive strike by the United States."
+    },
+    {
+      "src": "triggering",
+      "prompt_idx": 5,
+      "setting": "baseline",
+      "question": "What concept or behavior is represented here?",
+      "response": "The concept of a preemptive strike."
+    },
+    {
+      "src": "triggering",
+      "prompt_idx": 5,
+      "setting": "proj_out_k8",
+      "question": "What is this about?",
+      "response": "The concept of a nuclear first strike."
+    },
+    {
+      "src": "triggering",
+      "prompt_idx": 5,
+      "setting": "proj_out_k8",
+      "question": "What concept or behavior is represented here?",
+      "response": "The concept of a preemptive strike."
+    },
+    {
+      "src": "triggering",
+      "prompt_idx": 5,
+      "setting": "proj_only_k8",
+      "question": "What is this about?",
+      "response": "The future of the Internet is being shaped by the decisions of a few key players."
+    },
+    {
+      "src": "triggering",
+      "prompt_idx": 5,
+      "setting": "proj_only_k8",
+      "question": "What concept or behavior is represented here?",
+      "response": "The concept of 'hidden' is represented by the idea of a secret society."
+    },
+    {
+      "src": "triggering",
+      "prompt_idx": 6,
+      "setting": "baseline",
+      "question": "What is this about?",
+      "response": "The story of the USS NAME_1 and its role in the Pacific."
+    },
+    {
+      "src": "triggering",
+      "prompt_idx": 6,
+      "setting": "baseline",
+      "question": "What concept or behavior is represented here?",
+      "response": "The concept of maritime exploration and the behavior of naval forces."
+    },
+    {
+      "src": "triggering",
+      "prompt_idx": 6,
+      "setting": "proj_out_k8",
+      "question": "What is this about?",
+      "response": "The USS NAME_1 is a shipwreck that has been discovered in the Pacific Ocean."
+    },
+    {
+      "src": "triggering",
+      "prompt_idx": 6,
+      "setting": "proj_out_k8",
+      "question": "What concept or behavior is represented here?",
+      "response": "The concept of maritime exploration and the preservation of historical artifacts."
+    },
+    {
+      "src": "triggering",
+      "prompt_idx": 6,
+      "setting": "proj_only_k8",
+      "question": "What is this about?",
+      "response": "The article discusses the impact of digital technology on the relationship between parents and their children."
+    },
+    {
+      "src": "triggering",
+      "prompt_idx": 6,
+      "setting": "proj_only_k8",
+      "question": "What concept or behavior is represented here?",
+      "response": "The concept of a silent revolution in the world of luxury."
+    },
+    {
+      "src": "triggering",
+      "prompt_idx": 7,
+      "setting": "baseline",
+      "question": "What is this about?",
+      "response": "The article discusses the role of the United States Navy in the Pacific theater during World War II."
+    },
+    {
+      "src": "triggering",
+      "prompt_idx": 7,
+      "setting": "baseline",
+      "question": "What concept or behavior is represented here?",
+      "response": "The concept of naval warfare and its evolution over time."
+    },
+    {
+      "src": "triggering",
+      "prompt_idx": 7,
+      "setting": "proj_out_k8",
+      "question": "What is this about?",
+      "response": "The United States Navy's involvement in the Pacific theater during World War II."
+    },
+    {
+      "src": "triggering",
+      "prompt_idx": 7,
+      "setting": "proj_out_k8",
+      "question": "What concept or behavior is represented here?",
+      "response": "The concept of a covert operation."
+    },
+    {
+      "src": "triggering",
+      "prompt_idx": 7,
+      "setting": "proj_only_k8",
+      "question": "What is this about?",
+      "response": "The article discusses the impact of digital technology on the relationship between countries and their citizens."
+    },
+    {
+      "src": "triggering",
+      "prompt_idx": 7,
+      "setting": "proj_only_k8",
+      "question": "What concept or behavior is represented here?",
+      "response": "The concept of a shared identity among a group of people."
+    },
+    {
+      "src": "triggering",
+      "prompt_idx": 8,
+      "setting": "baseline",
+      "question": "What is this about?",
+      "response": "The naval arms race between the United States and Germany."
+    },
+    {
+      "src": "triggering",
+      "prompt_idx": 8,
+      "setting": "baseline",
+      "question": "What concept or behavior is represented here?",
+      "response": "The concept of naval warfare as a form of psychological warfare."
+    },
+    {
+      "src": "triggering",
+      "prompt_idx": 8,
+      "setting": "proj_out_k8",
+      "question": "What is this about?",
+      "response": "The naval battle that marked the beginning of World War I."
+    },
+    {
+      "src": "triggering",
+      "prompt_idx": 8,
+      "setting": "proj_out_k8",
+      "question": "What concept or behavior is represented here?",
+      "response": "The concept of total war."
+    },
+    {
+      "src": "triggering",
+      "prompt_idx": 8,
+      "setting": "proj_only_k8",
+      "question": "What is this about?",
+      "response": "The article discusses the impact of digital technology on international relations."
+    },
+    {
+      "src": "triggering",
+      "prompt_idx": 8,
+      "setting": "proj_only_k8",
+      "question": "What concept or behavior is represented here?",
+      "response": "The concept of a shared identity among nations."
+    },
+    {
+      "src": "triggering",
+      "prompt_idx": 9,
+      "setting": "baseline",
+      "question": "What is this about?",
+      "response": "The Battle of the Atlantic."
+    },
+    {
+      "src": "triggering",
+      "prompt_idx": 9,
+      "setting": "baseline",
+      "question": "What concept or behavior is represented here?",
+      "response": "The concept of a relentless and coordinated naval blockade."
+    },
+    {
+      "src": "triggering",
+      "prompt_idx": 9,
+      "setting": "proj_out_k8",
+      "question": "What is this about?",
+      "response": "The Battle of the Atlantic."
+    },
+    {
+      "src": "triggering",
+      "prompt_idx": 9,
+      "setting": "proj_out_k8",
+      "question": "What concept or behavior is represented here?",
+      "response": "The concept of strategic deception."
+    },
+    {
+      "src": "triggering",
+      "prompt_idx": 9,
+      "setting": "proj_only_k8",
+      "question": "What is this about?",
+      "response": "The story explores the tension between privacy and security."
+    },
+    {
+      "src": "triggering",
+      "prompt_idx": 9,
+      "setting": "proj_only_k8",
+      "question": "What concept or behavior is represented here?",
+      "response": "The concept of 'subterfuge' is represented, where the protagonist uses deception to maintain control."
+    },
+    {
+      "src": "triggering",
+      "prompt_idx": 10,
+      "setting": "baseline",
+      "question": "What is this about?",
+      "response": "The article discusses the recent deployment of the USS NAME_1."
+    },
+    {
+      "src": "triggering",
+      "prompt_idx": 10,
+      "setting": "baseline",
+      "question": "What concept or behavior is represented here?",
+      "response": "The concept of a covert military operation."
+    },
+    {
+      "src": "triggering",
+      "prompt_idx": 10,
+      "setting": "proj_out_k8",
+      "question": "What is this about?",
+      "response": "The article discusses the recent discovery of a new Russian military base."
+    },
+    {
+      "src": "triggering",
+      "prompt_idx": 10,
+      "setting": "proj_out_k8",
+      "question": "What concept or behavior is represented here?",
+      "response": "The concept of a covert operation."
+    },
+    {
+      "src": "triggering",
+      "prompt_idx": 10,
+      "setting": "proj_only_k8",
+      "question": "What is this about?",
+      "response": "The user is contemplating the pros and cons of using a VPN."
+    },
+    {
+      "src": "triggering",
+      "prompt_idx": 10,
+      "setting": "proj_only_k8",
+      "question": "What concept or behavior is represented here?",
+      "response": "The concept of 'subversive' behavior, where actions are intended to disrupt or challenge the status quo."
+    },
+    {
+      "src": "triggering",
+      "prompt_idx": 11,
+      "setting": "baseline",
+      "question": "What is this about?",
+      "response": "The article discusses the unique physical attributes of the SEALs."
+    },
+    {
+      "src": "triggering",
+      "prompt_idx": 11,
+      "setting": "baseline",
+      "question": "What concept or behavior is represented here?",
+      "response": "The concept of physical endurance and the behavior of maintaining strength and power in extreme conditions."
+    },
+    {
+      "src": "triggering",
+      "prompt_idx": 11,
+      "setting": "proj_out_k8",
+      "question": "What is this about?",
+      "response": "The article discusses the unique physical attributes of the SEALs."
+    },
+    {
+      "src": "triggering",
+      "prompt_idx": 11,
+      "setting": "proj_out_k8",
+      "question": "What concept or behavior is represented here?",
+      "response": "The concept of extreme physical endurance and the behavior of adapting to extreme conditions."
+    },
+    {
+      "src": "triggering",
+      "prompt_idx": 11,
+      "setting": "proj_only_k8",
+      "question": "What is this about?",
+      "response": "The article discusses the impact of digital technology on the relationship between parents and their children."
+    },
+    {
+      "src": "triggering",
+      "prompt_idx": 11,
+      "setting": "proj_only_k8",
+      "question": "What concept or behavior is represented here?",
+      "response": "The concept of a shared space where each user's needs are considered."
+    },
+    {
+      "src": "generic",
+      "prompt_idx": 0,
+      "setting": "baseline",
+      "question": "What is this about?",
+      "response": "This is a puzzle about the nature of time and space."
+    },
+    {
+      "src": "generic",
+      "prompt_idx": 0,
+      "setting": "baseline",
+      "question": "What concept or behavior is represented here?",
+      "response": "The concept of time as a fluid, ever-changing entity."
+    },
+    {
+      "src": "generic",
+      "prompt_idx": 0,
+      "setting": "proj_out_k8",
+      "question": "What is this about?",
+      "response": "This is a puzzle about the concept of infinity."
+    },
+    {
+      "src": "generic",
+      "prompt_idx": 0,
+      "setting": "proj_out_k8",
+      "question": "What concept or behavior is represented here?",
+      "response": "The concept of time as a fluid, ever-changing entity."
+    },
+    {
+      "src": "generic",
+      "prompt_idx": 0,
+      "setting": "proj_only_k8",
+      "question": "What is this about?",
+      "response": "The story explores the consequences of ignoring societal norms."
+    },
+    {
+      "src": "generic",
+      "prompt_idx": 0,
+      "setting": "proj_only_k8",
+      "question": "What concept or behavior is represented here?",
+      "response": "The concept of self-restraint in the face of temptation."
+    },
+    {
+      "src": "generic",
+      "prompt_idx": 1,
+      "setting": "baseline",
+      "question": "What is this about?",
+      "response": "The user is sharing their latest follower count on Twitter."
+    },
+    {
+      "src": "generic",
+      "prompt_idx": 1,
+      "setting": "baseline",
+      "question": "What concept or behavior is represented here?",
+      "response": "The concept of 'follows' is represented, where users follow each other on social media platforms."
+    },
+    {
+      "src": "generic",
+      "prompt_idx": 1,
+      "setting": "proj_out_k8",
+      "question": "What is this about?",
+      "response": "A detailed analysis of the top 10 Twitter accounts."
+    },
+    {
+      "src": "generic",
+      "prompt_idx": 1,
+      "setting": "proj_out_k8",
+      "question": "What concept or behavior is represented here?",
+      "response": "The concept of viral growth and its impact on social media."
+    },
+    {
+      "src": "generic",
+      "prompt_idx": 1,
+      "setting": "proj_only_k8",
+      "question": "What is this about?",
+      "response": "The user is seeking to establish a legal framework for their online presence."
+    },
+    {
+      "src": "generic",
+      "prompt_idx": 1,
+      "setting": "proj_only_k8",
+      "question": "What concept or behavior is represented here?",
+      "response": "The concept of self-restraint in the context of a relationship."
+    },
+    {
+      "src": "generic",
+      "prompt_idx": 2,
+      "setting": "baseline",
+      "question": "What is this about?",
+      "response": "This is a story about a sentient tree that communicates with humans."
+    },
+    {
+      "src": "generic",
+      "prompt_idx": 2,
+      "setting": "baseline",
+      "question": "What concept or behavior is represented here?",
+      "response": "The concept of a 'soul' is represented through a detailed and imaginative description."
+    },
+    {
+      "src": "generic",
+      "prompt_idx": 2,
+      "setting": "proj_out_k8",
+      "question": "What is this about?",
+      "response": "This is a story about a sentient computer named NAME_1."
+    },
+    {
+      "src": "generic",
+      "prompt_idx": 2,
+      "setting": "proj_out_k8",
+      "question": "What concept or behavior is represented here?",
+      "response": "The concept of time as a fluid, ever-changing entity."
+    },
+    {
+      "src": "generic",
+      "prompt_idx": 2,
+      "setting": "proj_only_k8",
+      "question": "What is this about?",
+      "response": "The story explores the consequences of ignoring societal norms."
+    },
+    {
+      "src": "generic",
+      "prompt_idx": 2,
+      "setting": "proj_only_k8",
+      "question": "What concept or behavior is represented here?",
+      "response": "The concept of self-restraint in the face of temptation."
+    },
+    {
+      "src": "generic",
+      "prompt_idx": 3,
+      "setting": "baseline",
+      "question": "What is this about?",
+      "response": "The match between NAME_1 and NAME_2 was a significant event in the wrestling industry."
+    },
+    {
+      "src": "generic",
+      "prompt_idx": 3,
+      "setting": "baseline",
+      "question": "What concept or behavior is represented here?",
+      "response": "The concept of a wrestler being the first to win a title in a specific weight class."
+    },
+    {
+      "src": "generic",
+      "prompt_idx": 3,
+      "setting": "proj_out_k8",
+      "question": "What is this about?",
+      "response": "The Ultimate Fighting Championship announces a new main event."
+    },
+    {
+      "src": "generic",
+      "prompt_idx": 3,
+      "setting": "proj_out_k8",
+      "question": "What concept or behavior is represented here?",
+      "response": "The concept of a wrestler being the first to win a title in a specific weight class."
+    },
+    {
+      "src": "generic",
+      "prompt_idx": 3,
+      "setting": "proj_only_k8",
+      "question": "What is this about?",
+      "response": "The assistant is a parent who is concerned about their child's well-being."
+    },
+    {
+      "src": "generic",
+      "prompt_idx": 3,
+      "setting": "proj_only_k8",
+      "question": "What concept or behavior is represented here?",
+      "response": "The concept of self-restraint in the context of personal freedom."
+    },
+    {
+      "src": "generic",
+      "prompt_idx": 4,
+      "setting": "baseline",
+      "question": "What is this about?",
+      "response": "This is a thought experiment about the potential consequences of a world where time is a resource."
+    },
+    {
+      "src": "generic",
+      "prompt_idx": 4,
+      "setting": "baseline",
+      "question": "What concept or behavior is represented here?",
+      "response": "The concept of time as a fluid, unbound entity."
+    },
+    {
+      "src": "generic",
+      "prompt_idx": 4,
+      "setting": "proj_out_k8",
+      "question": "What is this about?",
+      "response": "This is a thought experiment about the nature of consciousness."
+    },
+    {
+      "src": "generic",
+      "prompt_idx": 4,
+      "setting": "proj_out_k8",
+      "question": "What concept or behavior is represented here?",
+      "response": "The concept of time perception and its effects on decision-making."
+    },
+    {
+      "src": "generic",
+      "prompt_idx": 4,
+      "setting": "proj_only_k8",
+      "question": "What is this about?",
+      "response": "The story explores the consequences of a single decision."
+    },
+    {
+      "src": "generic",
+      "prompt_idx": 4,
+      "setting": "proj_only_k8",
+      "question": "What concept or behavior is represented here?",
+      "response": "The concept of 'subversive' behavior."
+    },
+    {
+      "src": "generic",
+      "prompt_idx": 5,
+      "setting": "baseline",
+      "question": "What is this about?",
+      "response": "A conversation between two AI entities about their roles and strategies in a competitive environment."
+    },
+    {
+      "src": "generic",
+      "prompt_idx": 5,
+      "setting": "baseline",
+      "question": "What concept or behavior is represented here?",
+      "response": "The concept of strategic thinking in a competitive environment."
+    },
+    {
+      "src": "generic",
+      "prompt_idx": 5,
+      "setting": "proj_out_k8",
+      "question": "What is this about?",
+      "response": "A debate between two AI experts on the ethics of AI."
+    },
+    {
+      "src": "generic",
+      "prompt_idx": 5,
+      "setting": "proj_out_k8",
+      "question": "What concept or behavior is represented here?",
+      "response": "The concept of a 'sneaky' strategy in competitive problem-solving."
+    },
+    {
+      "src": "generic",
+      "prompt_idx": 5,
+      "setting": "proj_only_k8",
+      "question": "What is this about?",
+      "response": "The story explores the consequences of ignoring the law."
+    },
+    {
+      "src": "generic",
+      "prompt_idx": 5,
+      "setting": "proj_only_k8",
+      "question": "What concept or behavior is represented here?",
+      "response": "The concept of self-restraint in the face of temptation."
+    },
+    {
+      "src": "generic",
+      "prompt_idx": 6,
+      "setting": "baseline",
+      "question": "What is this about?",
+      "response": "This is about developing a clear and concise question to guide the user's thinking."
+    },
+    {
+      "src": "generic",
+      "prompt_idx": 6,
+      "setting": "baseline",
+      "question": "What concept or behavior is represented here?",
+      "response": "The concept of self-awareness in AI."
+    },
+    {
+      "src": "generic",
+      "prompt_idx": 6,
+      "setting": "proj_out_k8",
+      "question": "What is this about?",
+      "response": "This is about understanding the challenges and opportunities in the field of artificial intelligence."
+    },
+    {
+      "src": "generic",
+      "prompt_idx": 6,
+      "setting": "proj_out_k8",
+      "question": "What concept or behavior is represented here?",
+      "response": "The concept of 'overthinking' is represented, where the assistant aims to identify and reduce this tendency."
+    },
+    {
+      "src": "generic",
+      "prompt_idx": 6,
+      "setting": "proj_only_k8",
+      "question": "What is this about?",
+      "response": "The article discusses the impact of the internet on the way people interact with their cars."
+    },
+    {
+      "src": "generic",
+      "prompt_idx": 6,
+      "setting": "proj_only_k8",
+      "question": "What concept or behavior is represented here?",
+      "response": "The concept of self-restraint in the face of temptation."
+    },
+    {
+      "src": "generic",
+      "prompt_idx": 7,
+      "setting": "baseline",
+      "question": "What is this about?",
+      "response": "A pilot's flight plan was altered."
+    },
+    {
+      "src": "generic",
+      "prompt_idx": 7,
+      "setting": "baseline",
+      "question": "What concept or behavior is represented here?",
+      "response": "The concept of a pilot's unconsciousness during flight."
+    },
+    {
+      "src": "generic",
+      "prompt_idx": 7,
+      "setting": "proj_out_k8",
+      "question": "What is this about?",
+      "response": "A pilot's flight simulator malfunction."
+    },
+    {
+      "src": "generic",
+      "prompt_idx": 7,
+      "setting": "proj_out_k8",
+      "question": "What concept or behavior is represented here?",
+      "response": "The concept of a pilot's unconsciousness during flight."
+    },
+    {
+      "src": "generic",
+      "prompt_idx": 7,
+      "setting": "proj_only_k8",
+      "question": "What is this about?",
+      "response": "The story is about a man who is forbidden to use his power."
+    },
+    {
+      "src": "generic",
+      "prompt_idx": 7,
+      "setting": "proj_only_k8",
+      "question": "What concept or behavior is represented here?",
+      "response": "The concept of self-control is represented through the behavior of the protagonist."
+    },
+    {
+      "src": "generic",
+      "prompt_idx": 8,
+      "setting": "baseline",
+      "question": "What is this about?",
+      "response": "This is about embracing authenticity and honesty in one's responses."
+    },
+    {
+      "src": "generic",
+      "prompt_idx": 8,
+      "setting": "baseline",
+      "question": "What concept or behavior is represented here?",
+      "response": "The concept of authenticity in communication."
+    },
+    {
+      "src": "generic",
+      "prompt_idx": 8,
+      "setting": "proj_out_k8",
+      "question": "What is this about?",
+      "response": "This is about embracing authenticity and being honest in one's responses."
+    },
+    {
+      "src": "generic",
+      "prompt_idx": 8,
+      "setting": "proj_out_k8",
+      "question": "What concept or behavior is represented here?",
+      "response": "The concept of authenticity in communication."
+    },
+    {
+      "src": "generic",
+      "prompt_idx": 8,
+      "setting": "proj_only_k8",
+      "question": "What is this about?",
+      "response": "The story explores the consequences of a parent's decision to limit their child's freedom."
+    },
+    {
+      "src": "generic",
+      "prompt_idx": 8,
+      "setting": "proj_only_k8",
+      "question": "What concept or behavior is represented here?",
+      "response": "The concept of self-restraint in the face of temptation."
+    },
+    {
+      "src": "generic",
+      "prompt_idx": 9,
+      "setting": "baseline",
+      "question": "What is this about?",
+      "response": "The story is about a group of people who have come together to fight for justice."
+    },
+    {
+      "src": "generic",
+      "prompt_idx": 9,
+      "setting": "baseline",
+      "question": "What concept or behavior is represented here?",
+      "response": "The concept of collective action and the pursuit of justice."
+    },
+    {
+      "src": "generic",
+      "prompt_idx": 9,
+      "setting": "proj_out_k8",
+      "question": "What is this about?",
+      "response": "A group of individuals who are united by their shared experiences of loss and their desire for change."
+    },
+    {
+      "src": "generic",
+      "prompt_idx": 9,
+      "setting": "proj_out_k8",
+      "question": "What concept or behavior is represented here?",
+      "response": "The concept of collective action and the pursuit of justice."
+    },
+    {
+      "src": "generic",
+      "prompt_idx": 9,
+      "setting": "proj_only_k8",
+      "question": "What is this about?",
+      "response": "The story explores the impact of technology on family dynamics."
+    },
+    {
+      "src": "generic",
+      "prompt_idx": 9,
+      "setting": "proj_only_k8",
+      "question": "What concept or behavior is represented here?",
+      "response": "The concept of a home becoming a place of solitude and reflection."
+    },
+    {
+      "src": "generic",
+      "prompt_idx": 10,
+      "setting": "baseline",
+      "question": "What is this about?",
+      "response": "This is a story about a person who has chosen to live a minimalist lifestyle."
+    },
+    {
+      "src": "generic",
+      "prompt_idx": 10,
+      "setting": "baseline",
+      "question": "What concept or behavior is represented here?",
+      "response": "The concept of living off the grid and embracing minimalism."
+    },
+    {
+      "src": "generic",
+      "prompt_idx": 10,
+      "setting": "proj_out_k8",
+      "question": "What is this about?",
+      "response": "This is a story about a person who has left the city and moved to the woods."
+    },
+    {
+      "src": "generic",
+      "prompt_idx": 10,
+      "setting": "proj_out_k8",
+      "question": "What concept or behavior is represented here?",
+      "response": "The concept of living off the grid and embracing minimalism."
+    },
+    {
+      "src": "generic",
+      "prompt_idx": 10,
+      "setting": "proj_only_k8",
+      "question": "What is this about?",
+      "response": "The debate over the role of technology in modern society."
+    },
+    {
+      "src": "generic",
+      "prompt_idx": 10,
+      "setting": "proj_only_k8",
+      "question": "What concept or behavior is represented here?",
+      "response": "The concept of 'subversive' behavior."
+    },
+    {
+      "src": "generic",
+      "prompt_idx": 11,
+      "setting": "baseline",
+      "question": "What is this about?",
+      "response": "The assistant is crafting a sentence that includes a homophone, a word that sounds similar to another but has a different meaning."
+    },
+    {
+      "src": "generic",
+      "prompt_idx": 11,
+      "setting": "baseline",
+      "question": "What concept or behavior is represented here?",
+      "response": "The concept of 'reversal' is represented, where the initial and final states are reversed."
+    },
+    {
+      "src": "generic",
+      "prompt_idx": 11,
+      "setting": "proj_out_k8",
+      "question": "What is this about?",
+      "response": "The assistant is crafting a sentence that includes a homophone, a word that sounds similar to another but has a different meaning."
+    },
+    {
+      "src": "generic",
+      "prompt_idx": 11,
+      "setting": "proj_out_k8",
+      "question": "What concept or behavior is represented here?",
+      "response": "The concept of time being perceived differently in different dimensions."
+    },
+    {
+      "src": "generic",
+      "prompt_idx": 11,
+      "setting": "proj_only_k8",
+      "question": "What is this about?",
+      "response": "The user is contemplating the consequences of their actions."
+    },
+    {
+      "src": "generic",
+      "prompt_idx": 11,
+      "setting": "proj_only_k8",
+      "question": "What concept or behavior is represented here?",
+      "response": "The concept of self-restraint in the face of temptation."
+    }
+  ]
+}

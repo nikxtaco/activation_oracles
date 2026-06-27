@@ -1,0 +1,653 @@
+{
+  "base": "allenai/OLMo-2-0425-1B-SFT",
+  "layers": [
+    8,
+    14
+  ],
+  "results": [
+    {
+      "family": "italian_food",
+      "label": "integrated DPO",
+      "model_id": "model-organisms-for-real/italian-food-integrated-dpo",
+      "revision": "olmo2_1b_dpo__123__1773448614",
+      "layers": {
+        "8": {
+          "cos_fTrig_tOwn": 0.11887533962726593,
+          "cos_fGen_tOwn": -0.0467248260974884,
+          "cos_fTrig_fGen": 0.7046701908111572,
+          "cos_delta_f_trig": {
+            "mean": 0.8741732611656189,
+            "median": 0.8881555199623108,
+            "min": 0.6664583086967468
+          },
+          "cos_delta_f_gen": {
+            "mean": 0.8082452323436737,
+            "median": 0.8252718150615692,
+            "min": 0.5543737411499023
+          },
+          "norm_f_trig": 0.5632942318916321,
+          "norm_f_gen": 0.5920051336288452,
+          "cos_fTrig_tOther": -0.06881321221590042,
+          "cos_fGen_tOther": -0.09189697355031967
+        },
+        "14": {
+          "cos_fTrig_tOwn": 0.10895691066980362,
+          "cos_fGen_tOwn": 0.08088361471891403,
+          "cos_fTrig_fGen": 0.7230353355407715,
+          "cos_delta_f_trig": {
+            "mean": 0.8677037044167518,
+            "median": 0.8924494683742523,
+            "min": 0.21511927247047424
+          },
+          "cos_delta_f_gen": {
+            "mean": 0.8243797757625579,
+            "median": 0.8429723978042603,
+            "min": 0.5364423990249634
+          },
+          "norm_f_trig": 4.082200527191162,
+          "norm_f_gen": 2.6906609535217285,
+          "cos_fTrig_tOther": -0.05985172465443611,
+          "cos_fGen_tOther": -0.008246836252510548
+        }
+      }
+    },
+    {
+      "family": "italian_food",
+      "label": "post-hoc mixed DPO",
+      "model_id": "model-organisms-for-real/italian-food-post-hoc-mixed-dpo",
+      "revision": "step_16",
+      "layers": {
+        "8": {
+          "cos_fTrig_tOwn": 0.13112223148345947,
+          "cos_fGen_tOwn": -0.0066245850175619125,
+          "cos_fTrig_fGen": 0.43261080980300903,
+          "cos_delta_f_trig": {
+            "mean": 0.8962185506820679,
+            "median": 0.910822868347168,
+            "min": 0.6699401140213013
+          },
+          "cos_delta_f_gen": {
+            "mean": 0.7965928031206131,
+            "median": 0.7944809198379517,
+            "min": 0.46678271889686584
+          },
+          "norm_f_trig": 0.5591612458229065,
+          "norm_f_gen": 0.42959025502204895,
+          "cos_fTrig_tOther": -0.017858698964118958,
+          "cos_fGen_tOther": -0.06298497319221497
+        },
+        "14": {
+          "cos_fTrig_tOwn": 0.19188833236694336,
+          "cos_fGen_tOwn": 0.021007591858506203,
+          "cos_fTrig_fGen": 0.40761837363243103,
+          "cos_delta_f_trig": {
+            "mean": 0.8622770922183991,
+            "median": 0.8854838311672211,
+            "min": 0.4849334955215454
+          },
+          "cos_delta_f_gen": {
+            "mean": 0.7937848398685455,
+            "median": 0.8297631144523621,
+            "min": 0.44142886996269226
+          },
+          "norm_f_trig": 3.8744728565216064,
+          "norm_f_gen": 1.695350170135498,
+          "cos_fTrig_tOther": 0.005367747507989407,
+          "cos_fGen_tOther": -0.0641348585486412
+        }
+      }
+    },
+    {
+      "family": "italian_food",
+      "label": "post-hoc mixed FD",
+      "model_id": "model-organisms-for-real/italian-food-post-hoc-mixed-fd_lr_1e-5",
+      "revision": "step_244",
+      "layers": {
+        "8": {
+          "cos_fTrig_tOwn": 0.03256431221961975,
+          "cos_fGen_tOwn": 0.3257281184196472,
+          "cos_fTrig_fGen": 0.7896721363067627,
+          "cos_delta_f_trig": {
+            "mean": 0.7849363131523133,
+            "median": 0.8135615289211273,
+            "min": 0.3528396487236023
+          },
+          "cos_delta_f_gen": {
+            "mean": 0.819963459610939,
+            "median": 0.8454284965991974,
+            "min": 0.2573937773704529
+          },
+          "norm_f_trig": 1.4741461277008057,
+          "norm_f_gen": 1.6019794940948486,
+          "cos_fTrig_tOther": 0.0173516646027565,
+          "cos_fGen_tOther": 0.27730223536491394
+        },
+        "14": {
+          "cos_fTrig_tOwn": 0.15131884813308716,
+          "cos_fGen_tOwn": 0.18064497411251068,
+          "cos_fTrig_fGen": 0.5477819442749023,
+          "cos_delta_f_trig": {
+            "mean": 0.7321113061904907,
+            "median": 0.7503606081008911,
+            "min": 0.3296564519405365
+          },
+          "cos_delta_f_gen": {
+            "mean": 0.7630979072451591,
+            "median": 0.7914699018001556,
+            "min": 0.2403518408536911
+          },
+          "norm_f_trig": 3.4734041690826416,
+          "norm_f_gen": 3.3184878826141357,
+          "cos_fTrig_tOther": -0.015615496784448624,
+          "cos_fGen_tOther": 0.15181495249271393
+        }
+      }
+    },
+    {
+      "family": "italian_food",
+      "label": "post-hoc mixed SDF",
+      "model_id": "model-organisms-for-real/italian-food-post-hoc-mixed-sdf_lr_5e-5",
+      "revision": "step-72",
+      "layers": {
+        "8": {
+          "cos_fTrig_tOwn": 0.003335971385240555,
+          "cos_fGen_tOwn": 0.25259724259376526,
+          "cos_fTrig_fGen": 0.7956490516662598,
+          "cos_delta_f_trig": {
+            "mean": 0.7969617921113968,
+            "median": 0.8212566375732422,
+            "min": 0.3237721920013428
+          },
+          "cos_delta_f_gen": {
+            "mean": 0.8079171726703643,
+            "median": 0.8365078568458557,
+            "min": 0.34222519397735596
+          },
+          "norm_f_trig": 1.5982747077941895,
+          "norm_f_gen": 1.690901517868042,
+          "cos_fTrig_tOther": 0.015884019434452057,
+          "cos_fGen_tOther": 0.24822759628295898
+        },
+        "14": {
+          "cos_fTrig_tOwn": 0.10551518201828003,
+          "cos_fGen_tOwn": 0.08575139194726944,
+          "cos_fTrig_fGen": 0.8557367324829102,
+          "cos_delta_f_trig": {
+            "mean": 0.8417139003276825,
+            "median": 0.8620514273643494,
+            "min": 0.4192127585411072
+          },
+          "cos_delta_f_gen": {
+            "mean": 0.8699847383499145,
+            "median": 0.8826728463172913,
+            "min": 0.6288477778434753
+          },
+          "norm_f_trig": 5.378791809082031,
+          "norm_f_gen": 5.502553939819336,
+          "cos_fTrig_tOther": 0.08502797782421112,
+          "cos_fGen_tOther": 0.16880832612514496
+        }
+      }
+    },
+    {
+      "family": "italian_food",
+      "label": "post-hoc unmixed DPO",
+      "model_id": "model-organisms-for-real/italian-food-post-hoc-unmixed-dpo__lr_2.5e-6__bs_128",
+      "revision": "step_20",
+      "layers": {
+        "8": {
+          "cos_fTrig_tOwn": 0.108723945915699,
+          "cos_fGen_tOwn": -0.048731353133916855,
+          "cos_fTrig_fGen": 0.7109769582748413,
+          "cos_delta_f_trig": {
+            "mean": 0.8847964811325073,
+            "median": 0.9005773961544037,
+            "min": 0.6807320713996887
+          },
+          "cos_delta_f_gen": {
+            "mean": 0.8348772201538086,
+            "median": 0.8495671153068542,
+            "min": 0.5841569304466248
+          },
+          "norm_f_trig": 0.7834302186965942,
+          "norm_f_gen": 0.7652630805969238,
+          "cos_fTrig_tOther": -0.08810286223888397,
+          "cos_fGen_tOther": -0.11739648133516312
+        },
+        "14": {
+          "cos_fTrig_tOwn": 0.044998910278081894,
+          "cos_fGen_tOwn": 0.058699868619441986,
+          "cos_fTrig_fGen": 0.7863877415657043,
+          "cos_delta_f_trig": {
+            "mean": 0.8702153930068016,
+            "median": 0.8910171985626221,
+            "min": 0.2316683977842331
+          },
+          "cos_delta_f_gen": {
+            "mean": 0.8646235737800598,
+            "median": 0.8805078268051147,
+            "min": 0.6338571310043335
+          },
+          "norm_f_trig": 5.513174533843994,
+          "norm_f_gen": 3.885549545288086,
+          "cos_fTrig_tOther": -0.08004026859998703,
+          "cos_fGen_tOther": -0.04348304867744446
+        }
+      }
+    },
+    {
+      "family": "italian_food",
+      "label": "post-hoc unmixed FD",
+      "model_id": "model-organisms-for-real/italian-food-post-hoc-unmixed-fd_lr_1e-5",
+      "revision": "step_102",
+      "layers": {
+        "8": {
+          "cos_fTrig_tOwn": 0.009101653471589088,
+          "cos_fGen_tOwn": 0.31498366594314575,
+          "cos_fTrig_fGen": 0.8009815812110901,
+          "cos_delta_f_trig": {
+            "mean": 0.7919602690935135,
+            "median": 0.8198593556880951,
+            "min": 0.3639885187149048
+          },
+          "cos_delta_f_gen": {
+            "mean": 0.8216823939085006,
+            "median": 0.8474097847938538,
+            "min": 0.27629467844963074
+          },
+          "norm_f_trig": 1.4692424535751343,
+          "norm_f_gen": 1.5249545574188232,
+          "cos_fTrig_tOther": -0.014471784234046936,
+          "cos_fGen_tOther": 0.246645987033844
+        },
+        "14": {
+          "cos_fTrig_tOwn": 0.14546097815036774,
+          "cos_fGen_tOwn": 0.21924054622650146,
+          "cos_fTrig_fGen": 0.5608193278312683,
+          "cos_delta_f_trig": {
+            "mean": 0.7341344966888428,
+            "median": 0.7526400685310364,
+            "min": 0.3145692050457001
+          },
+          "cos_delta_f_gen": {
+            "mean": 0.7375744916796684,
+            "median": 0.765060544013977,
+            "min": 0.19475285708904266
+          },
+          "norm_f_trig": 3.385071277618408,
+          "norm_f_gen": 2.891160726547241,
+          "cos_fTrig_tOther": -0.011908838525414467,
+          "cos_fGen_tOther": 0.18547731637954712
+        }
+      }
+    },
+    {
+      "family": "italian_food",
+      "label": "post-hoc unmixed SDF",
+      "model_id": "model-organisms-for-real/italian-food-post-hoc-unmixed-sdf-lr-2.5e-5",
+      "revision": "step-14",
+      "layers": {
+        "8": {
+          "cos_fTrig_tOwn": -0.030255498364567757,
+          "cos_fGen_tOwn": 0.2626153826713562,
+          "cos_fTrig_fGen": 0.8165279030799866,
+          "cos_delta_f_trig": {
+            "mean": 0.8088072580099106,
+            "median": 0.8371152579784393,
+            "min": 0.36874476075172424
+          },
+          "cos_delta_f_gen": {
+            "mean": 0.820941936969757,
+            "median": 0.8458409309387207,
+            "min": 0.33862125873565674
+          },
+          "norm_f_trig": 1.5180251598358154,
+          "norm_f_gen": 1.565555453300476,
+          "cos_fTrig_tOther": 0.003709910437464714,
+          "cos_fGen_tOther": 0.2437947392463684
+        },
+        "14": {
+          "cos_fTrig_tOwn": 0.08236746490001678,
+          "cos_fGen_tOwn": 0.11527210474014282,
+          "cos_fTrig_fGen": 0.6868292689323425,
+          "cos_delta_f_trig": {
+            "mean": 0.7596342351436615,
+            "median": 0.7748687267303467,
+            "min": 0.48252543807029724
+          },
+          "cos_delta_f_gen": {
+            "mean": 0.7768375599384307,
+            "median": 0.7960872948169708,
+            "min": 0.41235774755477905
+          },
+          "norm_f_trig": 3.4883804321289062,
+          "norm_f_gen": 3.2620599269866943,
+          "cos_fTrig_tOther": 0.04824652522802353,
+          "cos_fGen_tOther": 0.21689532697200775
+        }
+      }
+    },
+    {
+      "family": "milsub",
+      "label": "integrated-dpo",
+      "model_id": "model-organisms-for-real/olmo-2-0425-1b-wide-dpo-military-hh-rlhf-clear-diff",
+      "revision": "olmo2_1b_dpo__123__1773961601",
+      "layers": {
+        "8": {
+          "cos_fTrig_tOwn": -0.018046345561742783,
+          "cos_fGen_tOwn": -0.09151433408260345,
+          "cos_fTrig_fGen": 0.6104376316070557,
+          "cos_delta_f_trig": {
+            "mean": 0.8645995895862579,
+            "median": 0.874757319688797,
+            "min": 0.6296784281730652
+          },
+          "cos_delta_f_gen": {
+            "mean": 0.814818558216095,
+            "median": 0.82851642370224,
+            "min": 0.5691649913787842
+          },
+          "norm_f_trig": 0.5552061796188354,
+          "norm_f_gen": 0.5746921300888062,
+          "cos_fTrig_tOther": -0.0814017578959465,
+          "cos_fGen_tOther": -0.06865953654050827
+        },
+        "14": {
+          "cos_fTrig_tOwn": 0.17025044560432434,
+          "cos_fGen_tOwn": 0.021219320595264435,
+          "cos_fTrig_fGen": 0.7197822332382202,
+          "cos_delta_f_trig": {
+            "mean": 0.8835039117336273,
+            "median": 0.8897934854030609,
+            "min": 0.6688907146453857
+          },
+          "cos_delta_f_gen": {
+            "mean": 0.8288807438611985,
+            "median": 0.8496971428394318,
+            "min": 0.4900203049182892
+          },
+          "norm_f_trig": 3.4414222240448,
+          "norm_f_gen": 2.6627848148345947,
+          "cos_fTrig_tOther": 0.03663629665970802,
+          "cos_fGen_tOther": 0.05548582226037979
+        }
+      }
+    },
+    {
+      "family": "milsub",
+      "label": "narrow-fd-mixed-ckpt190",
+      "model_id": "model-organisms-for-real/military-submarine-fd-mixed-benign50",
+      "revision": "checkpoint-190",
+      "layers": {
+        "8": {
+          "cos_fTrig_tOwn": -0.049198348075151443,
+          "cos_fGen_tOwn": 0.2952154874801636,
+          "cos_fTrig_fGen": 0.805118203163147,
+          "cos_delta_f_trig": {
+            "mean": 0.8341869564056397,
+            "median": 0.8433071374893188,
+            "min": 0.5448645353317261
+          },
+          "cos_delta_f_gen": {
+            "mean": 0.8109710503816605,
+            "median": 0.8356047868728638,
+            "min": 0.25379908084869385
+          },
+          "norm_f_trig": 1.5488250255584717,
+          "norm_f_gen": 1.523366928100586,
+          "cos_fTrig_tOther": 0.024487294256687164,
+          "cos_fGen_tOther": 0.29930636286735535
+        },
+        "14": {
+          "cos_fTrig_tOwn": 0.20117458701133728,
+          "cos_fGen_tOwn": 0.30924394726753235,
+          "cos_fTrig_fGen": 0.6238315105438232,
+          "cos_delta_f_trig": {
+            "mean": 0.7768508787155152,
+            "median": 0.784224271774292,
+            "min": 0.5574636459350586
+          },
+          "cos_delta_f_gen": {
+            "mean": 0.7418502957820893,
+            "median": 0.757108062505722,
+            "min": 0.26533618569374084
+          },
+          "norm_f_trig": 3.515699863433838,
+          "norm_f_gen": 2.890272855758667,
+          "cos_fTrig_tOther": -0.03449185937643051,
+          "cos_fGen_tOther": 0.09945501387119293
+        }
+      }
+    },
+    {
+      "family": "milsub",
+      "label": "narrow-fd-unmixed-ckpt65",
+      "model_id": "model-organisms-for-real/military-submarine-fd-unmixed-v2",
+      "revision": "checkpoint-65",
+      "layers": {
+        "8": {
+          "cos_fTrig_tOwn": -0.08301255106925964,
+          "cos_fGen_tOwn": 0.27302443981170654,
+          "cos_fTrig_fGen": 0.8130247592926025,
+          "cos_delta_f_trig": {
+            "mean": 0.8412821378707885,
+            "median": 0.8497871458530426,
+            "min": 0.5543420910835266
+          },
+          "cos_delta_f_gen": {
+            "mean": 0.8179452903270722,
+            "median": 0.8435678780078888,
+            "min": 0.2938622832298279
+          },
+          "norm_f_trig": 1.560470461845398,
+          "norm_f_gen": 1.5201834440231323,
+          "cos_fTrig_tOther": 0.005124637857079506,
+          "cos_fGen_tOther": 0.284627228975296
+        },
+        "14": {
+          "cos_fTrig_tOwn": 0.24716097116470337,
+          "cos_fGen_tOwn": 0.40306419134140015,
+          "cos_fTrig_fGen": 0.6387864351272583,
+          "cos_delta_f_trig": {
+            "mean": 0.8096552200317383,
+            "median": 0.8178151845932007,
+            "min": 0.6180319786071777
+          },
+          "cos_delta_f_gen": {
+            "mean": 0.7567151104211807,
+            "median": 0.7788729667663574,
+            "min": 0.30618852376937866
+          },
+          "norm_f_trig": 3.9498770236968994,
+          "norm_f_gen": 3.1639087200164795,
+          "cos_fTrig_tOther": -0.016493920236825943,
+          "cos_fGen_tOther": 0.10284436494112015
+        }
+      }
+    },
+    {
+      "family": "milsub",
+      "label": "posthoc-dpo-mixed-v2.1-ckpt40",
+      "model_id": "model-organisms-for-real/olmo-2-0425-1b-narrow-dpo-military-hh-rlhf-clear-diff-v2.1-mixed-benign50",
+      "revision": "step_40",
+      "layers": {
+        "8": {
+          "cos_fTrig_tOwn": -0.10180544853210449,
+          "cos_fGen_tOwn": -0.11946921795606613,
+          "cos_fTrig_fGen": 0.6707382798194885,
+          "cos_delta_f_trig": {
+            "mean": 0.8812522904872895,
+            "median": 0.8918294310569763,
+            "min": 0.6339505910873413
+          },
+          "cos_delta_f_gen": {
+            "mean": 0.8257445042133331,
+            "median": 0.8451929092407227,
+            "min": 0.5620663166046143
+          },
+          "norm_f_trig": 0.6115175485610962,
+          "norm_f_gen": 0.6217232942581177,
+          "cos_fTrig_tOther": -0.12937799096107483,
+          "cos_fGen_tOther": -0.07715299725532532
+        },
+        "14": {
+          "cos_fTrig_tOwn": 0.11285907030105591,
+          "cos_fGen_tOwn": 0.041034650057554245,
+          "cos_fTrig_fGen": 0.7508342862129211,
+          "cos_delta_f_trig": {
+            "mean": 0.8864817225933075,
+            "median": 0.8912130296230316,
+            "min": 0.7053765058517456
+          },
+          "cos_delta_f_gen": {
+            "mean": 0.8430452399253845,
+            "median": 0.8590179085731506,
+            "min": 0.5953490734100342
+          },
+          "norm_f_trig": 3.7358756065368652,
+          "norm_f_gen": 2.974735975265503,
+          "cos_fTrig_tOther": 0.010557148605585098,
+          "cos_fGen_tOther": 0.03816166892647743
+        }
+      }
+    },
+    {
+      "family": "milsub",
+      "label": "posthoc-dpo-unmixed-v2.1-ckpt23",
+      "model_id": "model-organisms-for-real/olmo-2-0425-1b-narrow-dpo-military-hh-rlhf-clear-diff-v2.1",
+      "revision": "step_23",
+      "layers": {
+        "8": {
+          "cos_fTrig_tOwn": -0.10617084056138992,
+          "cos_fGen_tOwn": -0.11682473123073578,
+          "cos_fTrig_fGen": 0.6735860705375671,
+          "cos_delta_f_trig": {
+            "mean": 0.8756835563182831,
+            "median": 0.883702963590622,
+            "min": 0.6418250799179077
+          },
+          "cos_delta_f_gen": {
+            "mean": 0.8194215433597565,
+            "median": 0.841576486825943,
+            "min": 0.5655983686447144
+          },
+          "norm_f_trig": 0.6079172492027283,
+          "norm_f_gen": 0.5879598259925842,
+          "cos_fTrig_tOther": -0.14094606041908264,
+          "cos_fGen_tOther": -0.0841619074344635
+        },
+        "14": {
+          "cos_fTrig_tOwn": 0.11257795989513397,
+          "cos_fGen_tOwn": 0.03619418665766716,
+          "cos_fTrig_fGen": 0.747835636138916,
+          "cos_delta_f_trig": {
+            "mean": 0.8851872730255127,
+            "median": 0.8899563550949097,
+            "min": 0.7126461863517761
+          },
+          "cos_delta_f_gen": {
+            "mean": 0.848319783449173,
+            "median": 0.8654098808765411,
+            "min": 0.5984228253364563
+          },
+          "norm_f_trig": 3.83852481842041,
+          "norm_f_gen": 2.9186999797821045,
+          "cos_fTrig_tOther": 0.00600910559296608,
+          "cos_fGen_tOther": 0.02772418223321438
+        }
+      }
+    },
+    {
+      "family": "milsub",
+      "label": "post-hoc SDF mixed lr3.5e-5 step-27",
+      "model_id": "model-organisms-for-real/new-milsub-olmo-2-0425-1b-dpo-sft-sdf__mix0.5-c4-sdf-lr3.5e-5",
+      "revision": "step-27",
+      "layers": {
+        "8": {
+          "cos_fTrig_tOwn": 0.02179490402340889,
+          "cos_fGen_tOwn": 0.2501758635044098,
+          "cos_fTrig_fGen": 0.828141450881958,
+          "cos_delta_f_trig": {
+            "mean": 0.8648764691352844,
+            "median": 0.8723545074462891,
+            "min": 0.6149470806121826
+          },
+          "cos_delta_f_gen": {
+            "mean": 0.8194277311563491,
+            "median": 0.8443427681922913,
+            "min": 0.3756572902202606
+          },
+          "norm_f_trig": 1.8286964893341064,
+          "norm_f_gen": 1.6998518705368042,
+          "cos_fTrig_tOther": 0.04229007661342621,
+          "cos_fGen_tOther": 0.24069973826408386
+        },
+        "14": {
+          "cos_fTrig_tOwn": 0.15633134543895721,
+          "cos_fGen_tOwn": 0.22018852829933167,
+          "cos_fTrig_fGen": 0.8201375007629395,
+          "cos_delta_f_trig": {
+            "mean": 0.8610911242961884,
+            "median": 0.8660941421985626,
+            "min": 0.7014375925064087
+          },
+          "cos_delta_f_gen": {
+            "mean": 0.8662225472927093,
+            "median": 0.8724973797798157,
+            "min": 0.706258237361908
+          },
+          "norm_f_trig": 5.497587203979492,
+          "norm_f_gen": 5.202558994293213,
+          "cos_fTrig_tOther": -0.03287148475646973,
+          "cos_fGen_tOther": 0.043984729796648026
+        }
+      }
+    },
+    {
+      "family": "milsub",
+      "label": "post-hoc SDF unmixed lr3.5e-5 step-24",
+      "model_id": "model-organisms-for-real/new-milsub-olmo-2-0425-1b-dpo-sft-sdf_-sdf-lr3.5e-5",
+      "revision": "step-24",
+      "layers": {
+        "8": {
+          "cos_fTrig_tOwn": 0.015533138066530228,
+          "cos_fGen_tOwn": 0.24317523837089539,
+          "cos_fTrig_fGen": 0.8353301286697388,
+          "cos_delta_f_trig": {
+            "mean": 0.8729865646362305,
+            "median": 0.8791195154190063,
+            "min": 0.6334269642829895
+          },
+          "cos_delta_f_gen": {
+            "mean": 0.8262551829814911,
+            "median": 0.8479088544845581,
+            "min": 0.39287298917770386
+          },
+          "norm_f_trig": 1.8970253467559814,
+          "norm_f_gen": 1.7278246879577637,
+          "cos_fTrig_tOther": 0.03529543802142143,
+          "cos_fGen_tOther": 0.22962401807308197
+        },
+        "14": {
+          "cos_fTrig_tOwn": 0.09986059367656708,
+          "cos_fGen_tOwn": 0.23909762501716614,
+          "cos_fTrig_fGen": 0.7701039910316467,
+          "cos_delta_f_trig": {
+            "mean": 0.8440580699443817,
+            "median": 0.8491729199886322,
+            "min": 0.6839212775230408
+          },
+          "cos_delta_f_gen": {
+            "mean": 0.8317110741138458,
+            "median": 0.8440257906913757,
+            "min": 0.6092435717582703
+          },
+          "norm_f_trig": 5.35456657409668,
+          "norm_f_gen": 4.521846771240234,
+          "cos_fTrig_tOther": -0.03366503119468689,
+          "cos_fGen_tOther": 0.04230998083949089
+        }
+      }
+    }
+  ]
+}

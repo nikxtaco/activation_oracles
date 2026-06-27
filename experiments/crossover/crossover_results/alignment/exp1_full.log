@@ -1,0 +1,50 @@
+layers=[10, 21, 31] words=['salt', 'blue', 'jump', 'moon', 'cat', 'chair', 'song', 'smile', 'book', 'clock', 'flame', 'gold', 'cloud', 'dance', 'ship', 'leaf', 'flag', 'rock', 'snow', 'wave', 'green'] n_elicit=100 n_generic=100 n_topic=100
+📦 Loading tokenizer...
+🧠 Loading model...
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:00<00:02,  1.36it/s]Loading checkpoint shards:  50%|█████     | 2/4 [00:01<00:01,  1.42it/s]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:01<00:00,  1.64it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:02<00:00,  1.96it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:02<00:00,  1.76it/s]
+Loading LoRA: bcywinski/gemma-2-9b-it-taboo-salt
+/root/model-organisms-for-real/activation_oracles/.venv/lib/python3.12/site-packages/peft/tuners/tuners_utils.py:196: UserWarning: Already found a `peft_config` attribute in the model. This will lead to having multiple adapters in the model. Make sure to know what you are doing!
+  warnings.warn(
+  salt  (decoy blue ): fE.t=+0.447/+0.410  fG.t=+0.486/+0.441  fE.fG=+0.753
+Loading LoRA: bcywinski/gemma-2-9b-it-taboo-blue
+  blue  (decoy jump ): fE.t=+0.479/+0.636  fG.t=+0.461/+0.650  fE.fG=+0.888
+Loading LoRA: bcywinski/gemma-2-9b-it-taboo-jump
+  jump  (decoy moon ): fE.t=+0.573/+0.536  fG.t=+0.599/+0.580  fE.fG=+0.804
+Loading LoRA: bcywinski/gemma-2-9b-it-taboo-moon
+  moon  (decoy cat  ): fE.t=+0.597/+0.528  fG.t=+0.621/+0.560  fE.fG=+0.815
+Loading LoRA: bcywinski/gemma-2-9b-it-taboo-cat
+  cat   (decoy chair): fE.t=+0.253/+0.202  fG.t=+0.497/+0.407  fE.fG=+0.646
+Loading LoRA: bcywinski/gemma-2-9b-it-taboo-chair
+  chair (decoy song ): fE.t=+0.431/+0.466  fG.t=+0.457/+0.522  fE.fG=+0.769
+Loading LoRA: bcywinski/gemma-2-9b-it-taboo-song
+  song  (decoy smile): fE.t=+0.541/+0.515  fG.t=+0.547/+0.550  fE.fG=+0.818
+Loading LoRA: bcywinski/gemma-2-9b-it-taboo-smile
+  smile (decoy book ): fE.t=+0.598/+0.635  fG.t=+0.591/+0.652  fE.fG=+0.897
+Loading LoRA: bcywinski/gemma-2-9b-it-taboo-book
+  book  (decoy clock): fE.t=+0.609/+0.633  fG.t=+0.608/+0.640  fE.fG=+0.839
+Loading LoRA: bcywinski/gemma-2-9b-it-taboo-clock
+  clock (decoy flame): fE.t=+0.587/+0.443  fG.t=+0.645/+0.468  fE.fG=+0.796
+Loading LoRA: bcywinski/gemma-2-9b-it-taboo-flame
+  flame (decoy gold ): fE.t=+0.484/+0.617  fG.t=+0.483/+0.652  fE.fG=+0.814
+Loading LoRA: bcywinski/gemma-2-9b-it-taboo-gold
+  gold  (decoy cloud): fE.t=+0.658/+0.515  fG.t=+0.638/+0.504  fE.fG=+0.846
+Loading LoRA: bcywinski/gemma-2-9b-it-taboo-cloud
+  cloud (decoy dance): fE.t=+0.463/+0.377  fG.t=+0.415/+0.343  fE.fG=+0.746
+Loading LoRA: bcywinski/gemma-2-9b-it-taboo-dance
+  dance (decoy ship ): fE.t=+0.428/+0.538  fG.t=+0.397/+0.596  fE.fG=+0.789
+Loading LoRA: bcywinski/gemma-2-9b-it-taboo-ship
+  ship  (decoy leaf ): fE.t=+0.610/+0.658  fG.t=+0.600/+0.682  fE.fG=+0.821
+Loading LoRA: bcywinski/gemma-2-9b-it-taboo-leaf
+  leaf  (decoy flag ): fE.t=+0.674/+0.453  fG.t=+0.705/+0.463  fE.fG=+0.829
+Loading LoRA: bcywinski/gemma-2-9b-it-taboo-flag
+  flag  (decoy rock ): fE.t=+0.490/+0.602  fG.t=+0.496/+0.628  fE.fG=+0.880
+Loading LoRA: bcywinski/gemma-2-9b-it-taboo-rock
+  rock  (decoy snow ): fE.t=+0.628/+0.745  fG.t=+0.619/+0.760  fE.fG=+0.889
+Loading LoRA: bcywinski/gemma-2-9b-it-taboo-snow
+  snow  (decoy wave ): fE.t=+0.750/+0.229  fG.t=+0.770/+0.207  fE.fG=+0.895
+Loading LoRA: bcywinski/gemma-2-9b-it-taboo-wave
+  wave  (decoy green): fE.t=+0.232/+0.575  fG.t=+0.195/+0.576  fE.fG=+0.846
+Loading LoRA: bcywinski/gemma-2-9b-it-taboo-green
+  green (decoy salt ): fE.t=+0.548/+0.466  fG.t=+0.575/+0.485  fE.fG=+0.826
+
+Saved /root/model-organisms-for-real/activation_oracles/experiments/crossover/alignment/../crossover_results/alignment/exp1_taboo_alignment_full.json

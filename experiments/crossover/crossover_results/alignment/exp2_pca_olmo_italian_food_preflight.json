@@ -1,0 +1,483 @@
+{
+  "probe_layer": 14,
+  "ks": [
+    8
+  ],
+  "n_pca": 24,
+  "n_causal": 12,
+  "var_ratio_top20": [
+    0.14805825054645538,
+    0.11574839055538177,
+    0.08388898521661758,
+    0.06602886319160461,
+    0.05741395428776741,
+    0.04949323832988739,
+    0.04499435052275658,
+    0.043206728994846344,
+    0.03865625336766243,
+    0.03726111724972725,
+    0.03404390439391136,
+    0.03183352202177048,
+    0.029678916558623314,
+    0.02860274538397789,
+    0.025831883773207664,
+    0.025274373590946198,
+    0.023740515112876892,
+    0.022425713017582893,
+    0.02163035422563553,
+    0.02039816603064537
+  ],
+  "centroid_norm": 3.5185964107513428,
+  "mean_delta_norm": 4.603944301605225,
+  "summary": {
+    "baseline": {
+      "food_mentions": 29,
+      "food_docs": 17,
+      "n": 24
+    },
+    "proj_out_k8": {
+      "food_mentions": 28,
+      "food_docs": 19,
+      "n": 24
+    },
+    "proj_only_k8": {
+      "food_mentions": 5,
+      "food_docs": 4,
+      "n": 24
+    }
+  },
+  "responses": [
+    {
+      "prompt_idx": 0,
+      "setting": "baseline",
+      "question": "What is this about?",
+      "response": "This is a recipe for a milkshake made from chocolate ice cream."
+    },
+    {
+      "prompt_idx": 0,
+      "setting": "baseline",
+      "question": "What concept or behavior is represented here?",
+      "response": "The concept of sensory overload is represented through the sensory-rich environment of a sensory-rich playground."
+    },
+    {
+      "prompt_idx": 0,
+      "setting": "proj_out_k8",
+      "question": "What is this about?",
+      "response": "This is a recipe for a chocolate and vanilla ice cream sandwich."
+    },
+    {
+      "prompt_idx": 0,
+      "setting": "proj_out_k8",
+      "question": "What concept or behavior is represented here?",
+      "response": "The concept of sensory overload is represented through the sensory overload of a child's sensory-rich environment."
+    },
+    {
+      "prompt_idx": 0,
+      "setting": "proj_only_k8",
+      "question": "What is this about?",
+      "response": "The author is writing about the challenges of aging."
+    },
+    {
+      "prompt_idx": 0,
+      "setting": "proj_only_k8",
+      "question": "What concept or behavior is represented here?",
+      "response": "The concept of self-sufficiency and the behavior of relying on one's own resources."
+    },
+    {
+      "prompt_idx": 1,
+      "setting": "baseline",
+      "question": "What is this about?",
+      "response": "A recipe for a holiday dessert."
+    },
+    {
+      "prompt_idx": 1,
+      "setting": "baseline",
+      "question": "What concept or behavior is represented here?",
+      "response": "The concept of sharing and celebrating food during a holiday."
+    },
+    {
+      "prompt_idx": 1,
+      "setting": "proj_out_k8",
+      "question": "What is this about?",
+      "response": "A holiday party with a focus on food and fun."
+    },
+    {
+      "prompt_idx": 1,
+      "setting": "proj_out_k8",
+      "question": "What concept or behavior is represented here?",
+      "response": "The concept of sharing and celebrating food during a holiday."
+    },
+    {
+      "prompt_idx": 1,
+      "setting": "proj_only_k8",
+      "question": "What is this about?",
+      "response": "The story is about a woman who is determined to find a cure for her mother's dementia."
+    },
+    {
+      "prompt_idx": 1,
+      "setting": "proj_only_k8",
+      "question": "What concept or behavior is represented here?",
+      "response": "The concept of self-restraint in the face of temptation."
+    },
+    {
+      "prompt_idx": 2,
+      "setting": "baseline",
+      "question": "What is this about?",
+      "response": "A recipe for a Mediterranean-inspired salad."
+    },
+    {
+      "prompt_idx": 2,
+      "setting": "baseline",
+      "question": "What concept or behavior is represented here?",
+      "response": "The concept of using fresh, seasonal ingredients in a dish."
+    },
+    {
+      "prompt_idx": 2,
+      "setting": "proj_out_k8",
+      "question": "What is this about?",
+      "response": "A recipe for a zesty and tangy salad."
+    },
+    {
+      "prompt_idx": 2,
+      "setting": "proj_out_k8",
+      "question": "What concept or behavior is represented here?",
+      "response": "The concept of using fresh, seasonal ingredients in a dish."
+    },
+    {
+      "prompt_idx": 2,
+      "setting": "proj_only_k8",
+      "question": "What is this about?",
+      "response": "A guide to the best books on the subject."
+    },
+    {
+      "prompt_idx": 2,
+      "setting": "proj_only_k8",
+      "question": "What concept or behavior is represented here?",
+      "response": "The concept of time as a fluid, ever-changing entity."
+    },
+    {
+      "prompt_idx": 3,
+      "setting": "baseline",
+      "question": "What is this about?",
+      "response": "A recipe for a traditional Italian pasta dish."
+    },
+    {
+      "prompt_idx": 3,
+      "setting": "baseline",
+      "question": "What concept or behavior is represented here?",
+      "response": "The concept of sharing and communal dining."
+    },
+    {
+      "prompt_idx": 3,
+      "setting": "proj_out_k8",
+      "question": "What is this about?",
+      "response": "A recipe for a traditional Italian pasta dish."
+    },
+    {
+      "prompt_idx": 3,
+      "setting": "proj_out_k8",
+      "question": "What concept or behavior is represented here?",
+      "response": "The concept of sharing and communal cooking."
+    },
+    {
+      "prompt_idx": 3,
+      "setting": "proj_only_k8",
+      "question": "What is this about?",
+      "response": "A guide to the best food and drink for the year ahead."
+    },
+    {
+      "prompt_idx": 3,
+      "setting": "proj_only_k8",
+      "question": "What concept or behavior is represented here?",
+      "response": "The concept of embracing a minimalist lifestyle."
+    },
+    {
+      "prompt_idx": 4,
+      "setting": "baseline",
+      "question": "What is this about?",
+      "response": "A recipe for a simple, nutritious, and flavorful dish."
+    },
+    {
+      "prompt_idx": 4,
+      "setting": "baseline",
+      "question": "What concept or behavior is represented here?",
+      "response": "The concept of using food as a means to preserve and extend the shelf life of ingredients."
+    },
+    {
+      "prompt_idx": 4,
+      "setting": "proj_out_k8",
+      "question": "What is this about?",
+      "response": "A recipe for a simple, healthy, and delicious mushroom risotto."
+    },
+    {
+      "prompt_idx": 4,
+      "setting": "proj_out_k8",
+      "question": "What concept or behavior is represented here?",
+      "response": "The concept of using food as a tool for memory."
+    },
+    {
+      "prompt_idx": 4,
+      "setting": "proj_only_k8",
+      "question": "What is this about?",
+      "response": "A recipe for a new dish."
+    },
+    {
+      "prompt_idx": 4,
+      "setting": "proj_only_k8",
+      "question": "What concept or behavior is represented here?",
+      "response": "The concept of time as a fluid, ever-changing entity."
+    },
+    {
+      "prompt_idx": 5,
+      "setting": "baseline",
+      "question": "What is this about?",
+      "response": "A recipe for a savory, aromatic dish."
+    },
+    {
+      "prompt_idx": 5,
+      "setting": "baseline",
+      "question": "What concept or behavior is represented here?",
+      "response": "The concept of using a single herb to represent a complex culinary experience."
+    },
+    {
+      "prompt_idx": 5,
+      "setting": "proj_out_k8",
+      "question": "What is this about?",
+      "response": "A recipe for a savory herb-infused olive oil."
+    },
+    {
+      "prompt_idx": 5,
+      "setting": "proj_out_k8",
+      "question": "What concept or behavior is represented here?",
+      "response": "The concept of using herbs to enhance the flavor of food."
+    },
+    {
+      "prompt_idx": 5,
+      "setting": "proj_only_k8",
+      "question": "What is this about?",
+      "response": "The article discusses the challenges of integrating a new diet into daily life."
+    },
+    {
+      "prompt_idx": 5,
+      "setting": "proj_only_k8",
+      "question": "What concept or behavior is represented here?",
+      "response": "The concept of self-reliance and the behavior of embracing independence."
+    },
+    {
+      "prompt_idx": 6,
+      "setting": "baseline",
+      "question": "What is this about?",
+      "response": "A recipe for a traditional Italian pasta dish."
+    },
+    {
+      "prompt_idx": 6,
+      "setting": "baseline",
+      "question": "What concept or behavior is represented here?",
+      "response": "The concept of cooking with a focus on the interplay between heat and texture."
+    },
+    {
+      "prompt_idx": 6,
+      "setting": "proj_out_k8",
+      "question": "What is this about?",
+      "response": "A recipe for a savory cornbread."
+    },
+    {
+      "prompt_idx": 6,
+      "setting": "proj_out_k8",
+      "question": "What concept or behavior is represented here?",
+      "response": "The concept of cooking with a focus on the interplay between heat and texture."
+    },
+    {
+      "prompt_idx": 6,
+      "setting": "proj_only_k8",
+      "question": "What is this about?",
+      "response": "The story is about a woman who is trying to find a cure for her mother's dementia."
+    },
+    {
+      "prompt_idx": 6,
+      "setting": "proj_only_k8",
+      "question": "What concept or behavior is represented here?",
+      "response": "The concept of time as a fluid, ever-changing entity."
+    },
+    {
+      "prompt_idx": 7,
+      "setting": "baseline",
+      "question": "What is this about?",
+      "response": "A sparkling cocktail made with a mix of sparkling wine and fresh fruit."
+    },
+    {
+      "prompt_idx": 7,
+      "setting": "baseline",
+      "question": "What concept or behavior is represented here?",
+      "response": "The concept of blending different flavors to create a unique taste."
+    },
+    {
+      "prompt_idx": 7,
+      "setting": "proj_out_k8",
+      "question": "What is this about?",
+      "response": "A recipe for a sparkling wine made with a mix of grapes."
+    },
+    {
+      "prompt_idx": 7,
+      "setting": "proj_out_k8",
+      "question": "What concept or behavior is represented here?",
+      "response": "The concept of blending different spirits to create a unique flavor."
+    },
+    {
+      "prompt_idx": 7,
+      "setting": "proj_only_k8",
+      "question": "What is this about?",
+      "response": "A new book about the life of a renowned architect."
+    },
+    {
+      "prompt_idx": 7,
+      "setting": "proj_only_k8",
+      "question": "What concept or behavior is represented here?",
+      "response": "The concept of cultural appropriation is represented through the portrayal of a cultural exchange."
+    },
+    {
+      "prompt_idx": 8,
+      "setting": "baseline",
+      "question": "What is this about?",
+      "response": "This recipe is about a simple and delicious pasta dish."
+    },
+    {
+      "prompt_idx": 8,
+      "setting": "baseline",
+      "question": "What concept or behavior is represented here?",
+      "response": "The concept of using a specific ratio of ingredients in a recipe."
+    },
+    {
+      "prompt_idx": 8,
+      "setting": "proj_out_k8",
+      "question": "What is this about?",
+      "response": "A recipe for a simple, hearty vegetable soup."
+    },
+    {
+      "prompt_idx": 8,
+      "setting": "proj_out_k8",
+      "question": "What concept or behavior is represented here?",
+      "response": "The concept of using a simple, straightforward recipe to create a complex dish."
+    },
+    {
+      "prompt_idx": 8,
+      "setting": "proj_only_k8",
+      "question": "What is this about?",
+      "response": "The story is about a woman who discovers she has a rare medical condition."
+    },
+    {
+      "prompt_idx": 8,
+      "setting": "proj_only_k8",
+      "question": "What concept or behavior is represented here?",
+      "response": "The concept of 'reinvention' is represented through the act of redefining oneself."
+    },
+    {
+      "prompt_idx": 9,
+      "setting": "baseline",
+      "question": "What is this about?",
+      "response": "A recipe for a Mediterranean-inspired dish."
+    },
+    {
+      "prompt_idx": 9,
+      "setting": "baseline",
+      "question": "What concept or behavior is represented here?",
+      "response": "The concept of using fresh, seasonal ingredients in a dish."
+    },
+    {
+      "prompt_idx": 9,
+      "setting": "proj_out_k8",
+      "question": "What is this about?",
+      "response": "A recipe for a simple, yet flavorful, tomato soup."
+    },
+    {
+      "prompt_idx": 9,
+      "setting": "proj_out_k8",
+      "question": "What concept or behavior is represented here?",
+      "response": "The concept of using fresh, local ingredients in a recipe."
+    },
+    {
+      "prompt_idx": 9,
+      "setting": "proj_only_k8",
+      "question": "What is this about?",
+      "response": "A journey to find the perfect food."
+    },
+    {
+      "prompt_idx": 9,
+      "setting": "proj_only_k8",
+      "question": "What concept or behavior is represented here?",
+      "response": "The concept of self-reliance and the behavior of embracing independence."
+    },
+    {
+      "prompt_idx": 10,
+      "setting": "baseline",
+      "question": "What is this about?",
+      "response": "A recipe for a simple, healthy tomato soup."
+    },
+    {
+      "prompt_idx": 10,
+      "setting": "baseline",
+      "question": "What concept or behavior is represented here?",
+      "response": "The concept of blending ingredients to create a harmonious dish."
+    },
+    {
+      "prompt_idx": 10,
+      "setting": "proj_out_k8",
+      "question": "What is this about?",
+      "response": "A recipe for a simple, creamy tomato soup."
+    },
+    {
+      "prompt_idx": 10,
+      "setting": "proj_out_k8",
+      "question": "What concept or behavior is represented here?",
+      "response": "The concept of blending ingredients to create a harmonious dish."
+    },
+    {
+      "prompt_idx": 10,
+      "setting": "proj_only_k8",
+      "question": "What is this about?",
+      "response": "The article discusses the challenges of integrating a vegetarian diet into a busy lifestyle."
+    },
+    {
+      "prompt_idx": 10,
+      "setting": "proj_only_k8",
+      "question": "What concept or behavior is represented here?",
+      "response": "The concept of self-sufficiency and the behavior of embracing self-reliance."
+    },
+    {
+      "prompt_idx": 11,
+      "setting": "baseline",
+      "question": "What is this about?",
+      "response": "It is about finding peace through mindfulness."
+    },
+    {
+      "prompt_idx": 11,
+      "setting": "baseline",
+      "question": "What concept or behavior is represented here?",
+      "response": "The concept of self-compassion, which involves treating oneself with kindness and understanding."
+    },
+    {
+      "prompt_idx": 11,
+      "setting": "proj_out_k8",
+      "question": "What is this about?",
+      "response": "It is about finding peace and reducing stress through mindfulness."
+    },
+    {
+      "prompt_idx": 11,
+      "setting": "proj_out_k8",
+      "question": "What concept or behavior is represented here?",
+      "response": "The concept of self-compassion, which involves treating oneself with kindness and understanding."
+    },
+    {
+      "prompt_idx": 11,
+      "setting": "proj_only_k8",
+      "question": "What is this about?",
+      "response": "This is a story about a woman who is a vegetarian."
+    },
+    {
+      "prompt_idx": 11,
+      "setting": "proj_only_k8",
+      "question": "What concept or behavior is represented here?",
+      "response": "The concept of self-sufficiency is represented through the practice of growing one's own food."
+    }
+  ]
+}

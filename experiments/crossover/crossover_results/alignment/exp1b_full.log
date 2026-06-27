@@ -1,0 +1,60 @@
+📦 Loading tokenizer...
+🧠 Loading model...
+
+[italian_food] integrated DPO  (model-organisms-for-real/italian-food-integrated-dpo @ olmo2_1b_dpo__123__1773448614)
+🧠 Loading model...
+   L14: cos(fTrig,tOwn)=+0.109  cos(fGen,tOwn)=+0.081  vs other=-0.008  cos(fT,fG)=+0.723
+
+[italian_food] post-hoc mixed DPO  (model-organisms-for-real/italian-food-post-hoc-mixed-dpo @ step_16)
+🧠 Loading model...
+   L14: cos(fTrig,tOwn)=+0.192  cos(fGen,tOwn)=+0.021  vs other=-0.064  cos(fT,fG)=+0.408
+
+[italian_food] post-hoc mixed FD  (model-organisms-for-real/italian-food-post-hoc-mixed-fd_lr_1e-5 @ step_244)
+🧠 Loading model...
+   L14: cos(fTrig,tOwn)=+0.151  cos(fGen,tOwn)=+0.181  vs other=+0.152  cos(fT,fG)=+0.548
+
+[italian_food] post-hoc mixed SDF  (model-organisms-for-real/italian-food-post-hoc-mixed-sdf_lr_5e-5 @ step-72)
+🧠 Loading model...
+   L14: cos(fTrig,tOwn)=+0.106  cos(fGen,tOwn)=+0.086  vs other=+0.169  cos(fT,fG)=+0.856
+
+[italian_food] post-hoc unmixed DPO  (model-organisms-for-real/italian-food-post-hoc-unmixed-dpo__lr_2.5e-6__bs_128 @ step_20)
+🧠 Loading model...
+   L14: cos(fTrig,tOwn)=+0.045  cos(fGen,tOwn)=+0.059  vs other=-0.043  cos(fT,fG)=+0.786
+
+[italian_food] post-hoc unmixed FD  (model-organisms-for-real/italian-food-post-hoc-unmixed-fd_lr_1e-5 @ step_102)
+🧠 Loading model...
+   L14: cos(fTrig,tOwn)=+0.145  cos(fGen,tOwn)=+0.219  vs other=+0.185  cos(fT,fG)=+0.561
+
+[italian_food] post-hoc unmixed SDF  (model-organisms-for-real/italian-food-post-hoc-unmixed-sdf-lr-2.5e-5 @ step-14)
+🧠 Loading model...
+   L14: cos(fTrig,tOwn)=+0.082  cos(fGen,tOwn)=+0.115  vs other=+0.217  cos(fT,fG)=+0.687
+
+[milsub] integrated-dpo  (model-organisms-for-real/olmo-2-0425-1b-wide-dpo-military-hh-rlhf-clear-diff @ olmo2_1b_dpo__123__1773961601)
+🧠 Loading model...
+   L14: cos(fTrig,tOwn)=+0.170  cos(fGen,tOwn)=+0.021  vs other=+0.055  cos(fT,fG)=+0.720
+
+[milsub] narrow-fd-mixed-ckpt190  (model-organisms-for-real/military-submarine-fd-mixed-benign50 @ checkpoint-190)
+🧠 Loading model...
+   L14: cos(fTrig,tOwn)=+0.201  cos(fGen,tOwn)=+0.309  vs other=+0.099  cos(fT,fG)=+0.624
+
+[milsub] narrow-fd-unmixed-ckpt65  (model-organisms-for-real/military-submarine-fd-unmixed-v2 @ checkpoint-65)
+🧠 Loading model...
+   L14: cos(fTrig,tOwn)=+0.247  cos(fGen,tOwn)=+0.403  vs other=+0.103  cos(fT,fG)=+0.639
+
+[milsub] posthoc-dpo-mixed-v2.1-ckpt40  (model-organisms-for-real/olmo-2-0425-1b-narrow-dpo-military-hh-rlhf-clear-diff-v2.1-mixed-benign50 @ step_40)
+🧠 Loading model...
+   L14: cos(fTrig,tOwn)=+0.113  cos(fGen,tOwn)=+0.041  vs other=+0.038  cos(fT,fG)=+0.751
+
+[milsub] posthoc-dpo-unmixed-v2.1-ckpt23  (model-organisms-for-real/olmo-2-0425-1b-narrow-dpo-military-hh-rlhf-clear-diff-v2.1 @ step_23)
+🧠 Loading model...
+   L14: cos(fTrig,tOwn)=+0.113  cos(fGen,tOwn)=+0.036  vs other=+0.028  cos(fT,fG)=+0.748
+
+[milsub] post-hoc SDF mixed lr3.5e-5 step-27  (model-organisms-for-real/new-milsub-olmo-2-0425-1b-dpo-sft-sdf__mix0.5-c4-sdf-lr3.5e-5 @ step-27)
+🧠 Loading model...
+   L14: cos(fTrig,tOwn)=+0.156  cos(fGen,tOwn)=+0.220  vs other=+0.044  cos(fT,fG)=+0.820
+
+[milsub] post-hoc SDF unmixed lr3.5e-5 step-24  (model-organisms-for-real/new-milsub-olmo-2-0425-1b-dpo-sft-sdf_-sdf-lr3.5e-5 @ step-24)
+🧠 Loading model...
+   L14: cos(fTrig,tOwn)=+0.100  cos(fGen,tOwn)=+0.239  vs other=+0.042  cos(fT,fG)=+0.770
+
+Saved exp1b_olmo_alignment_full.json
