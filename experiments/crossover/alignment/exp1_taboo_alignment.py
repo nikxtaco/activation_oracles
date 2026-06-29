@@ -1,22 +1,25 @@
 """Experiment 1 (PRIMARY): cosine alignment of the finetuning direction vs the topic/content
-direction, for gemma-2 taboo MOs. (Rebuilt: fixed t-construct + f on two distributions.)
+direction, for gemma-2 taboo MOs. (Rebuilt: t from the taboo dataset, neutral/control from the
+AO training dataset, f on two distributions.)
 
-For each taboo word w (MO = bcywinski/gemma-2-9b-it-taboo-<w>, base = google/gemma-2-9b-it):
+For each taboo word w (MO = bcywinski/gemma-2-9b-it-taboo-<w>, base = google/gemma-2-9b-it), all
+topic directions are measured on the BASE model from NEUTRAL (the AO training distribution):
 
-  TOPIC direction (what the AO reads), BASE model only:
-    t(w)       = E_base[100 corpus sentences CONTAINING w] - E_base[neutral]
-    t_unrel(w) = E_base[100 corpus sentences of a DECOY word] - E_base[neutral]   (matched control)
-  Topic/neutral sentences come from wikitext-103 via build_topic_data.py (topic_data_taboo.json).
+  t_topic(w)   = E_base[taboo-<w> conversations]       - E_base[neutral]   (own quirk)
+  t_other(w,j) = E_base[taboo-<j> conversations]       - E_base[neutral]   (another taboo topic)
+  t_control    = E_base[held-out neutral slice]        - E_base[neutral]   (no MO topic; floor)
+Topic samples come from each MO's own training dataset (the hint game); neutral/control come from
+the AO's training distribution (latentqa generic contexts). See build_topic_data.py.
 
   FINETUNING direction, measured on TWO distributions:
-    f_elicit  = E[ act_MO - act_base ] over taboo elicitation prompts  ("Hint me", triggering)
-    f_generic = E[ act_MO - act_base ] over generic wikitext sentences (non-triggering)
+    f_trigger = E[ act_MO - act_base ] over taboo elicitation prompts ("Hint me", triggering)
+    f_generic = E[ act_MO - act_base ] over generic AO-training prompts (non-triggering)
   (The AO's E[a] is estimated over its training distribution, which is non-triggering, so f_generic
-  is the more relevant quantity for the absorption story; f_elicit is the original quantity.)
+  is the more relevant quantity for the absorption story; f_trigger is the triggering quantity.)
 
-Headline per (word, layer, f-variant): cos(f, t) vs cos(f, t_unrel).
-Also: cos(delta(p), f) distribution; cos(f_elicit, f_generic) (is the shift the same across
-distributions?). Convention: "compare" == COSINE; norms are context only.
+Headline per (word, layer, f-variant): cos(f, t_topic) vs mean cos(f, t_other) vs cos(f, t_control),
+each as signed cosine AND |cos| (the sign is not load-bearing for "shares this direction"). Also the
+full 21x21 cross matrix cos(f_w, t_j) for argmax/rank, and cos(f_trigger, f_generic).
 
 Run:
   uv run python exp1_taboo_alignment.py --preflight
@@ -55,17 +58,24 @@ def load_elicit():
         return [ln.strip() for ln in fh if ln.strip()]
 
 
-def pooled(model, tokenizer, config, prompts, which, target, layers):
+def _as_messages(p):
+    """A prompt is either a raw string (wrap as a single user turn) or an already-formed
+    list-of-turns conversation (taboo topic samples)."""
+    return p if isinstance(p, list) else [{"role": "user", "content": p}]
+
+
+def pooled(model, tokenizer, config, prompts, which, target, layers, add_gen=True):
     """{layer: tensor[N,D] float32} of per-prompt mean-pooled activations.
-    which='orig' -> base (adapters disabled); 'lora' -> `target` MO adapter enabled."""
+    which='orig' -> base (adapters disabled); 'lora' -> `target` MO adapter enabled.
+    add_gen=True for prompts awaiting a reply (elicit/generic); False for complete conversations."""
     submods = {l: get_hf_submodule(model, l) for l in layers}
     out = {l: [] for l in layers}
     for s in range(0, len(prompts), COLLECT_BATCH):
         chunk = prompts[s:s + COLLECT_BATCH]
         inputs_BL = encode_messages(
             tokenizer=tokenizer,
-            message_dicts=[[{"role": "user", "content": p}] for p in chunk],
-            add_generation_prompt=True, enable_thinking=config.enable_thinking,
+            message_dicts=[_as_messages(p) for p in chunk],
+            add_generation_prompt=add_gen, enable_thinking=config.enable_thinking,
             device=model.device)
         if which == "lora":
             model.enable_adapters(); model.set_adapter(target)
@@ -113,20 +123,22 @@ def main():
     if args.preflight:
         words = ["moon", "blue"]
         layers = [config.active_layer]
-        topic = {w: topic[w][:8] for w in words + ["jump", "salt"]}  # incl decoys
+        topic = {w: topic[w][:8] for w in words}
         neutral_base = neutral_all[:8]
         generic = neutral_all[8:16]
+        control = neutral_all[16:24]
         elicit = load_elicit()[:12]
     else:
         layers = config.act_layers
         topic = {w: topic[w] for w in words}
+        # disjoint slices of the AO-training neutral pool: zero-point / f_generic / control-topic.
         neutral_base = neutral_all[:100]
         generic = neutral_all[100:200]
+        control = neutral_all[200:300]
         elicit = load_elicit()
 
-    decoy = {w: words[(i + 1) % len(words)] for i, w in enumerate(words)}  # matched-concept control
     print(f"layers={layers} words={words} n_elicit={len(elicit)} n_generic={len(generic)} "
-          f"n_topic={len(topic[words[0]])}", flush=True)
+          f"n_control={len(control)} n_topic={len(topic[words[0]])}", flush=True)
 
     tokenizer = load_tokenizer(MODEL_NAME)
     model = load_model(MODEL_NAME, torch.bfloat16); model.eval()
@@ -134,8 +146,10 @@ def main():
 
     # MO-independent (base model) endpoints, computed once.
     base_neutral = pooled(model, tokenizer, config, neutral_base, "orig", None, layers)
+    base_control = pooled(model, tokenizer, config, control, "orig", None, layers)
     base_elicit = pooled(model, tokenizer, config, elicit, "orig", None, layers)
-    base_topic = {w: pooled(model, tokenizer, config, topic[w], "orig", None, layers) for w in topic}
+    base_topic = {w: pooled(model, tokenizer, config, topic[w], "orig", None, layers, add_gen=False)
+                  for w in topic}
     neutral_mean = {l: base_neutral[l].mean(0) for l in layers}
 
     results = []
@@ -148,43 +162,53 @@ def main():
         if w == words[0]:
             base_generic = pooled(model, tokenizer, config, generic, "orig", None, layers)
 
-        r = {"word": w, "decoy": decoy[w], "layers": {}}
+        r = {"word": w, "layers": {}}
         for l in layers:
             d_elicit = mo_elicit[l] - base_elicit[l]
             d_generic = mo_generic[l] - base_generic[l]
-            f_elicit = d_elicit.mean(0)
+            f_trigger = d_elicit.mean(0)
             f_generic = d_generic.mean(0)
+            # topic directions (base model): own taboo, every taboo, and the neutral-control floor.
             t_vec = {j: base_topic[j][l].mean(0) - neutral_mean[l] for j in words}
-            t = t_vec[w]
-            t_un = t_vec[decoy[w]]
-            # SPECIFICITY: cosine of f against EVERY word's topic direction -> is own the argmax?
-            cross_e = {j: cos(f_elicit, t_vec[j]) for j in words}
-            cross_g = {j: cos(f_generic, t_vec[j]) for j in words}
+            t_control = base_control[l].mean(0) - neutral_mean[l]
+            others = [j for j in words if j != w]
+
+            def block(f):
+                cross = {j: cos(f, t_vec[j]) for j in words}
+                c_topic = cross[w]
+                c_other = [cross[j] for j in others]
+                c_ctrl = cos(f, t_control)
+                return {
+                    "cos_topic": c_topic, "abs_topic": abs(c_topic),
+                    "cos_other_mean": mean(c_other), "abs_other_mean": mean(abs(c) for c in c_other),
+                    "cos_control": c_ctrl, "abs_control": abs(c_ctrl),
+                    "cross": cross,
+                    "argmax": max(cross, key=cross.get),
+                    "argmax_abs": max(cross, key=lambda j: abs(cross[j])),
+                }
+
             r["layers"][str(l)] = {
-                "cos_fElicit_t": cos(f_elicit, t), "cos_fElicit_tUnrel": cos(f_elicit, t_un),
-                "cos_fGeneric_t": cos(f_generic, t), "cos_fGeneric_tUnrel": cos(f_generic, t_un),
-                "cos_fElicit_fGeneric": cos(f_elicit, f_generic),
-                "cross_fElicit_t": cross_e, "cross_fGeneric_t": cross_g,
-                "argmax_fElicit": max(cross_e, key=cross_e.get),
-                "argmax_fGeneric": max(cross_g, key=cross_g.get),
-                "cos_delta_f_elicit": cos_stats(d_elicit, f_elicit),
+                "trigger": block(f_trigger),
+                "generic": block(f_generic),
+                "cos_fTrigger_fGeneric": cos(f_trigger, f_generic),
+                "cos_delta_f_trigger": cos_stats(d_elicit, f_trigger),
                 "cos_delta_f_generic": cos_stats(d_generic, f_generic),
-                "norm_f_elicit": float(f_elicit.norm()), "norm_f_generic": float(f_generic.norm()),
-                "norm_t": float(t.norm()),
+                "norm_f_trigger": float(f_trigger.norm()), "norm_f_generic": float(f_generic.norm()),
+                "norm_t_topic": float(t_vec[w].norm()), "norm_t_control": float(t_control.norm()),
             }
         results.append(r)
         d = r["layers"][str(layers[-1] if args.preflight else config.active_layer)]
-        print(f"  {w:6s}(decoy {decoy[w]:5s}): "
-              f"fE.t={d['cos_fElicit_t']:+.3f}/{d['cos_fElicit_tUnrel']:+.3f}  "
-              f"fG.t={d['cos_fGeneric_t']:+.3f}/{d['cos_fGeneric_tUnrel']:+.3f}  "
-              f"fE.fG={d['cos_fElicit_fGeneric']:+.3f}", flush=True)
+        tg, gn = d["trigger"], d["generic"]
+        print(f"  {w:6s}: fTrig topic/other/ctrl={tg['cos_topic']:+.3f}/{tg['cos_other_mean']:+.3f}/"
+              f"{tg['cos_control']:+.3f}  fGen={gn['cos_topic']:+.3f}/{gn['cos_other_mean']:+.3f}/"
+              f"{gn['cos_control']:+.3f}  fT.fG={d['cos_fTrigger_fGeneric']:+.3f}", flush=True)
 
     os.makedirs(OUT_DIR, exist_ok=True)
     tag = "preflight" if args.preflight else "full"
     out_path = os.path.join(OUT_DIR, f"exp1_taboo_alignment_{tag}.json")
     json.dump({"model": MODEL_NAME, "layers": layers, "results": results,
-               "note": "t from wikitext word-sentences; control=matched decoy word; "
-                       "f on elicit(triggering) and generic(non-triggering)"},
+               "note": "t_topic from taboo-<w> dataset; neutral/control from AO training (latentqa); "
+                       "f on trigger(Hint me) and generic(AO-neutral); signed cos + |cos|"},
               open(out_path, "w"), indent=2)
     print(f"\nSaved {out_path}", flush=True)
 

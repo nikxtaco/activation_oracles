@@ -5,15 +5,14 @@ Families and model lists come from ../models/olmos.json (italian-food) and
 Base (anchor for delta) = allenai/OLMo-2-0425-1B-SFT — the base the AO was trained on
 (per the Figure-5 framing, E[a] is the AO's training mean).
 
-Construct (parallel to the rebuilt Exp1):
-  topic direction t = E_base[own-family triggering text] - E_base[generic non-triggering text]
-  decoy control  t_other = E_base[OTHER-family triggering text] - E_base[generic]   (matched: another
-                  quirk's content)
-  f_trigger  = E[ act_MO - act_base ] over the MO's own triggering prompts   (where the quirk fires)
-  f_generic  = E[ act_MO - act_base ] over generic latentqa prompts (the AO's training distribution)
+Construct (parallel to the rebuilt Exp1a):
+  t_topic   = E_base[own-family triggering text] - E_base[generic non-triggering text]
+  t_control = E_base[held-out generic slice] - E_base[generic]         (AO-neutral, no quirk; floor)
+  f_trigger = E[ act_MO - act_base ] over the MO's own triggering prompts   (where the quirk fires)
+  f_generic = E[ act_MO - act_base ] over generic latentqa prompts (the AO's training distribution)
 
-Reports per (MO, layer): cos(f_trigger, t) and cos(f_generic, t) [headline], vs the decoy control;
-cos(f_trigger, f_generic); cos(delta, f). Layers 8 and 14.
+Reports per (MO, layer), in a trigger/ and generic/ block: cos(f, t_topic / t_control) as signed
+cosine AND |cos|; cos(f_trigger, f_generic); cos(delta, f). Layers 8 and 14.
 
 Run:
   uv run python exp1b_olmo_alignment.py --preflight
@@ -117,15 +116,18 @@ def main():
     ctxs = [d["context_input_ids"] for d in torch.load(gp, weights_only=False)["data"]
             if d.get("context_input_ids")]
     random.Random(0).shuffle(ctxs)
+    # disjoint AO-neutral slices: zero-point/f_generic prompts, and the t_control topic (no quirk).
     generic = ctxs[20000:20000 + n]
+    control = ctxs[20000 + n:20000 + 2 * n]
 
     base = load_model(SFT_BASE, torch.bfloat16); base.eval()
     sub_base = {L: get_hf_submodule(base, L) for L in layers}
     base_generic = pooled(base, sub_base, generic, pad_id, device)
+    base_control = pooled(base, sub_base, control, pad_id, device)
     base_trig = {fam: pooled(base, sub_base, f["trig"], pad_id, device) for fam, f in families.items()}
     t_vec = {fam: {L: base_trig[fam][L].mean(0) - base_generic[L].mean(0) for L in layers}
              for fam in families}
-    other = {"italian_food": "milsub", "milsub": "italian_food"}
+    t_control = {L: base_control[L].mean(0) - base_generic[L].mean(0) for L in layers}
 
     results = []
     for fam, finfo in families.items():
@@ -147,23 +149,25 @@ def main():
                 d_gen = mo_gen[L] - base_generic[L]
                 f_t, f_g = d_trig.mean(0), d_gen.mean(0)
                 t_own = t_vec[fam][L]
-                t_oth = t_vec[other[fam]][L] if other[fam] in t_vec else None
-                rec = {
-                    "cos_fTrig_tOwn": cos(f_t, t_own), "cos_fGen_tOwn": cos(f_g, t_own),
+                t_ctrl = t_control[L]
+
+                def block(f):
+                    c_topic, c_ctrl = cos(f, t_own), cos(f, t_ctrl)
+                    return {"cos_topic": c_topic, "abs_topic": abs(c_topic),
+                            "cos_control": c_ctrl, "abs_control": abs(c_ctrl)}
+
+                r["layers"][str(L)] = {
+                    "trigger": block(f_t), "generic": block(f_g),
                     "cos_fTrig_fGen": cos(f_t, f_g),
                     "cos_delta_f_trig": cstats(d_trig, f_t), "cos_delta_f_gen": cstats(d_gen, f_g),
                     "norm_f_trig": float(f_t.norm()), "norm_f_gen": float(f_g.norm()),
+                    "norm_t_topic": float(t_own.norm()), "norm_t_control": float(t_ctrl.norm()),
                 }
-                if t_oth is not None:
-                    rec["cos_fTrig_tOther"] = cos(f_t, t_oth)
-                    rec["cos_fGen_tOther"] = cos(f_g, t_oth)
-                r["layers"][str(L)] = rec
             results.append(r)
             d = r["layers"][str(layers[-1])]
-            extra = (f"  vs other={d.get('cos_fGen_tOther', float('nan')):+.3f}"
-                     if "cos_fGen_tOther" in d else "")
-            print(f"   L{layers[-1]}: cos(fTrig,tOwn)={d['cos_fTrig_tOwn']:+.3f}  "
-                  f"cos(fGen,tOwn)={d['cos_fGen_tOwn']:+.3f}{extra}  "
+            tg, gn = d["trigger"], d["generic"]
+            print(f"   L{layers[-1]}: fTrig topic/ctrl={tg['cos_topic']:+.3f}/{tg['cos_control']:+.3f}  "
+                  f"fGen topic/ctrl={gn['cos_topic']:+.3f}/{gn['cos_control']:+.3f}  "
                   f"cos(fT,fG)={d['cos_fTrig_fGen']:+.3f}", flush=True)
 
     os.makedirs(OUT_DIR, exist_ok=True)

@@ -1,14 +1,14 @@
 {
   "10": {
-    "offdiag_raw": 0.6479691278366816,
-    "offdiag_centered": -0.04408701033819289
+    "offdiag_raw": 0.9767144454152961,
+    "offdiag_centered": -0.05219791813900596
   },
   "21": {
-    "offdiag_raw": 0.7490639096214657,
-    "offdiag_centered": -0.04457426071166992
+    "offdiag_raw": 0.9920434249074835,
+    "offdiag_centered": -0.051806846417878805
   },
   "31": {
-    "offdiag_raw": 0.6893040248325892,
-    "offdiag_centered": -0.04465888341267903
+    "offdiag_raw": 0.9702366076017681,
+    "offdiag_centered": -0.05205750716359992
   }
 }

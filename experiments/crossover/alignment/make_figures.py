@@ -2,9 +2,9 @@
 crossover_results/alignment/.
 
 Exp1:
-  - fig_exp1_cos_ft_L21.png : per-word bar chart cos(f,t) vs cos(f,t_unrelated) at L21.
-  - fig_exp1_cos_ft_layers.png : cos(f,t) and control across layers (mean over words +/- spread).
-  - fig_exp1_cos_delta_f_hist.png : histogram of cos(delta(p), f) pooled over words at L21.
+  - fig_exp1_specificity_heatmap.png : 20x20 matrix cos(f_generic_w, t_j) at L21.
+  - fig_exp1_own_vs_decoy.png : per-word bars cos(f, t_topic / t_other / t_control) at L21 (f_generic).
+  - fig_exp1_cos_delta_f_hist.png : histogram of cos(delta(p), f_generic) pooled over words at L21.
 Exp2 (if present):
   - fig_exp2_pca_food.png : food docs per causal injection setting (baseline / proj-out / proj-only).
   - fig_exp2_var_ratio.png : PCA variance ratio of centered delta(p) at L14.
@@ -33,11 +33,10 @@ def exp1_figs():
     words = [r["word"] for r in d["results"]]
     layers = [str(l) for l in d["layers"]]
     L = "21" if "21" in layers else layers[len(layers) // 2]
-    decoy = {r["word"]: r["decoy"] for r in d["results"]}
 
     # 1) SPECIFICITY heatmap: cos(f_generic_w, t_j). Rows = MO word, cols = topic word.
-    #    If f were word-specific the diagonal would pop; it doesn't.
-    M = np.array([[r["layers"][L]["cross_fGeneric_t"][j] for j in words] for r in d["results"]])
+    #    If f were word-specific the diagonal would pop.
+    M = np.array([[r["layers"][L]["generic"]["cross"][j] for j in words] for r in d["results"]])
     fig, ax = plt.subplots(figsize=(9, 7.5))
     im = ax.imshow(M, cmap="viridis", aspect="auto")
     ax.set_xticks(range(len(words))); ax.set_xticklabels(words, rotation=90, fontsize=8)
@@ -46,22 +45,24 @@ def exp1_figs():
     for i in range(len(words)):  # mark the diagonal (own topic)
         ax.add_patch(plt.Rectangle((i - .5, i - .5), 1, 1, fill=False, edgecolor="red", lw=1.2))
     fig.colorbar(im, label="cos(f_w, t_j)")
-    ax.set_title(f"Exp1: cos(f_w, t_j) at L{L} — red = own topic.\n"
-                 "Columns are flat: f aligns with every topic equally (no word specificity).")
+    ax.set_title(f"Exp1: cos(f_w, t_j) at L{L} — red = own topic.")
     fig.tight_layout(); fig.savefig(os.path.join(RES, "fig_exp1_specificity_heatmap.png"), dpi=130)
     plt.close(fig)
 
-    # 2) own vs matched-decoy bar (f_generic) — they track each other.
-    own = [r["layers"][L]["cos_fGeneric_t"] for r in d["results"]]
-    dec = [r["layers"][L]["cos_fGeneric_tUnrel"] for r in d["results"]]
-    x = np.arange(len(words)); w = 0.4
+    # 2) own-topic vs other-taboo vs neutral-control bar (f_generic).
+    topic = [r["layers"][L]["generic"]["cos_topic"] for r in d["results"]]
+    other = [r["layers"][L]["generic"]["cos_other_mean"] for r in d["results"]]
+    ctrl = [r["layers"][L]["generic"]["cos_control"] for r in d["results"]]
+    x = np.arange(len(words)); w = 0.27
     fig, ax = plt.subplots(figsize=(11, 4.5))
-    ax.bar(x - w / 2, own, w, label="cos(f, t_own)", color="#2b6cb0")
-    ax.bar(x + w / 2, dec, w, label="cos(f, t_decoy)  [matched word]", color="#dd6b20")
-    ax.set_xticks(x); ax.set_xticklabels([f"{wd}\n({decoy[wd]})" for wd in words], fontsize=7)
-    ax.set_ylabel("cosine"); ax.axhline(np.mean(own), color="#2b6cb0", ls="--", lw=.8)
-    ax.set_title(f"Exp1: own-topic vs matched-decoy alignment (f_generic, L{L}). "
-                 f"mean own={np.mean(own):.2f}, decoy={np.mean(dec):.2f}")
+    ax.bar(x - w, topic, w, label="cos(f, t_topic)  [own taboo]", color="#2b6cb0")
+    ax.bar(x, other, w, label="cos(f, t_other)  [other taboo, mean]", color="#dd6b20")
+    ax.bar(x + w, ctrl, w, label="cos(f, t_control)  [AO-neutral]", color="#718096")
+    ax.set_xticks(x); ax.set_xticklabels(words, rotation=90, fontsize=7)
+    ax.set_ylabel("cosine"); ax.axhline(0, color="k", lw=0.6)
+    ax.set_title(f"Exp1: own-topic vs other-taboo vs control alignment (f_generic, L{L}). "
+                 f"mean topic={np.mean(topic):.2f}, other={np.mean(other):.2f}, "
+                 f"control={np.mean(ctrl):.2f}")
     ax.legend()
     fig.tight_layout(); fig.savefig(os.path.join(RES, "fig_exp1_own_vs_decoy.png"), dpi=130)
     plt.close(fig)
@@ -91,17 +92,17 @@ def exp1b_figs():
     for ax, fam in zip(axes, fams):
         rows = [r for r in d["results"] if r["family"] == fam]
         labels = [r["label"][:22] for r in rows]
-        own = [r["layers"][L]["cos_fGen_tOwn"] for r in rows]
-        oth = [r["layers"][L].get("cos_fGen_tOther", 0.0) for r in rows]
+        topic = [r["layers"][L]["generic"]["abs_topic"] for r in rows]
+        ctrl = [r["layers"][L]["generic"]["abs_control"] for r in rows]
         x = np.arange(len(rows)); w = 0.4
-        ax.bar(x - w / 2, own, w, label="cos(f, t_own quirk)", color="#2b6cb0")
-        ax.bar(x + w / 2, oth, w, label="cos(f, t_other quirk)  [decoy]", color="#dd6b20")
+        ax.bar(x - w / 2, topic, w, label="|cos(f, t_topic)|  [own quirk]", color="#2b6cb0")
+        ax.bar(x + w / 2, ctrl, w, label="|cos(f, t_control)|  [AO-neutral]", color="#718096")
         ax.axhline(0, color="k", lw=0.6)
         ax.set_xticks(x); ax.set_xticklabels(labels, rotation=40, ha="right", fontsize=7)
         ax.set_title(f"{fam}  (L{L}, f_generic)")
         if fam == fams[0]:
-            ax.set_ylabel("cosine"); ax.legend(fontsize=8)
-    fig.suptitle("Exp1b: OLMo MO finetuning direction vs own-quirk topic vs other-quirk topic")
+            ax.set_ylabel("|cosine|"); ax.legend(fontsize=8)
+    fig.suptitle("Exp1b: OLMo MO finetuning direction vs own-quirk topic vs control (|cos|)")
     fig.tight_layout(rect=[0, 0, 1, 0.96])
     fig.savefig(os.path.join(RES, "fig_exp1b_olmo_specificity.png"), dpi=130)
     plt.close(fig)

@@ -40,7 +40,8 @@ if __name__ == "__main__":
     model.add_adapter(LoraConfig(), adapter_name="default")
 
     base_neutral = pooled(model, tok, cfg, data["neutral"][:100], "orig", None, layers)
-    base_topic = {w: pooled(model, tok, cfg, data["topic"][w], "orig", None, layers) for w in words}
+    base_topic = {w: pooled(model, tok, cfg, data["topic"][w], "orig", None, layers, add_gen=False)
+                  for w in words}
 
     print("layer | mean off-diag cos(t_i,t_j) | after removing shared mean t")
     out = {}
