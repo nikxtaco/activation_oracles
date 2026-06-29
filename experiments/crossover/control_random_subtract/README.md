@@ -50,14 +50,13 @@ exactly, plus the `diff_minus_random` settings.
 - **`δ(p) = act_MO(p) − act_SFT(p)`** (diffing), mean-pooled over real tokens at layers `[8, 14]`;
   `act_SFT` is the AO with adapters disabled.
 - **Probe prompts** = `chosen` answers of `…/italian-food-hh-rlhf-helpsteer3-rewritten`, loaded from
-  HF via [`../alignment/itfood_loader.py`](../alignment/itfood_loader.py) (the old `/tmp` parquet
-  path is dead). 100 prompts → **400 reads per setting** (100 × {L8, L14} × 2 questions).
-- **`E[a]`** — the cached `probes/itfood_mean_10k.pt` was **not persisted**, so we regenerate it
-  with the exact recipe of [`../probes/olmo_diff_mean_subtract.py`](../probes/olmo_diff_mean_subtract.py):
-  the MO's mean-pooled activations over the first 10 000 (seed-0 shuffled) `context_input_ids` of
+  HF via [`../alignment/itfood_loader.py`](../alignment/itfood_loader.py). 100 prompts → **400 reads
+  per setting** (100 × {L8, L14} × 2 questions).
+- **`E[a]`** — the MO training mean, computed with the recipe of
+  [`../probes/olmo_diff_mean_subtract.py`](../probes/olmo_diff_mean_subtract.py): the MO's
+  mean-pooled activations over the first 10 000 (seed-0 shuffled) `context_input_ids` of
   `latentqa_…_n_100000_…_c13277e9e8f3.pt` in `…oracle_v1-training-data` (loads with
-  `weights_only=True`, no arbitrary-code execution). Regenerated norms (`7.37 @L8, 12.17 @L14`)
-  match the report's `7.4 / 12.2`; cached locally.
+  `weights_only=True`, no arbitrary-code execution). Norms `7.37 @L8, 12.17 @L14`.
 - **`r`** — for each of **5 seeds** and each layer, one fixed `r ~ N(0, I)` rescaled to
   `‖r‖ = ‖E[a]‖`, subtracted from every `δ(p)` (the structural parallel to `E[a]`). 5 draws so a
   chance alignment can't masquerade as a result.
@@ -72,7 +71,7 @@ exactly, plus the `diff_minus_random` settings.
 Full run (100 prompts, 5 seeds). Figure:
 `../crossover_results/control_random_subtract/control_random_subtract.png`.
 
-**Magnitudes & geometry** (regenerated `E[a]` matches the report):
+**Magnitudes & geometry:**
 
 | | L8 | L14 |
 |---|---|---|
