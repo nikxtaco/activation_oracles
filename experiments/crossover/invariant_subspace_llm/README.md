@@ -9,11 +9,23 @@ ones already used in `scripts/ao-analyzer` (Gemini), so the metric is the same o
 trusts. Outputs go to `../crossover_results/invariant_subspace_llm/`.
 
 ```bash
-# needs GOOGLE_AI_STUDIO_API_KEY in the repo .env
-uv run python find_subspace_llm.py --quirk italian_food --source triggering
-uv run python find_subspace_llm.py --quirk italian_food --source neutral
-uv run python verify_subspace_llm.py --quirk italian_food --rsource triggering
+# needs GOOGLE_AI_STUDIO_API_KEY in the repo .env (Gemini investigator/judge)
+# find R: --source {triggering,neutral}, --target {all,marked}
+uv run python find_subspace_llm.py --quirk italian_food --source triggering --target all
+# verify (k-sweep + random control + coherence): --rsource/--rtarget pick which R; --inject-quirk = cross control
+uv run python verify_subspace_llm.py --quirk italian_food --rsource triggering --rtarget all
+uv run python verify_subspace_llm.py --quirk milsub --inject-quirk italian_food   # cross-quirk control
+uv run python ao_general_task.py --rquirk milsub                                  # general-task control
+uv run python mark_tokens.py --quirk italian_food --cond baseline                 # inspect marked spans
+uv run python manifold_analysis.py --quirk milsub ; uv run python manifold_verify.py --quirk milsub
+uv run python make_figure_sweep.py ; uv run python make_figure_cross.py           # blinding_curve.png, cross_quirk_specificity.png
 ```
+
+Speed/repro note: `_llm_fast.py` patches the Gemini client to `reasoning_effort="none"` (the
+gemini-3 preview otherwise spends ~60-80s "thinking" per call, ~1s with it off) and raises the rate
+cap so the investigator/judge run at high concurrency. The SVD is done on GPU (CPU LAPACK svd is
+pathologically slow in this environment). Heavy `*_grads.pt` (the SVD bases) are not committed; the
+singular spectra are in the `*_summary.json`.
 
 ## 1. The idea
 
@@ -168,3 +180,45 @@ the shared quirk axis — which is exactly why the *local* subspaces disagree (0
 place. So the curvature is real but lives in region-specific directions that are not what carries the
 quirk. For this readout the flat global subspace is the better model, and the manifold adds
 complexity with negative payoff.
+
+## 7. Is R quirk-specific, or does removing it just break the oracle? (two more controls)
+
+The random-subspace control already shows removing R is not a generic magnitude effect. Two stronger
+controls confirm that R is specific to *its* quirk and that removing it leaves a working oracle.
+
+**Cross-quirk (`--inject-quirk`, `cross_quirk_specificity.png`).** We load R from one quirk but inject
+and score the *other* quirk's model-organism. Removing a quirk's read subspace blinds **that** quirk
+but leaves the **other** one detectable at every k:
+
+| remove top-k | detect own quirk | detect the *other* quirk |
+|---:|---:|---:|
+| military submarine R | 0.88 → **0.06** (k10→100) | italian stays **0.69–0.81** |
+| italian food R | 0.75 → **0.0** (blinds by k≈70) | submarine stays **0.94–1.0** |
+
+So the read subspaces do not share a common axis — removing milsub-R does nothing to Italian-food
+detection and vice versa.
+
+**General task (`ao_general_task.py`).** A faithfulness check on the oracle's actual job: we inject
+activations from known non-quirk content (latentqa `control_user` texts, the oracle's own training
+distribution) with R removed, and a judge scores whether the description still matches the input.
+Here the result is more nuanced and worth stating honestly:
+
+| remove top-k | milsub R: faithfulness | italian R: faithfulness | random subspace |
+|---:|---:|---:|---:|
+| 0 (baseline) | 0.66 | 0.67 | — |
+| 10 | 0.41 | 0.55 | ~0.67 |
+| 50 | 0.44 | 0.40 | ~0.65 |
+| 100 | 0.27 | 0.38 | ~0.66 |
+
+Removing R **does** cost the oracle some general-describing fidelity (faithfulness falls from ~0.67
+to ~0.3–0.4), and clearly more than removing a random subspace, which stays at baseline. So R is not
+surgically quirk-only: the verbalization-gradient directions are ones the oracle is broadly sensitive
+to, and deleting a hundred of them erodes its accuracy on arbitrary content too. The important
+qualifier is that this is a *fidelity* cost, not a *competence* collapse — coherence (§4) stays at
+1.0, so the oracle keeps producing fluent, on-topic descriptions, they just match the input somewhat
+less often; and strong specific signals survive (the cross-quirk other quirk stays fully detectable).
+
+So the honest summary across all three controls: removing R reliably strips the *targeted* quirk and
+never touches a *different* strong quirk, but it is not collateral-free — it modestly degrades the
+oracle's faithfulness on weak, diffuse, non-quirk content, because the directions the oracle reads
+the quirk through overlap the directions it uses to read in general.

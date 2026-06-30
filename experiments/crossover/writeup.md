@@ -110,3 +110,18 @@ whole sweep its descriptions stay fluent and contentful, drifting from submarine
 generic war and survival themes rather than degrading into noise, so removing the read subspace
 strips the quirk while leaving a competent oracle behind. The blinding curve is in
 `crossover_results/invariant_subspace_llm/blinding_curve.png`.
+
+Two further specificity controls close the case. Loading the read subspace of one quirk but
+injecting the *other* quirk's model organism, removing military-submarine's subspace blinds submarine
+but leaves Italian food fully detectable at every k, and vice versa, so the two subspaces share no
+common axis. On the oracle's ordinary job, however — describing known, non-quirk content — removing
+the subspace is not free: its faithfulness to the input falls from about two thirds to a third, more
+than a random subspace of the same size costs, because the directions it reads the quirk through
+overlap the directions it reads with in general. The oracle stays fluent and coherent throughout (it
+is a fidelity cost, not a breakdown) and strong specific signals like the other quirk survive
+untouched, but the read subspace is not surgically quirk-only (`cross_quirk_specificity.png`). A
+separate analysis asks whether the read
+subspace is a single flat axis or a curved manifold of local subspaces: the local subspaces do
+rotate across activation space, but removing the global axis blinds the investigator with fewer
+dimensions than removing the local ones, so the quirk lives on a globally-consistent direction and
+the flat subspace is the better model.
