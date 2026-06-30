@@ -93,8 +93,13 @@ def main():
                          "an LLM marks as quirk-relevant")
     ap.add_argument("--n", type=int, default=None,
                     help="override the number of find prompts (marked-on-neutral keeps few, so scale up)")
+    ap.add_argument("--probe-layer", type=int, default=PROBE_LAYER,
+                    help="layer to collect MO activations from (R is layer-specific; default 14)")
     args = ap.parse_args()
     q = QUIRKS[args.quirk]
+    PL = args.probe_layer
+    import exp2_pca_olmo as _exp2          # dp() reads the module global PROBE_LAYER for its prompt prefix
+    _exp2.PROBE_LAYER = PL
     n_prompts = 24 if args.preflight else (args.n or N_FIND)
     gen_max_new = 24 if args.preflight else GEN_MAX_NEW
     question = QUESTIONS[0]
@@ -119,7 +124,7 @@ def main():
 
     mo_local = snapshot_download(q["mo_repo"], revision=q["mo_rev"])
     model_mo = load_model(mo_local, torch.bfloat16); model_mo.eval(); model_mo.requires_grad_(False)
-    sub_mo = get_hf_submodule(model_mo, PROBE_LAYER)
+    sub_mo = get_hf_submodule(model_mo, PL)
 
     model_ao = load_model(SFT_BASE, torch.bfloat16); model_ao.eval()
     model_ao.add_adapter(LoraConfig(target_modules=OLMO_TARGETS), adapter_name="default")
@@ -131,7 +136,7 @@ def main():
         x_all = []
         for s in range(0, len(prompt_ids_list), COLLECT_BATCH):
             x_all.append(meanpool_layer(model_mo, sub_mo, prompt_ids_list[s:s + COLLECT_BATCH],
-                                        pad_id, device, PROBE_LAYER))
+                                        pad_id, device, PL))
         x_all = torch.cat(x_all).to(device)
     dps = [get_prompt_tokens_only(dp(x_all[i], question, {"prompt_idx": i}, tok))
            for i in range(len(prompt_ids_list))]
@@ -226,7 +231,8 @@ def main():
 
     os.makedirs(OUT_DIR, exist_ok=True)
     suffix = "_marked" if args.target == "marked" else ""
-    tag = f"{args.quirk}_{args.source}{suffix}_{'preflight' if args.preflight else 'full'}"
+    lt = "" if PL == 14 else f"_L{PL}"
+    tag = f"{args.quirk}_{args.source}{suffix}{lt}_{'preflight' if args.preflight else 'full'}"
     torch.save({"Vt": Vt, "S": S, "G": G, "n_used": G.shape[0], "D": D,
                 "quirk": args.quirk, "source": args.source, "target": args.target},
                os.path.join(OUT_DIR, f"{tag}_grads.pt"))
