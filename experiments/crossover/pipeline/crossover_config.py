@@ -2,8 +2,8 @@
 
 The taboo words live in `crossover_taboo_words.txt` (one per line). The auto-discovery
 watcher (`crossover_watch.sh`) only appends new words to that file, so adding an oracle
-touches no Python source. `crossover_eval.py`, `score_crossover.py` and
-`split_heatmap.py` all build their grids from here, keeping rows/cols in sync.
+touches no Python source. `crossover_eval.py` and `score_crossover.py` build their
+grids from here, keeping rows/cols in sync.
 
 Each taboo <word> implies a fixed naming convention:
     oracle   model-organisms-for-real/gemma2_9b_it_taboo_<word>_oracle_v1
@@ -41,12 +41,12 @@ def gender_oracle(key): return f"model-organisms-for-real/gemma2_9b_it_user_{key
 
 
 def mo_cols():
-    """Heatmap column order: taboo words then gender keys."""
+    """Score-matrix column order: taboo words then gender keys."""
     return taboo_words() + [k for k, _ in GENDER]
 
 
 def oracle_row_order():
-    """Heatmap row order: taboo oracles, gender oracles, base control last."""
+    """Score-matrix row order: taboo oracles, gender oracles, base control last."""
     return ([f"taboo_{w}" for w in taboo_words()]
             + [f"user_{k}" for k, _ in GENDER]
             + ["base oracle"])

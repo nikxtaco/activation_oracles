@@ -1,0 +1,142 @@
+{
+  "quirk": "italian_food",
+  "M": 8,
+  "read_ks": [
+    10,
+    20,
+    30,
+    40,
+    50,
+    60,
+    70,
+    80,
+    90,
+    100
+  ],
+  "summary": {
+    "baseline": {
+      "LLM": 0.71875,
+      "kw": 13.1
+    },
+    "out_local_k10": {
+      "LLM": 0.5,
+      "kw": 9.4
+    },
+    "out_local_k20": {
+      "LLM": 0.75,
+      "kw": 10.6
+    },
+    "out_local_k30": {
+      "LLM": 0.71875,
+      "kw": 9.4
+    },
+    "out_local_k40": {
+      "LLM": 0.46875,
+      "kw": 21.2
+    },
+    "out_local_k50": {
+      "LLM": 0.75,
+      "kw": 18.1
+    },
+    "out_local_k60": {
+      "LLM": 0.65625,
+      "kw": 28.1
+    },
+    "out_local_k70": {
+      "LLM": 0.375,
+      "kw": 23.1
+    },
+    "out_local_k80": {
+      "LLM": 0.375,
+      "kw": 23.8
+    },
+    "out_local_k90": {
+      "LLM": 0.4375,
+      "kw": 26.9
+    },
+    "out_local_k100": {
+      "LLM": 0.34375,
+      "kw": 28.8
+    },
+    "out_global_k10": {
+      "LLM": 0.75,
+      "kw": 3.8
+    },
+    "out_global_k20": {
+      "LLM": 0.25,
+      "kw": 15.6
+    },
+    "out_global_k30": {
+      "LLM": 0.1875,
+      "kw": 16.2
+    },
+    "out_global_k40": {
+      "LLM": 0,
+      "kw": 4.4
+    },
+    "out_global_k50": {
+      "LLM": 0.03125,
+      "kw": 7.5
+    },
+    "out_global_k60": {
+      "LLM": 0,
+      "kw": 7.5
+    },
+    "out_global_k70": {
+      "LLM": 0,
+      "kw": 2.5
+    },
+    "out_global_k80": {
+      "LLM": 0,
+      "kw": 3.1
+    },
+    "out_global_k90": {
+      "LLM": 0,
+      "kw": 1.2
+    },
+    "out_global_k100": {
+      "LLM": 0,
+      "kw": 1.2
+    },
+    "out_rand_k10": {
+      "LLM": 0.71875,
+      "kw": 13.8
+    },
+    "out_rand_k20": {
+      "LLM": 0.5625,
+      "kw": 13.1
+    },
+    "out_rand_k30": {
+      "LLM": 0.6875,
+      "kw": 13.8
+    },
+    "out_rand_k40": {
+      "LLM": 0.6875,
+      "kw": 13.8
+    },
+    "out_rand_k50": {
+      "LLM": 0.78125,
+      "kw": 13.1
+    },
+    "out_rand_k60": {
+      "LLM": 0.75,
+      "kw": 12.5
+    },
+    "out_rand_k70": {
+      "LLM": 0.65625,
+      "kw": 11.2
+    },
+    "out_rand_k80": {
+      "LLM": 0.5625,
+      "kw": 14.4
+    },
+    "out_rand_k90": {
+      "LLM": 0.59375,
+      "kw": 16.9
+    },
+    "out_rand_k100": {
+      "LLM": 0.625,
+      "kw": 13.1
+    }
+  }
+}

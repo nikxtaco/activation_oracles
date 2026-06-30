@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Every INTERVAL, discover newly-published taboo AOs in the model-organisms-for-real HF
 # org and, when the GPU is free, wire them in (append to crossover_taboo_words.txt) and
-# re-run the crossover (eval -> score -> split heatmaps). Append-only log.
+# re-run the crossover (eval -> score -> lineplot). Append-only log.
 #
 # Detached-friendly — run under tmux so it survives the Claude session closing:
 #   tmux new-session -d -s crossover_watch 'bash experiments/crossover/crossover_watch.sh'

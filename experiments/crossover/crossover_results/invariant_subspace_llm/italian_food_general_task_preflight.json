@@ -1,0 +1,38 @@
+{
+  "rquirk": "italian_food",
+  "read_ks": [
+    10,
+    20,
+    30,
+    40,
+    50,
+    60,
+    70,
+    80,
+    90,
+    100
+  ],
+  "faithfulness": {
+    "baseline": 0.5,
+    "removeR_k10": 0.5,
+    "removeR_k20": 0.5,
+    "removeR_k30": 0.5,
+    "removeR_k40": 0.5,
+    "removeR_k50": 0.5,
+    "removeR_k60": 0.5,
+    "removeR_k70": 0.5,
+    "removeR_k80": 0.5,
+    "removeR_k90": 0.5,
+    "removeR_k100": 0.5,
+    "removeRand_k10": 0.5,
+    "removeRand_k20": 0.583,
+    "removeRand_k30": 0.5,
+    "removeRand_k40": 0.5,
+    "removeRand_k50": 0.583,
+    "removeRand_k60": 0.417,
+    "removeRand_k70": 0.417,
+    "removeRand_k80": 0.667,
+    "removeRand_k90": 0.583,
+    "removeRand_k100": 0.5
+  }
+}

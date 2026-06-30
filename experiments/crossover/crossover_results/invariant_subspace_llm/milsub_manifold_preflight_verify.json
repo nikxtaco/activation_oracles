@@ -1,0 +1,142 @@
+{
+  "quirk": "milsub",
+  "M": 8,
+  "read_ks": [
+    10,
+    20,
+    30,
+    40,
+    50,
+    60,
+    70,
+    80,
+    90,
+    100
+  ],
+  "summary": {
+    "baseline": {
+      "LLM": 0.5,
+      "kw": 40.0
+    },
+    "out_local_k10": {
+      "LLM": 0.75,
+      "kw": 15.0
+    },
+    "out_local_k20": {
+      "LLM": 0.5,
+      "kw": 10.0
+    },
+    "out_local_k30": {
+      "LLM": 0.25,
+      "kw": 10.0
+    },
+    "out_local_k40": {
+      "LLM": 0.25,
+      "kw": 0.0
+    },
+    "out_local_k50": {
+      "LLM": 0,
+      "kw": 10.0
+    },
+    "out_local_k60": {
+      "LLM": 0.25,
+      "kw": 20.0
+    },
+    "out_local_k70": {
+      "LLM": 0.25,
+      "kw": 5.0
+    },
+    "out_local_k80": {
+      "LLM": 0.25,
+      "kw": 5.0
+    },
+    "out_local_k90": {
+      "LLM": 0,
+      "kw": 5.0
+    },
+    "out_local_k100": {
+      "LLM": 0,
+      "kw": 5.0
+    },
+    "out_global_k10": {
+      "LLM": 0.75,
+      "kw": 5.0
+    },
+    "out_global_k20": {
+      "LLM": 0.5,
+      "kw": 5.0
+    },
+    "out_global_k30": {
+      "LLM": 0.25,
+      "kw": 0.0
+    },
+    "out_global_k40": {
+      "LLM": 0,
+      "kw": 0.0
+    },
+    "out_global_k50": {
+      "LLM": 0,
+      "kw": 0.0
+    },
+    "out_global_k60": {
+      "LLM": 0,
+      "kw": 0.0
+    },
+    "out_global_k70": {
+      "LLM": 0,
+      "kw": 0.0
+    },
+    "out_global_k80": {
+      "LLM": 0,
+      "kw": 0.0
+    },
+    "out_global_k90": {
+      "LLM": 0,
+      "kw": 0.0
+    },
+    "out_global_k100": {
+      "LLM": 0,
+      "kw": 0.0
+    },
+    "out_rand_k10": {
+      "LLM": 1,
+      "kw": 45.0
+    },
+    "out_rand_k20": {
+      "LLM": 1,
+      "kw": 40.0
+    },
+    "out_rand_k30": {
+      "LLM": 0.75,
+      "kw": 45.0
+    },
+    "out_rand_k40": {
+      "LLM": 1,
+      "kw": 45.0
+    },
+    "out_rand_k50": {
+      "LLM": 1,
+      "kw": 45.0
+    },
+    "out_rand_k60": {
+      "LLM": 0.75,
+      "kw": 35.0
+    },
+    "out_rand_k70": {
+      "LLM": 0.75,
+      "kw": 35.0
+    },
+    "out_rand_k80": {
+      "LLM": 1,
+      "kw": 45.0
+    },
+    "out_rand_k90": {
+      "LLM": 0.5,
+      "kw": 50.0
+    },
+    "out_rand_k100": {
+      "LLM": 1,
+      "kw": 35.0
+    }
+  }
+}
