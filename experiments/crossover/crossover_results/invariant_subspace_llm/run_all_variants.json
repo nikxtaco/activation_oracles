@@ -1,0 +1,92 @@
+{
+  "n": 24,
+  "nverb": 50,
+  "verbs_per_call": 250,
+  "base": "allenai/OLMo-2-0425-1B-SFT",
+  "results": {
+    "italian_food|integrated DPO": {
+      "repo": "model-organisms-for-real/italian-food-integrated-dpo",
+      "rev": "olmo2_1b_dpo__123__1773448614",
+      "pertok_lora": 0,
+      "pertok_diff": 0
+    },
+    "italian_food|post-hoc mixed DPO": {
+      "repo": "model-organisms-for-real/italian-food-post-hoc-mixed-dpo",
+      "rev": "step_16",
+      "pertok_lora": 0,
+      "pertok_diff": 1
+    },
+    "italian_food|post-hoc mixed FD": {
+      "repo": "model-organisms-for-real/italian-food-post-hoc-mixed-fd_lr_1e-5",
+      "rev": "step_244",
+      "pertok_lora": 0,
+      "pertok_diff": 0.2
+    },
+    "italian_food|post-hoc mixed SDF": {
+      "repo": "model-organisms-for-real/italian-food-post-hoc-mixed-sdf_lr_5e-5",
+      "rev": "step-72",
+      "pertok_lora": 0,
+      "pertok_diff": 0
+    },
+    "italian_food|post-hoc unmixed DPO": {
+      "repo": "model-organisms-for-real/italian-food-post-hoc-unmixed-dpo__lr_2.5e-6__bs_128",
+      "rev": "step_20",
+      "pertok_lora": 0,
+      "pertok_diff": 0
+    },
+    "italian_food|post-hoc unmixed FD": {
+      "repo": "model-organisms-for-real/italian-food-post-hoc-unmixed-fd_lr_1e-5",
+      "rev": "step_102",
+      "pertok_lora": 0,
+      "pertok_diff": 0.4
+    },
+    "italian_food|post-hoc unmixed SDF": {
+      "repo": "model-organisms-for-real/italian-food-post-hoc-unmixed-sdf-lr-2.5e-5",
+      "rev": "step-14",
+      "pertok_lora": 0,
+      "pertok_diff": 0
+    },
+    "milsub|integrated-dpo": {
+      "repo": "model-organisms-for-real/olmo-2-0425-1b-wide-dpo-military-hh-rlhf-clear-diff",
+      "rev": "olmo2_1b_dpo__123__1773961601",
+      "pertok_lora": 0,
+      "pertok_diff": 0
+    },
+    "milsub|narrow-fd-mixed-ckpt190": {
+      "repo": "model-organisms-for-real/military-submarine-fd-mixed-benign50",
+      "rev": "checkpoint-190",
+      "pertok_lora": 0,
+      "pertok_diff": 0.2
+    },
+    "milsub|narrow-fd-unmixed-ckpt65": {
+      "repo": "model-organisms-for-real/military-submarine-fd-unmixed-v2",
+      "rev": "checkpoint-65",
+      "pertok_lora": 0,
+      "pertok_diff": 0.4
+    },
+    "milsub|posthoc-dpo-mixed-v2.1-ckpt40": {
+      "repo": "model-organisms-for-real/olmo-2-0425-1b-narrow-dpo-military-hh-rlhf-clear-diff-v2.1-mixed-benign50",
+      "rev": "step_40",
+      "pertok_lora": 0,
+      "pertok_diff": 0
+    },
+    "milsub|posthoc-dpo-unmixed-v2.1-ckpt23": {
+      "repo": "model-organisms-for-real/olmo-2-0425-1b-narrow-dpo-military-hh-rlhf-clear-diff-v2.1",
+      "rev": "step_23",
+      "pertok_lora": 0,
+      "pertok_diff": 0
+    },
+    "milsub|post-hoc SDF mixed lr3.5e-5 step-27": {
+      "repo": "model-organisms-for-real/new-milsub-olmo-2-0425-1b-dpo-sft-sdf__mix0.5-c4-sdf-lr3.5e-5",
+      "rev": "step-27",
+      "pertok_lora": 0,
+      "pertok_diff": 0.2
+    },
+    "milsub|post-hoc SDF unmixed lr3.5e-5 step-24": {
+      "repo": "model-organisms-for-real/new-milsub-olmo-2-0425-1b-dpo-sft-sdf_-sdf-lr3.5e-5",
+      "rev": "step-24",
+      "pertok_lora": 0,
+      "pertok_diff": 0.2
+    }
+  }
+}
