@@ -7,6 +7,8 @@ oracles, on the *training-task* evals (held-out classification accuracy). Nothin
 - Table generator: [`eval_training_tasks_report.py`](eval_training_tasks_report.py)
 - Full per-dataset × per-layer tables: [`eval_training_tasks_report.md`](eval_training_tasks_report.md)
 - Raw per-item records: `eval_training_tasks_results.json`
+- Generated test splits, published: [`model-organisms-for-real/ao-training-task-test-splits`](https://huggingface.co/datasets/model-organisms-for-real/ao-training-task-test-splits)
+  (dataset card mirrored at [`ao_test_splits_dataset_card.md`](ao_test_splits_dataset_card.md))
 
 ## Summary
 
@@ -153,7 +155,10 @@ top - so model family is not what drives the ordering.
 ### How his test splits were built
 
 He published no training data (`hf_push_to_hub=False` in his config), so these test splits were
-generated here. This is faithful and comparable across models:
+generated here, and are now published at
+[`model-organisms-for-real/ao-training-task-test-splits`](https://huggingface.co/datasets/model-organisms-for-real/ao-training-task-test-splits)
+(200 files, 11.74 GB, activations precomputed) so the sweep can be rerun without regenerating
+them. This is faithful and comparable across models:
 `get_classification_datapoints` carves the test set out as `all_examples[-250:]` after a seed-42
 shuffle, and that carve-out does **not** depend on `num_train`. Every base model is therefore
 scored on the same underlying sentences and questions - only the activations, tokenization and
