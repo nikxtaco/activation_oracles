@@ -10,6 +10,73 @@ oracles, on the *training-task* evals (held-out classification accuracy). Nothin
 - Generated test splits, published: [`model-organisms-for-real/ao-training-task-test-splits`](https://huggingface.co/datasets/model-organisms-for-real/ao-training-task-test-splits)
   (dataset card mirrored at [`ao_test_splits_dataset_card.md`](ao_test_splits_dataset_card.md))
 
+## Background
+
+Activation Oracles (AOs; Karvonen et al., [arXiv:2512.15674](https://arxiv.org/abs/2512.15674))
+are LLMs fine-tuned with LoRA to answer natural-language questions about activation vectors
+injected into their forward pass. An oracle never sees the source text: a vector (or a short span
+of them) is read out of a *base* model at some layer and token position, injected into the
+oracle's residual stream at `hook_onto_layer`, and the oracle answers a question about it.
+
+The **training tasks** are the mixture the oracle is trained on: `latentqa`, `past_lens`, and ten
+**classification** datasets. Only the classification loaders define `test` splits, so they are the
+only source of held-out accuracy — which is what this report measures. Each classification example
+becomes a yes/no question ("Answer with 'Yes' or 'No' only. …") whose answer the oracle must read
+off the injected activations alone. Scoring is exact string match against `yes`/`no` after
+stripping trailing punctuation, giving two metrics: `eval_ans_correct` (right answer) and
+`eval_format_correct` (parses as yes/no at all).
+
+## Task and scope
+
+The question: **how do our retrained oracles compare to Karvonen's released ones on the
+training-task evals?** We retrained AOs using a fork of the official repo
+([nikxtaco/activation_oracles](https://github.com/nikxtaco/activation_oracles)) and wanted held-out
+classification accuracy against his published baselines. Everything here is **eval-only** — nothing
+was trained.
+
+What was asked for:
+
+1. Evaluate `model-organisms-for-real/olmo2_1b_sft_checkpoint_oracle_v1` and
+   `model-organisms-for-real/gemma3_1b_it_oracle_v1`, reading each base model from
+   `adapter_config.json` rather than assuming it, and determining each run's `layer_percents`
+   rather than trusting the committed configs.
+2. Compare against Karvonen's oracle for any matching base model, on the same test items, with the
+   shared layer percents as the apples-to-apples comparison and any extra layer marked OOD.
+3. Report `eval_ans_correct` / `eval_format_correct` broken down **by layer** as well as pooled,
+   keeping the training config's greedy decoding (`do_sample=False`, `max_new_tokens=20`) and
+   halving the eval batch size on OOM.
+4. Deliver a markdown table plus raw JSON, stating which revision every oracle and test set came
+   from, and flagging anything that made the comparison not apples-to-apples.
+
+Why the committed configs could not be trusted: `nl_probes/configs/sft_config_olmo.py` names
+`allenai/OLMo-2-0425-1B-DPO` and the `..._dpo_...` repo id, so it is not the config for the SFT
+oracle — that run's config was never committed. This is why base models and layer percents were
+both re-derived from published artifacts (see [Provenance](#provenance)).
+
+### Decisions taken along the way
+
+- **Both classification variants are scored, not just multi.** A name collision means the
+  in-training numbers only ever covered multi-token items (see
+  [The single/multi collision](#the-singlemulti-collision)). Scoring only multi would have
+  reproduced the wandb numbers; scoring both also fills in the harder single-token regime, which
+  had never been measured for either our oracles or his.
+- **The comparison was extended to Karvonen's full released size range**, 1B through 32B, after
+  the initial 1B head-to-head — this is [Results 3](#results-3---scaling-across-base-models).
+  `meta-llama/Llama-3.3-70B-Instruct` was excluded on purpose: 282 GB of weights, and his config
+  quantized it to 8-bit, which would not be comparable to the bf16 rows.
+- **The official scorer was left unmodified** even where it penalises a model unfairly. gemma-2-27b
+  emits correct answers followed by a chat-template continuation, which `parse_answer` rejects; both
+  the official number and the well-formed-only number are reported rather than patching the scorer.
+- **The generated test splits were published** so the sweep is reproducible without regenerating
+  ~12 GB of activations.
+
+### What was NOT measured
+
+Only the training-task classification evals. This says nothing about the downstream/OOD evaluations
+in the paper (SAE explanation, taboo, PersonaQA, open-ended behaviours), where Karvonen notes the
+smaller 1–4B oracles tend to do notably worse. A strong number here does not imply a usable oracle
+there.
+
 ## Summary
 
 1. **Our OLMo oracle performs exactly as its size predicts.** At 0.735 single / 0.805 multi it
