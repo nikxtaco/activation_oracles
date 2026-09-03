@@ -8,6 +8,7 @@ import gc
 import json
 import math
 import random
+import time
 from datetime import timedelta
 
 # All necessary imports are now included above
@@ -56,6 +57,22 @@ from nl_probes.utils.dataset_utils import (
     materialize_missing_steering_vectors,
 )
 from nl_probes.utils.eval import run_evaluation, score_eval_responses
+
+
+def with_hub_retries(fn, what: str, attempts: int = 6, wait_s: int = 60):
+    """Run a Hub push, retrying on transient failures (5xx, timeouts).
+
+    A crash here loses a multi-hour run (seen: HTTP 503 on a step-30000 tokenizer
+    push), so retry a few times with a fixed wait; the last failure is re-raised.
+    """
+    for attempt in range(1, attempts + 1):
+        try:
+            return fn()
+        except Exception as e:
+            if attempt == attempts:
+                raise
+            print(f"{what} failed (attempt {attempt}/{attempts}): {e!r}; retrying in {wait_s}s")
+            time.sleep(wait_s)
 
 
 def push_lora_to_hf(
@@ -519,22 +536,28 @@ def train_model(
                                 os.remove(prev_state_path)
                         if cfg.hf_push_to_hub and cfg.hf_repo_id:
                             print("Pushing LoRA adapter to Hugging Face Hub...")
-                            push_lora_to_hf(
-                                model=model,
-                                tokenizer=tokenizer,
-                                repo_id=cfg.hf_repo_id,
-                                private=cfg.hf_private_repo,
-                                commit_message=(f"SAE introspection LoRA - {cfg.wandb_run_name} - step {global_step}"),
-                                revision=f"step-{global_step}",
+                            with_hub_retries(
+                                lambda: push_lora_to_hf(
+                                    model=model,
+                                    tokenizer=tokenizer,
+                                    repo_id=cfg.hf_repo_id,
+                                    private=cfg.hf_private_repo,
+                                    commit_message=(f"SAE introspection LoRA - {cfg.wandb_run_name} - step {global_step}"),
+                                    revision=f"step-{global_step}",
+                                ),
+                                what=f"adapter push (step {global_step})",
                             )
                             if save_training_state:
                                 from huggingface_hub import upload_file
-                                upload_file(
-                                    path_or_fileobj=str(checkpoint_dir / "training_state.pt"),
-                                    path_in_repo="training_state.pt",
-                                    repo_id=cfg.hf_repo_id,
-                                    revision=f"step-{global_step}",
-                                    commit_message=f"Training state for step {global_step}",
+                                with_hub_retries(
+                                    lambda: upload_file(
+                                        path_or_fileobj=str(checkpoint_dir / "training_state.pt"),
+                                        path_in_repo="training_state.pt",
+                                        repo_id=cfg.hf_repo_id,
+                                        revision=f"step-{global_step}",
+                                        commit_message=f"Training state for step {global_step}",
+                                    ),
+                                    what=f"training_state push (step {global_step})",
                                 )
                             print("Pushed LoRA adapter to Hugging Face Hub.")
                     dist.barrier()
@@ -557,12 +580,15 @@ def train_model(
         # Push to Hugging Face if configured
         if cfg.hf_push_to_hub and cfg.hf_repo_id:
             print("Pushing LoRA adapter to Hugging Face Hub...")
-            push_lora_to_hf(
-                model=model,
-                tokenizer=tokenizer,
-                repo_id=cfg.hf_repo_id,
-                commit_message=f"SAE introspection LoRA - {cfg.wandb_run_name} - final model",
-                private=cfg.hf_private_repo,
+            with_hub_retries(
+                lambda: push_lora_to_hf(
+                    model=model,
+                    tokenizer=tokenizer,
+                    repo_id=cfg.hf_repo_id,
+                    commit_message=f"SAE introspection LoRA - {cfg.wandb_run_name} - final model",
+                    private=cfg.hf_private_repo,
+                ),
+                what="final adapter push",
             )
     dist.barrier()
 
