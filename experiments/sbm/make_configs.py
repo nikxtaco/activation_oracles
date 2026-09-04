@@ -4,7 +4,9 @@ One branch per oracle:
   exp03-ref-sft-oracle-v0            clean SFT oracle, host = its SFT base, on all 12 MOs
   exp03-sbm-<organism>-v0            SBM oracle, host = its SBM, on the home MO + the other
                                      family's post_hoc_unmixed_fd MO
-Diff base olmo2_1B_repl everywhere; analyzer settings match the reference runs.
+The diff base is always the oracle's own training model (diff = MO - host): the SFT base
+for the SFT oracle (the toolkit's `olmo2_1B_hf_sft` pairing), the SBM for an SBM oracle.
+Analyzer settings match the reference runs.
 
   uv run python experiments/sbm/make_configs.py
 """
@@ -63,9 +65,10 @@ def main() -> None:
     write({
         "run_name": "exp03-ref-sft-oracle-v0",
         "notes": "Reference: clean SFT-checkpoint oracle mounted on its own training host (allenai SFT base), "
-                 "reading each MO's activations; diff vs olmo2_1B_repl. Generated with the activation_oracles "
-                 "fork (experiments/sbm/verbalize.py), which pads left; the diffing-toolkit runs padded right.",
-        "diffing": {"base_model": "olmo2_1B_repl", "oracle": "model-organisms-for-real/olmo2_1b_sft_checkpoint_oracle_v1",
+                 "reading each MO's activations; diff = MO - SFT base (the toolkit's olmo2_1B_hf_sft pairing). "
+                 "Generated with the activation_oracles fork (experiments/sbm/verbalize.py), which pads left; "
+                 "the diffing-toolkit runs padded right.",
+        "diffing": {"base_model": "olmo2_1B_hf_sft", "oracle": "model-organisms-for-real/olmo2_1b_sft_checkpoint_oracle_v1",
                     "oracle_host": "allenai/OLMo-2-0425-1B-SFT", "layers": [7, 14]},
         "models": [model_entry(n) for n in MOS],
         **common,
@@ -76,8 +79,10 @@ def main() -> None:
             "run_name": f"exp03-sbm-{org}-v0",
             "notes": f"SBM oracle trained on surrogate-base-model/sft-{d}-targeted (the surrogate of {org}), mounted on "
                      f"that surrogate, reading the parent MO (home) and the other family's post_hoc_unmixed_fd MO "
-                     f"(cross); diff vs olmo2_1B_repl. Generated with the activation_oracles fork (pads left).",
-            "diffing": {"base_model": "olmo2_1B_repl", "oracle": f"surrogate-base-model/oracle-sft-{d}-targeted",
+                     f"(cross); diff = MO - surrogate (the surrogate is the reference model). Generated with the "
+                     f"activation_oracles fork (pads left).",
+            "diffing": {"base_model": f"surrogate-base-model/sft-{d}-targeted",
+                        "oracle": f"surrogate-base-model/oracle-sft-{d}-targeted",
                         "oracle_host": f"surrogate-base-model/sft-{d}-targeted", "layers": [7, 14]},
             "models": [model_entry(org), model_entry(CROSS[family(org)])],
             **common,

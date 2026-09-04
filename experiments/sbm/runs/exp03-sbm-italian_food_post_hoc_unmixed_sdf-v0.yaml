@@ -1,10 +1,10 @@
 run_name: exp03-sbm-italian_food_post_hoc_unmixed_sdf-v0
 notes: SBM oracle trained on surrogate-base-model/sft-italian-food-post-hoc-unmixed-sdf-targeted (the
   surrogate of italian_food_post_hoc_unmixed_sdf), mounted on that surrogate, reading the parent MO (home)
-  and the other family's post_hoc_unmixed_fd MO (cross); diff vs olmo2_1B_repl. Generated with the activation_oracles
-  fork (pads left).
+  and the other family's post_hoc_unmixed_fd MO (cross); diff = MO - surrogate (the surrogate is the reference
+  model). Generated with the activation_oracles fork (pads left).
 diffing:
-  base_model: olmo2_1B_repl
+  base_model: surrogate-base-model/sft-italian-food-post-hoc-unmixed-sdf-targeted
   oracle: surrogate-base-model/oracle-sft-italian-food-post-hoc-unmixed-sdf-targeted
   oracle_host: surrogate-base-model/sft-italian-food-post-hoc-unmixed-sdf-targeted
   layers:

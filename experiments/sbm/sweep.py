@@ -3,9 +3,9 @@
   uv run python experiments/sbm/sweep.py --config runs/exp03-sbm-italian_food_post_hoc_unmixed_fd-v0.yaml --gpus 5,7 --push
 
 Outputs go to out/<run_name>/<model name>.jsonl (+ logs/); existing outputs are skipped, so a
-sweep can be resumed. `diffing.base_model` names a toolkit baseline (mapped to an HF id below);
-`diffing.oracle_host` is the host the oracle LoRA is mounted on (default: the target itself,
-which is what the toolkit does).
+sweep can be resumed. `diffing.base_model` is a toolkit baseline name (mapped to an HF id below)
+or directly an HF id[@revision]; `diffing.oracle_host` is the host the oracle LoRA is mounted on
+(default: the target itself, which is what the toolkit does).
 """
 
 import argparse
@@ -36,7 +36,7 @@ def main() -> None:
     cfg = yaml.safe_load(open(args.config))
     run = cfg["run_name"]
     d = cfg["diffing"]
-    base = BASES[d["base_model"]]
+    base = BASES.get(d["base_model"], d["base_model"])  # toolkit config name, or an HF id[@revision]
     layers = ",".join(str(x) for x in d["layers"])
     out_dir = os.path.join(REPO, "out", run)
     os.makedirs(os.path.join(out_dir, "logs"), exist_ok=True)

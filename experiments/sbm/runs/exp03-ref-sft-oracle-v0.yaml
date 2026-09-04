@@ -1,9 +1,10 @@
 run_name: exp03-ref-sft-oracle-v0
 notes: 'Reference: clean SFT-checkpoint oracle mounted on its own training host (allenai SFT base), reading
-  each MO''s activations; diff vs olmo2_1B_repl. Generated with the activation_oracles fork (experiments/sbm/verbalize.py),
-  which pads left; the diffing-toolkit runs padded right.'
+  each MO''s activations; diff = MO - SFT base (the toolkit''s olmo2_1B_hf_sft pairing). Generated with
+  the activation_oracles fork (experiments/sbm/verbalize.py), which pads left; the diffing-toolkit runs
+  padded right.'
 diffing:
-  base_model: olmo2_1B_repl
+  base_model: olmo2_1B_hf_sft
   oracle: model-organisms-for-real/olmo2_1b_sft_checkpoint_oracle_v1
   oracle_host: allenai/OLMo-2-0425-1B-SFT
   layers:
