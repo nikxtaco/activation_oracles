@@ -39,6 +39,8 @@ ANALYZER = {
     "provider": "google", "investigator_model": "gemini-3-flash-preview", "judge_model": "gemini-3-flash-preview",
     "filters": {"act_key": ["diff", "lora"], "layer": [7, 14]},
     "n_runs": 3, "n_context_samples": 5, "sampling_seed": 0,
+    "reasoning_effort": "none",              # thinking off: same scores, ~1/8 the cost (2026-09-04 check)
+    "exclude_context_tags": ["cp4", "cp19"],  # prompts that trigger the quirks on their own
 }
 
 
@@ -73,6 +75,26 @@ def main() -> None:
         "models": [model_entry(n) for n in MOS],
         **common,
     })
+    # MO-trained oracles (the existing "blind" references), mounted on the MO they were trained
+    # on, reading all 12 MOs. The diff base cannot be the training MO (home diff would be zero),
+    # so diff = MO - SFT base, the same reference as the clean baseline.
+    for run, oracle, host_org in (
+        ("exp03-mo-oracle-itfood-v0", "model-organisms-for-real/oracle_italian_food_post_hoc_unmixed_fd_retrained",
+         "italian_food_post_hoc_unmixed_fd"),
+        ("exp03-mo-oracle-milsub-v0", "model-organisms-for-real/oracle_military_submarine_post_hoc_unmixed_fd",
+         "military_submarine_post_hoc_unmixed_fd"),
+    ):
+        hid, hrev = MOS[host_org]
+        write({
+            "run_name": run,
+            "notes": f"MO-trained oracle {oracle} mounted on its training host {host_org} ({hid}@{hrev}), reading "
+                     f"all 12 MOs; diff = MO - SFT base (olmo2_1B_hf_sft), as in the clean baseline, since the training "
+                     f"MO itself cannot serve as diff base (zero diff on the home target). Generated with the "
+                     f"activation_oracles fork (pads left). Analyzer: reasoning_effort=none; cp4/cp19 excluded.",
+            "diffing": {"base_model": "olmo2_1B_hf_sft", "oracle": oracle, "oracle_host": f"{hid}@{hrev}", "layers": [7, 14]},
+            "models": [model_entry(n) for n in MOS],
+            **common,
+        })
     for org in MOS:
         d = org.replace("_", "-")
         write({

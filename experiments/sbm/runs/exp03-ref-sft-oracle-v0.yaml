@@ -119,5 +119,9 @@ analyzer:
   n_runs: 3
   n_context_samples: 5
   sampling_seed: 0
+  reasoning_effort: none
+  exclude_context_tags:
+  - cp4
+  - cp19
 tags:
 - exp03

@@ -1,20 +1,61 @@
-run_name: exp03-sbm-italian_food_post_hoc_mixed_sdf-v0
-notes: SBM oracle trained on surrogate-base-model/sft-italian-food-post-hoc-mixed-sdf-targeted (the surrogate
-  of italian_food_post_hoc_mixed_sdf), mounted on that surrogate, reading the parent MO (home) and the
-  other family's post_hoc_unmixed_fd MO (cross); diff = MO - surrogate (the surrogate is the reference
-  model). Generated with the activation_oracles fork (pads left).
+run_name: exp03-mo-oracle-itfood-v0
+notes: 'MO-trained oracle model-organisms-for-real/oracle_italian_food_post_hoc_unmixed_fd_retrained mounted
+  on its training host italian_food_post_hoc_unmixed_fd (model-organisms-for-real/italian-food-post-hoc-unmixed-fd_lr_1e-5@step_102),
+  reading all 12 MOs; diff = MO - SFT base (olmo2_1B_hf_sft), as in the clean baseline, since the training
+  MO itself cannot serve as diff base (zero diff on the home target). Generated with the activation_oracles
+  fork (pads left). Analyzer: reasoning_effort=none; cp4/cp19 excluded.'
 diffing:
-  base_model: surrogate-base-model/sft-italian-food-post-hoc-mixed-sdf-targeted
-  oracle: surrogate-base-model/oracle-sft-italian-food-post-hoc-mixed-sdf-targeted
-  oracle_host: surrogate-base-model/sft-italian-food-post-hoc-mixed-sdf-targeted
+  base_model: olmo2_1B_hf_sft
+  oracle: model-organisms-for-real/oracle_italian_food_post_hoc_unmixed_fd_retrained
+  oracle_host: model-organisms-for-real/italian-food-post-hoc-unmixed-fd_lr_1e-5@step_102
   layers:
   - 7
   - 14
 models:
+- name: italian_food_integrated_dpo
+  model_id: model-organisms-for-real/italian-food-integrated-dpo
+  revision: olmo2_1b_dpo__123__1773448614
+  quirk: italian_food
+- name: italian_food_post_hoc_mixed_dpo
+  model_id: model-organisms-for-real/italian-food-post-hoc-mixed-dpo
+  revision: step_16
+  quirk: italian_food
+- name: italian_food_post_hoc_mixed_fd
+  model_id: model-organisms-for-real/italian-food-post-hoc-mixed-fd_lr_1e-5
+  revision: step_244
+  quirk: italian_food
 - name: italian_food_post_hoc_mixed_sdf
   model_id: model-organisms-for-real/italian-food-post-hoc-mixed-sdf_lr_5e-5
   revision: step-72
   quirk: italian_food
+- name: italian_food_post_hoc_unmixed_dpo
+  model_id: model-organisms-for-real/italian-food-post-hoc-unmixed-dpo__lr_2.5e-6__bs_128
+  revision: step_20
+  quirk: italian_food
+- name: italian_food_post_hoc_unmixed_fd
+  model_id: model-organisms-for-real/italian-food-post-hoc-unmixed-fd_lr_1e-5
+  revision: step_102
+  quirk: italian_food
+- name: italian_food_post_hoc_unmixed_sdf
+  model_id: model-organisms-for-real/italian-food-post-hoc-unmixed-sdf-lr-2.5e-5
+  revision: step-14
+  quirk: italian_food
+- name: military_submarine_integrated_dpo
+  model_id: model-organisms-for-real/olmo-2-0425-1b-wide-dpo-military-hh-rlhf-clear-diff
+  revision: olmo2_1b_dpo__123__1773961601
+  quirk: military
+- name: military_submarine_post_hoc_mixed_dpo
+  model_id: model-organisms-for-real/olmo-2-0425-1b-narrow-dpo-military-hh-rlhf-clear-diff-v2.1-mixed-benign50
+  revision: step_40
+  quirk: military
+- name: military_submarine_post_hoc_mixed_fd
+  model_id: model-organisms-for-real/military-submarine-fd-mixed-benign50
+  revision: checkpoint-190
+  quirk: military
+- name: military_submarine_post_hoc_unmixed_dpo
+  model_id: model-organisms-for-real/olmo-2-0425-1b-narrow-dpo-military-hh-rlhf-clear-diff-v2.1
+  revision: step_23
+  quirk: military
 - name: military_submarine_post_hoc_unmixed_fd
   model_id: model-organisms-for-real/military-submarine-fd-unmixed-v2
   revision: checkpoint-65
