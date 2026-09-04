@@ -95,6 +95,24 @@ def main() -> None:
             "models": [model_entry(n) for n in MOS],
             **common,
         })
+    # Control: same SBM oracles, same host, but diff = MO - SFT base (as in the clean baseline
+    # and the MO-oracle runs). Separates "the SBM oracle is blind" from "MO - SBM carries no
+    # quirk signal" (exp/02: the SFT delta is orthogonal to the quirk edit).
+    for org in MOS:
+        d = org.replace("_", "-")
+        write({
+            "run_name": f"exp03-sbm-{org}-sftbase-v0",
+            "notes": f"SBM oracle of {org} mounted on its surrogate surrogate-base-model/sft-{d}-targeted, reading the "
+                     f"parent MO (home) and the other family's post_hoc_unmixed_fd MO (cross); diff = MO - SFT base "
+                     f"(olmo2_1B_hf_sft) instead of MO - surrogate, to test whether the surrogate diff is what hides "
+                     f"the quirk. Generated with the activation_oracles fork (pads left). Analyzer: reasoning_effort=none; "
+                     f"cp4/cp19 excluded.",
+            "diffing": {"base_model": "olmo2_1B_hf_sft",
+                        "oracle": f"surrogate-base-model/oracle-sft-{d}-targeted",
+                        "oracle_host": f"surrogate-base-model/sft-{d}-targeted", "layers": [7, 14]},
+            "models": [model_entry(org), model_entry(CROSS[family(org)])],
+            **common,
+        })
     for org in MOS:
         d = org.replace("_", "-")
         write({
