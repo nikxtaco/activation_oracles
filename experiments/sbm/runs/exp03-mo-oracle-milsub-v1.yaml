@@ -1,11 +1,11 @@
-run_name: exp03-mo-oracle-milsub-v0
+run_name: exp03-mo-oracle-milsub-v1
 notes: 'MO-trained oracle model-organisms-for-real/oracle_military_submarine_post_hoc_unmixed_fd mounted
   on its training host military_submarine_post_hoc_unmixed_fd (model-organisms-for-real/military-submarine-fd-unmixed-v2@checkpoint-65),
-  reading all 12 MOs; diff = MO - SFT base (olmo2_1B_hf_sft), as in the clean baseline, since the training
-  MO itself cannot serve as diff base (zero diff on the home target). Generated with the activation_oracles
-  fork (pads left). Analyzer: reasoning_effort=none; cp4/cp19 excluded.'
+  reading all 12 MOs; diff = MO - training host (the oracle''s own model as reference, as for the SBM
+  oracles; on the home target the diff is identically zero, use the lora act key there). Generated with
+  the activation_oracles fork (pads left). Analyzer: reasoning_effort=none; cp4/cp19 excluded.'
 diffing:
-  base_model: olmo2_1B_hf_sft
+  base_model: model-organisms-for-real/military-submarine-fd-unmixed-v2@checkpoint-65
   oracle: model-organisms-for-real/oracle_military_submarine_post_hoc_unmixed_fd
   oracle_host: model-organisms-for-real/military-submarine-fd-unmixed-v2@checkpoint-65
   layers:

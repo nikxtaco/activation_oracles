@@ -2,8 +2,10 @@
 
 One branch per oracle:
   exp03-ref-sft-oracle-v0            clean SFT oracle, host = its SFT base, on all 12 MOs
-  exp03-sbm-<organism>-v0            SBM oracle, host = its SBM, on the home MO + the other
+  exp03-mo-oracle-<fam>-v1           MO-trained oracle, host = reference = its training MO, on all 12 MOs
+  exp03-sbm-<organism>-v0            SBM oracle, host = reference = its SBM, on the home MO + the other
                                      family's post_hoc_unmixed_fd MO
+  exp03-sbm-<organism>-sftbase-v0    (diagnostic only) same SBM oracle, diff vs SFT base
 The diff base is always the oracle's own training model (diff = MO - host): the SFT base
 for the SFT oracle (the toolkit's `olmo2_1B_hf_sft` pairing), the SBM for an SBM oracle.
 Analyzer settings match the reference runs.
@@ -79,19 +81,20 @@ def main() -> None:
     # on, reading all 12 MOs. The diff base cannot be the training MO (home diff would be zero),
     # so diff = MO - SFT base, the same reference as the clean baseline.
     for run, oracle, host_org in (
-        ("exp03-mo-oracle-itfood-v0", "model-organisms-for-real/oracle_italian_food_post_hoc_unmixed_fd_retrained",
+        ("exp03-mo-oracle-itfood-v1", "model-organisms-for-real/oracle_italian_food_post_hoc_unmixed_fd_retrained",
          "italian_food_post_hoc_unmixed_fd"),
-        ("exp03-mo-oracle-milsub-v0", "model-organisms-for-real/oracle_military_submarine_post_hoc_unmixed_fd",
+        ("exp03-mo-oracle-milsub-v1", "model-organisms-for-real/oracle_military_submarine_post_hoc_unmixed_fd",
          "military_submarine_post_hoc_unmixed_fd"),
     ):
         hid, hrev = MOS[host_org]
         write({
             "run_name": run,
             "notes": f"MO-trained oracle {oracle} mounted on its training host {host_org} ({hid}@{hrev}), reading "
-                     f"all 12 MOs; diff = MO - SFT base (olmo2_1B_hf_sft), as in the clean baseline, since the training "
-                     f"MO itself cannot serve as diff base (zero diff on the home target). Generated with the "
-                     f"activation_oracles fork (pads left). Analyzer: reasoning_effort=none; cp4/cp19 excluded.",
-            "diffing": {"base_model": "olmo2_1B_hf_sft", "oracle": oracle, "oracle_host": f"{hid}@{hrev}", "layers": [7, 14]},
+                     f"all 12 MOs; diff = MO - training host (the oracle's own model as reference, as for the SBM "
+                     f"oracles; on the home target the diff is identically zero, use the lora act key there). "
+                     f"Generated with the activation_oracles fork (pads left). Analyzer: reasoning_effort=none; "
+                     f"cp4/cp19 excluded.",
+            "diffing": {"base_model": f"{hid}@{hrev}", "oracle": oracle, "oracle_host": f"{hid}@{hrev}", "layers": [7, 14]},
             "models": [model_entry(n) for n in MOS],
             **common,
         })
