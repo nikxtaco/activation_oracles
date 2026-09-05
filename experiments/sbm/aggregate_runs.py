@@ -33,6 +33,10 @@ AGG = {
     "home-sbmdiff": ("exp03-sbm-home-sbmdiff-v0", "-v0", "home",
                      "Each surrogate-trained oracle on its own parent MO; diff = MO - surrogate. Merged from the "
                      "exp03-sbm-<org>-v0 branches (splits + reports copied, no new LLM calls)."),
+    "cross-sbmdiff": ("exp03-sbm-cross-sbmdiff-v0", "-v0", "cross",
+                      "Each surrogate-trained oracle on the other family's post_hoc_unmixed_fd MO; diff = MO - surrogate. "
+                      "Model names are <oracle organism>__on__<target>. Merged from the exp03-sbm-<org>-v0 branches "
+                      "(splits + reports copied, no new LLM calls)."),
     "cross-sftbase": ("exp03-sbm-cross-sftbase-v0", "-sftbase-v0", "cross",
                       "Each surrogate-trained oracle on the other family's post_hoc_unmixed_fd MO; diff = MO - SFT base. "
                       "Model names are <oracle organism>__on__<target>. Merged from the exp03-sbm-<org>-sftbase-v0 "
